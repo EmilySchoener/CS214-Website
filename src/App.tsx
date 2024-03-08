@@ -1,34 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from "react";
+import Navbar from "./Navbar/index.jsx";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+} from "react-router-dom";
 
+//These are the webpages available.
+import Home from './pages/index.jsx';
+import About from './pages/about.jsx';
+import Unit1 from "./pages/unit1.jsx"
+import Section1_1 from "./pages/section1.jsx";
+
+//Router is for different paths on the navbar. Home is the homepage.
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    return (
+        <div>
+    <Router>
+        <Navbar/>
+        <Routes>
+        <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/unit1" element={<Unit1 />} />
+                <Route path="/unit1/section1_1" element={<Section1_1 />} />
+            </Routes>
+        </Router>
+        </div>
+    );
 }
 
-export default App
+export default App;

@@ -40,3 +40,53 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.navbar {
+    background: linear-gradient(
+        135deg,
+        #52e878,
+        #00b59b
+    );
+    box-shadow: 0px 4px 8px
+        rgba(0, 0, 0, 0.1);
+}
+.brand-text {
+    color: #ffffff !important;
+    font-size: 36px;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px
+        rgba(0, 0, 0, 0.2);
+}
+.dropdown-menu {
+    background: linear-gradient(
+        135deg,
+        #52e878,
+        #00b59b
+    );
+    border: none;
+}
+.dropdown-item {
+    color: #ffffff !important;
+    font-size: 18px;
+    font-weight: 600;
+}
+.navbar-nav .nav-link:hover,
+.dropdown-item:hover {
+    background: linear-gradient(
+        135deg,
+        #00b59b,
+        #52e878
+    );
+    color: #ffffff !important;
+    transition: background-color 0.3s
+        ease-in-out;
+}
+.navbar-nav .nav-link.active {
+    background: linear-gradient(
+        135deg,
+        #ffc400,
+        #ffac00
+    );
+    color: #ffffff !important;
+}
