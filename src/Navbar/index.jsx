@@ -21,6 +21,15 @@ const Navbar = () => {
                     <NavLink to="/unit4" activeStyle>
                         Unit 4
                     </NavLink>
+                    <NavLink to="/unit5" activeStyle>
+                        Unit 5
+                    </NavLink>
+                    <NavLink to="/unit6" activeStyle>
+                        Unit 6
+                    </NavLink>
+                    <NavLink to="/unit7" activeStyle>
+                        Unit 7
+                    </NavLink>
                 </NavMenu>
             </Nav>
         </>
