@@ -6,7 +6,7 @@ const Unit6 = () => {
     return (
         <div>
             <h1>
-                Section 1.1 and 1.2 webpage.
+                Section 6.1 and 6.2 webpage.
             </h1>
             <Link to="/unit6/section6_1/">
               Section 6.1
