@@ -1,174 +1,109 @@
 // Filename - pages/index.jsx
 //Give the copyright statement and user info statement
-import React from "react";
-import { Button, Form } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+import * as React from 'react';
+import { experimentalStyled as styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Card from "react-bootstrap/Card";
+import ListGroup from 'react-bootstrap/ListGroup';
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#546581',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+    maxWidth: 400,
+    minHeight: 220,
+  color: theme.palette.text.secondary,
+}));
+
+const units = [
+    {
+        id: 1,
+        title: "Unit 1",
+        content: [{id: 1, name:"1.1 Statements, Symbolic Representations and Tautologies"},
+            {id: 2, name:"1.2 Propositional Logic"}],
+        link: "/unit1"
+    },
+    {
+        id: 2,
+        title: "Unit 3",
+        content: [{id:1, name:"3.1 Recursive Definitions"}],
+        link: "/unit3"
+    },
+    {
+        id: 3,
+        title: "Unit 4",
+        content: [{id:1, name:"4.1 Sets"}],
+        link: "/unit4"
+    },
+    {
+        id: 4,
+        title: "Unit 5",
+        content: [{id: 1, name:"5.1 Relations"},
+        {id: 2, name:"5.2 Topological Sorting"},
+        {id: 3, name:"5.4 Functions"},
+        {id: 4, name:"5.5 Order of Magnitude"},
+        {id: 5, name:"5.7 Boolean Matrices"}],
+        link: "/unit5"
+    },
+    {
+        id: 5,
+        title: "Unit 6",
+        content: [{id: 1, name:"6.1 Graphs and Their Representations"},
+        {id: 2, name:"6.2 Trees and Their Representations"}],
+        link: "/unit6"
+    },
+    {
+        id: 6,
+        title: "Unit 7",
+        content: [{id: 1, name:"7.1 Directed Graphs and Binary Relations; Washall's Algorithm"}],
+        link: "/unit7"
+    }
+]
+
 
 const Home = () => {
-    return (
-        <div>
-            <h1>Welcome to Discrete Math Solver</h1>
-        </div>
+return (
+    <>
+        <h1>Welcome to Discrete Math Solver</h1>
+        <span style ={{ fontSize: 20}}>
+        <p>All examples from this website are taken from the current UAH CS214 textbook:
+            <br/>
+            <span style={{fontStyle:'italic'}}>Mathematical Structures for Computer Science, A Modern Treatment of Discrete Mathematics </span>
+                (7th edition) by Judith L. Gerstring.
+        </p></span>
+        <h2>Units</h2>
+        <Box sx={{flexGrow: 1}} >
+            <Grid container spacing={1} columns={{xs: 2, sm: 10, md: 15}}>
+                {units.map((unit, index) => (
+                    <Grid item xs={2} sm={4} md={4} key={index}>
+                        <Item>
+                            <Card>
+                                <h2>{unit.title}</h2>
+                                <ListGroup>
+                                    {
+                                        unit.content.map(item => (
+                                            <ListGroup.Item className="modal-bg" key={item.id}>
+                                                <span style={{fontSize: 14, fontWeight: 'bold'}}>{item.name} </span>
+                                            </ListGroup.Item>
+                                        ))
+                                    }
+                                </ListGroup>
+                                <br/>
+                            </Card>
+                            <a href={unit.link}>
+                                <button> Go To {unit.title} </button>
+                            </a>
+                        </Item>
+                    </Grid>
+                ))}
+            </Grid>
+        </Box>
+    </>
 );
-};
 
+};
 export default Home;
 
-//Ignore this lower stuff, it's me playing around with aesthetics.
-/* import * as React from 'react';
-import {
-    createTheme, ThemeProvider
-} from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-//import StarIcon from '@mui/icons-material/StarBorder';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
-
-function MyButton() {
-  return (
-    <button>
-      I'm a button
-    </button>
-  );
-}
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const sections = [
-    {
-        title: 'Section 1',
-        description: [
-            '1.1',
-            '\t Statements',
-            '\t Symbolic Representations',
-            '\t Tautologies',
-            '1.2',
-            '\t Propositional Logic',
-        ],
-        buttonText: 'Solve',
-        buttonVariant: 'outlined',
-    },
-    {
-        title: 'Section 3',
-        description: [
-            '3.1',
-            'Recursive Definitions',
-        ],
-        buttonText: 'Solve',
-        buttonVariant: 'outlined',
-    },
-    {
-        title: 'Section 4',
-        description: [
-            '4.1',
-            'Sets',
-        ],
-        buttonText: 'Solve',
-        buttonVariant: 'outlined',
-    },
-];
-
-const defaultTheme = createTheme();
-
-export default function MyApp() {
-  return (
-      <ThemeProvider theme={defaultTheme}>
-      <GlobalStyles styles={{ ul: { margin: 2, padding: 2, listStyle: 'none' } }} />
-      <CssBaseline />
-          <Typography
-          component="h1"
-          variant="h2"
-          align="center"
-          color="text.primary"
-          gutterBottom
-        >
-          CS 214 Discrete Math Solver
-        </Typography>
-        <Typography variant="h5" align="center" color="text.secondary" component="p">
-          [placeholder for a description if we need it]
-        </Typography>
-
-      <Container maxWidth="md" component="main" >
-        <Grid container spacing={5} alignItems="flex-end" justifyContent={"space-evenly"}>
-          {sections.map((section) => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid
-              item
-              key={section.title}
-              xs={15}
-              md={4.9}
-            >
-              <Card>
-                <CardHeader
-                  title={section.title}
-                  titleTypographyProps={{ align: 'center' }}
-                  subheaderTypographyProps={{
-                    align: 'center',
-                  }}
-                  sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? theme.palette.grey[200]
-                        : theme.palette.grey[700],
-                  }}
-                />
-                <CardContent>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'baseline',
-                      mb: 2,
-
-                    }}
-                  >
-                  </Box>
-                  <ul>
-                    {section.description.map((line) => (
-                      <Typography
-                        component="li"
-                        variant="subtitle1"
-                        align="left"
-                        key={line}
-                      >
-                        {line}
-                      </Typography>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardActions>
-                  <Button fullWidth>
-                    {section.buttonText}
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-      </ThemeProvider>
-  );
-}
-*/

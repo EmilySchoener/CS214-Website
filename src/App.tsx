@@ -5,7 +5,6 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
-import logo from "./images/logo.png";
 
 //These are the webpages available.
 import Home from './pages/index.jsx';
@@ -30,29 +29,29 @@ import Unit7 from "./pages/unit7.jsx";
 function App() {
     return (
         <div>
-    <Router>
-        <Navbar>
-        </Navbar>
-        <Routes>
-        <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/unit1" element={<Unit1 />} />
-                <Route path="/unit1/section1_1" element={<Section1_1 />} />
-                <Route path="/unit1/section1_2" element={<Section1_2 />} />
-                <Route path="/unit3" element={<Unit3 />} />
-                <Route path="/unit4" element={<Unit4 />} />
-                <Route path="/unit5" element={<Unit5 />} />
-                <Route path="/unit5/section5_1" element={<Section5_1 />} />
-                <Route path="/unit5/section5_2" element={<Section5_2 />} />
-                <Route path="/unit5/section5_4" element={<Section5_4 />} />
-                <Route path="/unit5/section5_5" element={<Section5_5 />} />
-                <Route path="/unit5/section5_7" element={<Section5_7 />} />
-                <Route path="/unit6" element={<Unit6 />} />
-                <Route path="/unit6/section6_1" element={<Section6_1 />} />
-                <Route path="/unit6/section6_2" element={<Section6_2 />} />
-                <Route path="/unit7" element={<Unit7 />} />
-            </Routes>
-        </Router>
+            <Router>
+                <Navbar/>
+                <Routes>
+                <Route path="/" element={<Home/>}/>
+                    <Route path="/about" element={<About/>}/>
+                    <Route path="/unit1" element={<Unit1/>}/>
+                    <Route path="/unit1/section1_1" element={<Section1_1/>}/>
+                    <Route path="/unit1/section1_2" element={<Section1_2/>}/>
+                    <Route path="/unit3" element={<Unit3/>}/>
+                    <Route path="/unit4" element={<Unit4/>}/>
+                    <Route path="/unit5" element={<Unit5/>}/>
+                    <Route path="/unit5/section5_1" element={<Section5_1/>}/>
+                    <Route path="/unit5/section5_2" element={<Section5_2/>}/>
+                    <Route path="/unit5/section5_4" element={<Section5_4/>}/>
+                    <Route path="/unit5/section5_5" element={<Section5_5/>}/>
+                    <Route path="/unit5/section5_7" element={<Section5_7/>}/>
+                    <Route path="/unit6" element={<Unit6/>}/>
+                    <Route path="/unit6/section6_1" element={<Section6_1/>}/>
+                    <Route path="/unit6/section6_2" element={<Section6_2/>}/>
+                    <Route path="/unit7" element={<Unit7/>}/>
+                </Routes>
+                <p>Examples taken from: Mathematical Structures for Computer Science, A Modern Treatment of Discrete Mathematics (7th edition) by Judith L. Gerstring</p>
+            </Router>
         </div>
     );
 }
