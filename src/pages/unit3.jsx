@@ -1,5 +1,6 @@
 // Filename - pages/unit3.jsx
-import React, {useState} from "react";
+//import React, {useState} from "react";
+import React, { useEffect, useState } from 'react';
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -19,6 +20,7 @@ const Unit3 = () => {
     const [base2, setBase2] = useState("");
     const [base3, setBase3] = useState("");
     const [relation, setRelation] = useState("");
+    const [responseData, setResponseData] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,14 +63,18 @@ const Unit3 = () => {
         setRelation(e.target.value);
     }
 
-    /*
-    //When user presses the submit button.
-    const handleSubmit = (e) => {
-        e.preventDefault(); //This will stop the handler from emptying the text box.
-        alert (`Cases Chosen: ${cases}, Char Chosen: ${char}
-                \nBases Chosen: ${bases}\n
-                Relation: ${char}(n) = ${relation}`);
-    }*/
+    useEffect(() => {
+    // Make an HTTP GET request to your Flask backend
+    axios.get("http://localhost:5000/submit")
+      .then(response => {
+        // Update the state with the response data
+        setResponseData(response.data);
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
     //What is on the webpage.
     return (
@@ -139,8 +145,18 @@ const Unit3 = () => {
                     Submit
                 </button>
             </form>
+
+            <h2>
+            Solution
+            </h2>
+            <h2>Response from Flask Backend</h2>
+            {responseData ? <p>{JSON.stringify(responseData)}</p> : <p>Loading...</p>}
+
         </div>
     );
 };
+
+
+
 
 export default Unit3;

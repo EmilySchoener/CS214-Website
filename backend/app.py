@@ -18,28 +18,39 @@ def index():
     #return jsonify({'message': 'Form submitted successfully!'})
     #return jsonify(data)
 
-@app.route('/submit', methods=['POST'])
-def submit_form():
-    data = request.json
+array = None
 
+@app.route('/submit', methods=['GET', 'POST'])
+def submit_form():
+    global array
+
+    if request.method == 'POST':
+        data = request.json
+        array = SolveUnit3(data)
+        return jsonify(array)
+        #return 'Form submitted successfully!'
+
+    elif request.method == 'GET':
+        if array is None:
+            return 'No data available yet'
+        else:
+            return jsonify(array)
+
+def SolveUnit3(data):
     # Accessing specific keys in the JSON data
     cases = data.get('cases', [])
     intCases = int(cases)
-
     char = data.get('char', '')
-
     base1 = data.get('base1', [])
     intBase1 = int(base1)
-
     relation = data.get('relation', '')
-
     newRelation = unit3.getEquation(char, relation)
 
     if intCases == 1:
         resultArray = []
-        array = unit3.oneBaseCase(intBase1,char,2,newRelation, resultArray)
-
-        return jsonify(array)
+        return unit3.oneBaseCase(intBase1, char, 2, newRelation, resultArray)
+        # unit3.setArray()
+        #return array
 
     elif intCases == 2:
         base2 = data.get('base2', [])
@@ -54,12 +65,6 @@ def submit_form():
         return jsonify(base1)
     else:
         return jsonify(relation)
-        #print("issue")
-
-    #return jsonify(cases)
-    #return jsonify(data)
-
-
 
 
 
