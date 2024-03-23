@@ -22,24 +22,26 @@ print("Enter unique values")
 for i in range (0,u):
     ele = int(input())
     S_unique.append(ele)
+#reflexive(S, pairs, reflexive_pairs)
+def Reflexive(S, pairs, reflexive_pairs):
+    for i in range (0, pairs):
+        if S[i][0] == S[i][1]:
+            reflexive_pairs += 1
 
-for i in range (0, pairs):
-    if S[i][0] == S[i][1]:
-        reflexive_pairs += 1
+    if len(S_unique) == reflexive_pairs:
+        print("The list is reflexive!")
+    else:
+        print("The list is not reflexive!")
 
-if len(S_unique) == reflexive_pairs:
-    print("The list is reflexive!")
-else:
-    print("The list is not reflexive!")
-
-for i in range (0,n):
-    for j in range(0,n):
-        if S[i][0] == S[j][1] and S[i][1] == S[j][0]:
+def Symmetric(S, symmetric):
+    for i in range (0,n):
+        for j in range(0,n):
+            if S[i][0] == S[j][1] and S[i][1] == S[j][0]:
+                break
+            elif (j+1) == n:
+                symmetric = False
+        if not symmetric:
             break
-        elif (j+1) == n:
-            symmetric = False
-    if not symmetric:
-        break
 
 for i in range (0,n):
     for j in range(0,n):
