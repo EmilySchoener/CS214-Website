@@ -41,6 +41,7 @@ const Unit3 = () => {
         } catch (error) {
             console.error("Error:", error);
         }
+        window.location.reload();
     }
 
     //For input changes
@@ -94,7 +95,7 @@ const Unit3 = () => {
                     <input
                         onChange={charChange}
                         type="text"
-                        value={char}
+                        value={char || ""}
                         placeholder="Enter Here"
                     />
                 </label>
@@ -150,7 +151,7 @@ const Unit3 = () => {
             Solution
             </h2>
             <h2>Response from Flask Backend</h2>
-            {responseData ? <p>{JSON.stringify(responseData)}</p> : <p>Loading...</p>}
+            {responseData ? <ul>{responseData.map(item => <p>{item}</p>)} </ul> : <p>Loading...</p>}
 
         </div>
     );
