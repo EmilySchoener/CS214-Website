@@ -15,16 +15,19 @@ for i in range(0, m):
     ele = input()
     partition_2.append(ele)
 
-equivalence = []
+def equivalence_relations(partition_1, partition_2):
+    equivalence = []
 
-for i in range(0,n):
-    for j in range (0,n):
-        ele = [partition_1[i], partition_1[j]]
-        equivalence.append(ele)
+    for i in range(0,n):
+        for j in range (0,n):
+            ele = [partition_1[i], partition_1[j]]
+            equivalence.append(ele)
 
-for i in range(0,m):
-    for j in range (0,m):
-        ele = [partition_2[i], partition_2[j]]
-        equivalence.append(ele)
+    for i in range(0,m):
+        for j in range (0,m):
+            ele = [partition_2[i], partition_2[j]]
+            equivalence.append(ele)
 
-print(equivalence)
+    return equivalence
+
+#print(equivalence)

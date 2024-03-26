@@ -1,0 +1,2 @@
+FLASK_APP=Binary_Flask.py
+FLASK_ENV=development
