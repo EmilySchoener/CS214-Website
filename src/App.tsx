@@ -16,9 +16,22 @@ import Unit3 from "./pages/unit3.jsx";
 import Unit4 from "./pages/unit4.jsx";
 import Unit5 from "./pages/unit5.jsx";
 import Section5_1 from "./pages/section5_1.jsx";
+import BinaryRelations from "./pages/5_1pages/BinaryRelations.jsx";
+import ClosureRelations from "./pages/5_1pages/ClosureRelations.jsx";
+import HasseDiagram from "./pages/5_1pages/HasseDiagram.jsx";
+import MMLGElements from "./pages/5_1pages/MMLGElements.jsx";
+import Equivalence from "./pages/5_1pages/Equivalence.jsx";
 import Section5_2 from "./pages/section5_2.jsx";
+import PertChart from "./pages/5_2pages/PertChart.jsx";
+import TopologicalSort from "./pages/5_2pages/TopologicalSort.jsx";
+import SequentialTasks from "./pages/5_2pages/SequentialTasks.jsx";
 import Section5_4 from "./pages/section5_4.jsx";
+import CyclicalPermutations from "./pages/5_4pages/CyclicalPermutations.jsx";
+import Onto from "./pages/5_4pages/Onto.jsx";
+import OneToOne from "./pages/5_4pages/OneToOne.jsx";
 import Section5_5 from "./pages/section5_5.jsx";
+import OrderOfMagnitude from "./pages/5_5pages/OrderOfMagnitude.jsx";
+import MasterTheorem from "./pages/5_5pages/MasterTheorem.jsx";
 import Section5_7 from "./pages/section5_7.jsx";
 import Unit6 from "./pages/unit6.jsx";
 import Section6_1 from "./pages/section6_1.jsx";
@@ -41,9 +54,22 @@ function App() {
                     <Route path="/unit4" element={<Unit4/>}/>
                     <Route path="/unit5" element={<Unit5/>}/>
                     <Route path="/unit5/section5_1" element={<Section5_1/>}/>
+                    <Route path="/unit5/section5_1/BinaryRelations" element={<BinaryRelations/>}/>
+                    <Route path="/unit5/section5_1/ClosureRelations" element={<ClosureRelations/>}/>
+                    <Route path="/unit5/section5_1/HasseDiagram" element={<HasseDiagram/>}/>
+                    <Route path="/unit5/section5_1/MMLGElements" element={<MMLGElements/>}/>
+                    <Route path="/unit5/section5_1/Equivalence" element={<Equivalence/>}/>
                     <Route path="/unit5/section5_2" element={<Section5_2/>}/>
+                    <Route path="/unit5/section5_2/PertChart" element={<PertChart/>}/>
+                    <Route path="/unit5/section5_2/TopologicalSort" element={<TopologicalSort/>}/>
+                    <Route path="/unit5/section5_2/SequentialTasks" element={<SequentialTasks/>}/>
                     <Route path="/unit5/section5_4" element={<Section5_4/>}/>
+                    <Route path="/unit5/section5_4/CyclicalPermutations" element={<CyclicalPermutations/>}/>
+                    <Route path="/unit5/section5_4/Onto" element={<Onto/>}/>
+                    <Route path="/unit5/section5_4/OneToOne" element={<OneToOne/>}/>
                     <Route path="/unit5/section5_5" element={<Section5_5/>}/>
+                    <Route path="/unit5/section5_5/OrderOfMagnitude" element={<OrderOfMagnitude/>}/>
+                    <Route path="/unit5/section5_5/MasterTheorem" element={<MasterTheorem/>}/>
                     <Route path="/unit5/section5_7" element={<Section5_7/>}/>
                     <Route path="/unit6" element={<Unit6/>}/>
                     <Route path="/unit6/section6_1" element={<Section6_1/>}/>

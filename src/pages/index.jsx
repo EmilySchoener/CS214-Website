@@ -21,26 +21,26 @@ const Item = styled(Paper)(({ theme }) => ({
 const units = [
     {
         id: 1,
-        title: "Unit 1",
+        title: "Chapter 1",
         content: [{id: 1, name:"1.1 Statements, Symbolic Representations and Tautologies"},
             {id: 2, name:"1.2 Propositional Logic"}],
         link: "/unit1"
     },
     {
         id: 2,
-        title: "Unit 3",
+        title: "Chapter 3",
         content: [{id:1, name:"3.1 Recursive Definitions"}],
         link: "/unit3"
     },
     {
         id: 3,
-        title: "Unit 4",
+        title: "Chapter 4",
         content: [{id:1, name:"4.1 Sets"}],
         link: "/unit4"
     },
     {
         id: 4,
-        title: "Unit 5",
+        title: "Chapter 5",
         content: [{id: 1, name:"5.1 Relations"},
         {id: 2, name:"5.2 Topological Sorting"},
         {id: 3, name:"5.4 Functions"},
@@ -50,14 +50,14 @@ const units = [
     },
     {
         id: 5,
-        title: "Unit 6",
+        title: "Chapter 6",
         content: [{id: 1, name:"6.1 Graphs and Their Representations"},
         {id: 2, name:"6.2 Trees and Their Representations"}],
         link: "/unit6"
     },
     {
         id: 6,
-        title: "Unit 7",
+        title: "Chapter 7",
         content: [{id: 1, name:"7.1 Directed Graphs and Binary Relations; Washall's Algorithm"}],
         link: "/unit7"
     }
@@ -74,7 +74,7 @@ return (
             <span style={{fontStyle:'italic'}}>Mathematical Structures for Computer Science, A Modern Treatment of Discrete Mathematics </span>
                 (7th edition) by Judith L. Gerstring.
         </p></span>
-        <h2>Units</h2>
+        <h2>Chapters</h2>
         <Box sx={{flexGrow: 1}} >
             <Grid container spacing={1} columns={{xs: 2, sm: 10, md: 15}}>
                 {units.map((unit, index) => (

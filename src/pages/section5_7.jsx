@@ -6,7 +6,7 @@ const Section5_7 = () => {
     return (
         <div>
             <h1>
-                Section 5.7 webpage.
+                Section 5.7 - Boolean Matrices
             </h1>
         </div>
     );

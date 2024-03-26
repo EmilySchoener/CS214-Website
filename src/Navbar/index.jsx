@@ -15,22 +15,22 @@ const Navbar = () => {
                         About
                     </NavLink>
                     <NavLink to="/unit1" activeStyle>
-                        Unit 1
+                        Chapter 1
                     </NavLink>
                     <NavLink to="/unit3" activeStyle>
-                        Unit 3
+                        Chapter 3
                     </NavLink>
                     <NavLink to="/unit4" activeStyle>
-                        Unit 4
+                        Chapter 4
                     </NavLink>
                     <NavLink to="/unit5" activeStyle>
-                        Unit 5
+                        Chapter 5
                     </NavLink>
                     <NavLink to="/unit6" activeStyle>
-                        Unit 6
+                        Chapter 6
                     </NavLink>
                     <NavLink to="/unit7" activeStyle>
-                        Unit 7
+                        Chapter 7
                     </NavLink>
                 </NavMenu>
             </Nav>

@@ -37,7 +37,7 @@ const Unit1 = () => {
     return (
         <div>
             <h1>
-                Unit 1
+                Chapter 1
             </h1>
             <h2>Sections</h2>
             <Box sx={{flexGrow: 1}}>

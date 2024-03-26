@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const Nav = styled.nav`
     background: #a7b5d0;
     margin: 0;
-    height: 85px;
+    height: 90px;
     min-width: 1000px;
     display: flex;
     justify-content: space-between;
@@ -21,7 +21,7 @@ export const NavLink = styled(Link)`
     padding: 0 1rem;
     height: 100%;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
 
     &.active {
         color: #4f78b4;
