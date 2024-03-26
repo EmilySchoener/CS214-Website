@@ -18,13 +18,8 @@ def compose_cycles(input_string):
     print(composition)
     return str(composition)
 
-S = []
-n = int(input("Enter number of pairs in S:"))
 
-print("Enter pairs:")
-for i in range(0,n):
-    ele = [(input()), (input()), (input()), (input())]
-    S.append(ele)
-#Need to find a different way to do composition of cycles, sympy does not work for user input
-compose_cycles('(S)')
-#compose_cycles('(1,3,4)(5,6)(2,3,5)(6,1)')
+S = input("Enter the cycles, with commas separating different functions: ")
+
+
+compose_cycles(S)
