@@ -14,6 +14,10 @@ import Section1_1 from "./pages/section1.jsx";
 import Section1_2 from "./pages/section1_2.jsx";
 import Unit3 from "./pages/unit3.jsx";
 import Unit4 from "./pages/unit4.jsx";
+import TrueOrFalse from "./pages/4_1pages/TrueOrFalse.jsx";
+import PowerSet from "./pages/4_1pages/PowerSet.jsx";
+import BinaryOrUnary from "./pages/4_1pages/BinaryOrUnary.jsx";
+import SolveExpression from "./pages/4_1pages/SolveExpression.jsx";
 import Unit5 from "./pages/unit5.jsx";
 import Section5_1 from "./pages/section5_1.jsx";
 import BinaryRelations from "./pages/5_1pages/BinaryRelations.jsx";
@@ -52,6 +56,10 @@ function App() {
                     <Route path="/unit1/section1_2" element={<Section1_2/>}/>
                     <Route path="/unit3" element={<Unit3/>}/>
                     <Route path="/unit4" element={<Unit4/>}/>
+                    <Route path="/unit4/TrueOrFalse" element={<TrueOrFalse/>}/>
+                    <Route path="/unit4/PowerSet" element={<PowerSet/>}/>
+                    <Route path="/unit4/BinaryOrUnary" element={<BinaryOrUnary/>}/>
+                    <Route path="/unit4/SolveExpression" element={<SolveExpression/>}/>
                     <Route path="/unit5" element={<Unit5/>}/>
                     <Route path="/unit5/section5_1" element={<Section5_1/>}/>
                     <Route path="/unit5/section5_1/BinaryRelations" element={<BinaryRelations/>}/>

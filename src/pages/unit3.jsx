@@ -15,7 +15,7 @@ const Unit3 = () => {
 const Unit3 = () => {
     //Variables
     const [cases, setCases] = useState("1");
-    const [char, setChar] = useState("");
+    const [char, setChar] = useState("S");
     const [base1, setBase1] = useState("");
     const [base2, setBase2] = useState("");
     const [base3, setBase3] = useState("");
@@ -27,9 +27,9 @@ const Unit3 = () => {
         try {
             e.preventDefault(); //This will stop the handler from emptying the text box.
             alert (`Cases Chosen: ${cases}, Char Chosen: ${char}
-                \nBases Chosen: ${base1}\n
+                \nBase 1: ${base1}\n
                 Relation: ${char}(n) = ${relation}`);
-            const response = await axios.post("http://127.0.0.1:5000/submit", {
+            const response = await axios.post("http://127.0.0.1:5000/3_1", {
                 cases,
                 char,
                 base1,
@@ -66,7 +66,7 @@ const Unit3 = () => {
 
     useEffect(() => {
     // Make an HTTP GET request to your Flask backend
-    axios.get("http://localhost:5000/submit")
+    axios.get("http://localhost:5000/3_1")
       .then(response => {
         // Update the state with the response data
         setResponseData(response.data);
@@ -147,11 +147,17 @@ const Unit3 = () => {
                 </button>
             </form>
 
-            <h2>
-            Solution
-            </h2>
+            <h2>Solution</h2>
             <h2>Response from Flask Backend</h2>
-            {responseData ? <ul>{responseData.map(item => <p>{item}</p>)} </ul> : <p>Loading...</p>}
+            {responseData !== null && Array.isArray(responseData) ? (
+                <ul>
+                    {responseData.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                </ul>
+            ) : (
+                <p> ... Loading ...</p>
+            )}
 
         </div>
     );

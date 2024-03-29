@@ -20,7 +20,7 @@ def index():
 
 array = None
 
-@app.route('/submit', methods=['GET', 'POST'])
+@app.route('/3_1', methods=['GET', 'POST'])
 def submit_form():
     global array
 
@@ -28,7 +28,6 @@ def submit_form():
         data = request.json
         array = SolveUnit3(data)
         return jsonify(array)
-        #return 'Form submitted successfully!'
 
     elif request.method == 'GET':
         if array is None:
@@ -43,28 +42,29 @@ def SolveUnit3(data):
     char = data.get('char', '')
     base1 = data.get('base1', [])
     intBase1 = int(base1)
-    relation = data.get('relation', '')
-    newRelation = unit3.getEquation(char, relation)
+    relation = data.get('relation', "")
+    #newRelation = unit3.getEquation(char, relation)
 
     if intCases == 1:
         resultArray = []
-        return unit3.oneBaseCase(intBase1, char, 2, newRelation, resultArray)
-        # unit3.setArray()
-        #return array
+        return unit3.oneBaseCase(intBase1, char, 2, relation, resultArray)
 
     elif intCases == 2:
+        resultArray = []
         base2 = data.get('base2', [])
         intBase2 = int(base2)
-        return jsonify(char)
+        return unit3.twoBaseCase(intBase1, intBase2, char, 3, relation, resultArray)
+
     elif intCases == 3:
+        resultArray = []
         base2 = data.get('base2', [])
         intBase2 = int(base2)
 
         base3 = data.get('base3', [])
         intBase3 = int(base3)
-        return jsonify(base1)
+        return unit3.threeBaseCase(intBase1, intBase2, intBase3, char, 4, relation, resultArray)
     else:
-        return jsonify(relation)
+        return "error occured"
 
 
 
