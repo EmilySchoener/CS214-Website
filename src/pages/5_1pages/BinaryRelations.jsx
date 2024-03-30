@@ -7,9 +7,9 @@ import axios from "axios";
 
 const BinaryRelations = () => {
 
-    const [S, setS] = useState("1");
+    const [S, setS] = useState("");
     const [responseData, setResponseData] = useState(null);
-
+    console.log(responseData);
     //When user presses the submit button.
        const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,6 +36,7 @@ const BinaryRelations = () => {
       .then(response => {
         // Update the state with the response data
         setResponseData(response.data);
+        console.log(responseData);
       })
       .catch(error => {
         // Handle any errors
@@ -43,6 +44,7 @@ const BinaryRelations = () => {
       });
   }, []);
 
+       console.log(responseData);
     return (
         <div>
             <h1>
@@ -50,9 +52,8 @@ const BinaryRelations = () => {
             </h1>
             <p> Input: </p>
             <form onSubmit={handleSubmit}>
-                <textarea
-                    rows={5}
-                    cols={35}
+                <input
+
                     onChange={sChange}
                     placeholder="Enter the pairs in S"
                 />
@@ -62,13 +63,21 @@ const BinaryRelations = () => {
                     Submit
                 </button>
             </form>
-           <h2>
-            Solution
-            </h2>
+        <h2>Solution</h2>
             <h2>Response from Flask Backend</h2>
-            {responseData ? <ul>{responseData.map(item => <p>{item}</p>)} </ul> : <p>Loading...</p>}
+            {responseData !== null && Array.isArray(responseData) ? (
+                <ul>
+                    {responseData.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                </ul>
+            ) : (
+                <p> ... Loading ...</p>
+            )}
         </div>
     );
+
+
 };
 
 export default BinaryRelations

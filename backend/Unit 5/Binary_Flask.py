@@ -1,14 +1,14 @@
-#from flask import Flask, jsonify, request
-#from flask_cors import CORS
+'''from flask import Flask, jsonify, request
+from flask_cors import CORS
 import Binary_Relations
 import json
 
-#app = Flask(__name__)
-#CORS(app)
+app = Flask(__name__)
+CORS(app)
 
-#@app.route('/')
-#def index():
-    #return 'Hello, World!'
+@app.route('/')
+def index():
+    return 'Hello, World!'
 
 #@app.route('/submit', methods=['POST'])
 #def submit_form():
@@ -18,7 +18,6 @@ import json
     #return jsonify({'message': 'Form submitted successfully!'})
     #return jsonify(data)
 
-'''
 @app.route('/submitBinary', methods=['POST'])
 def submit_form():
 
@@ -37,7 +36,7 @@ def submit_form():
             return 'No data available yet'
         else:
             return jsonify(answer)
-'''
+
     # Accessing specific keys in the JSON data
     #S = data.get('S', [])
     #strs = S.replace('[', '').split('],')
@@ -79,7 +78,7 @@ def BinarySolution(lists):
 
 
 
-'''
+
 @app.route('/api/data', methods=['GET'])
 def get_data():
     data = {'message': 'This is data from Flask backend!'}
