@@ -68,10 +68,28 @@ def SolveUnit3(data):
         return "error occured"
 
 
+string4_1_1 = None
 
-#@app.route('/submit', methods=['POST'])
-#def submit_form_dummy():
-   #return jsonify({'message': 'This is a dummy response for form submission.'})
+@app.route('/4_1_1', methods=['GET', 'POST'])
+def submit_4_1_1():
+    global string4_1_1
+
+    if request.method == 'POST':
+        data = request.json
+        string4_1_1 = SolveUnit4_1_1(data)
+        return jsonify(string4_1_1)
+
+    elif request.method == 'GET':
+        if string4_1_1 is None:
+            return 'No data available yet'
+        else:
+            return jsonify(string4_1_1)
+
+
+def SolveUnit4_1_1(data):
+    return "True"
+
+
 
 @app.route('/api/data', methods=['GET'])
 def get_data():
