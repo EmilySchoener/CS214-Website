@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 
 const BinaryRelations = () => {
@@ -50,6 +51,8 @@ const BinaryRelations = () => {
             <h1>
                 5.1 - Binary Relations webpage.
             </h1>
+            <Splitter>
+                <SplitterPanel>
             <p> Input: </p>
             <form onSubmit={handleSubmit}>
                 <input
@@ -74,10 +77,19 @@ const BinaryRelations = () => {
             ) : (
                 <p> ... Loading ...</p>
             )}
+                </SplitterPanel>
+                <SplitterPanel>
+                    <h2>Example:</h2>
+                    <p>Input: [[1,2],[3,4],[5,6]] </p>
+                    <p>The list of S is not reflexive <br/>
+                        The list of S is irreflexive<br/>
+                        The list of S is not symmetric<br/>
+                        The list of S is not antisymmetric<br/>
+                        The list of S is not transitive</p>
+                </SplitterPanel>
+            </Splitter>
         </div>
     );
-
-
 };
 
 export default BinaryRelations

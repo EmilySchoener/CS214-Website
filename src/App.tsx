@@ -41,6 +41,7 @@ import Unit6 from "./pages/unit6.jsx";
 import Section6_1 from "./pages/section6_1.jsx";
 import Section6_2 from "./pages/section6_2.jsx";
 import Unit7 from "./pages/unit7.jsx";
+import Report from "./pages/ErrorReport.jsx";
 
 //Router is for different paths on the navbar. Home is the homepage.
 function App() {
@@ -49,7 +50,7 @@ function App() {
             <Router>
                 <Navbar/>
                 <Routes>
-                <Route path="/" element={<Home/>}/>
+                    <Route path="/" element={<Home/>}/>
                     <Route path="/about" element={<About/>}/>
                     <Route path="/unit1" element={<Unit1/>}/>
                     <Route path="/unit1/section1_1" element={<Section1_1/>}/>
@@ -83,8 +84,14 @@ function App() {
                     <Route path="/unit6/section6_1" element={<Section6_1/>}/>
                     <Route path="/unit6/section6_2" element={<Section6_2/>}/>
                     <Route path="/unit7" element={<Unit7/>}/>
+                    <Route path="/userReport" element={<Report/>}/>
                 </Routes>
-                <p>Examples taken from: Mathematical Structures for Computer Science, A Modern Treatment of Discrete Mathematics (7th edition) by Judith L. Gerstring</p>
+                <br/>
+                <a href={"/userReport"}>
+                    <button> Report an Error </button>
+                </a>
+                <p>Examples taken from: Mathematical Structures for Computer Science, A Modern Treatment of Discrete
+                    Mathematics (7th edition) by Judith L. Gerstring</p>
             </Router>
         </div>
     );

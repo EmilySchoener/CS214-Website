@@ -1,41 +1,44 @@
 // Filename - pages/unit7.jsx
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, {useState} from "react";
+import { Button, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 const Unit7 = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
+    const [text, setText] = useState("");
+    const handleInputChange = (e) => {
+        setText(e.target.value);
+        console.log('inputChanged')
+    }
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:5000/submit', formData);
-            console.log('Response from server:', response.data);
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
+    //When user presses the submit button.
+    const handleSubmit = (e) => {
+        e.preventDefault(); //This will stop the handler from emptying the text box.
+        alert (`Text: ${text}`);
+    }
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} />
-            <input type="email" name="email" value={formData.email} onChange={handleChange} />
-            <textarea name="message" value={formData.message} onChange={handleChange} />
-            <button type="submit">Submit</button>
-        </form>
+        <div>
+            <h1>
+                Chapter 7.1 - Directed Graphs and Binary Relations; Washall's Algorithm
+            </h1>
+            <p> Input: </p>
+            <form onSubmit={handleSubmit}>
+                <textarea
+                    rows={5}
+                    cols={35}
+                    onChange={handleInputChange}
+                    placeholder="Enter your problem"
+                />
+                <br/>
+                <button
+                    type="submit">
+                    Submit
+                </button>
+            </form>
+            <p>
+                Hello, {text}
+            </p>
+        </div>
     );
 };
 
-export default Unit7;
+export default Unit7

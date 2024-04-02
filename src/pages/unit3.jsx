@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 /*
 const Unit3 = () => {
@@ -83,6 +84,8 @@ const Unit3 = () => {
             <h1>
                 Section 3.1 webpage.
             </h1>
+            <Splitter>
+                <SplitterPanel>
             <form onSubmit={handleSubmit}>
                 How many base cases do you have?
                 <select id="dropdown" value={cases} onChange={casesChange}>
@@ -158,6 +161,25 @@ const Unit3 = () => {
             ) : (
                 <p> ... Loading ...</p>
             )}
+                    </SplitterPanel>
+                <SplitterPanel>
+                    <h2>Example:</h2>
+                    <p>
+                        2 Base Cases<br/>
+                        Character = S<br/>
+                        S(1) = 1<br/>
+                        S(2) = 2<br/>
+                    </p>
+                    <p>
+                        Solution:<br/>
+                        S(3)=3<br/>
+                        S(4)=5<br/>
+                        S(5)=8<br/>
+                        S(6)=13<br/>
+                        S(7)=21<br/>
+                    </p>
+                </SplitterPanel>
+            </Splitter>
 
         </div>
     );
