@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import unit3
-import Binary_Relations, Closure_Relations, Equivalence_Relations
+import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, Matrix_Multiplication, Boolean_Matrices
 import json
 
 app = Flask(__name__)
@@ -206,6 +206,139 @@ def submit_equivalence_form():
             return 'No data available yet'
         else:
             return jsonify(equivalence)
+
+
+cycle = None
+@app.route('/submitCyclical', methods=['GET', 'POST'])
+def submit_cyclical_form():
+
+    global cycle
+
+    if request.method == 'POST':
+        data = request.json
+        S = data.get('S', [])
+        lists = json.loads(S) #JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
+        cycle = Cyclical_Permutations.cycle_permutation(lists)
+        return cycle
+
+    elif request.method == 'GET':
+        if cycle is None:
+            return 'No data available yet'
+        else:
+            return cycle
+
+oneto = None
+@app.route('/submitOneToOne', methods=['GET', 'POST'])
+def submit_OneToOne_form():
+
+    global oneto
+
+    if request.method == 'POST':
+        data = request.json
+        S = data.get('S', [])
+        domain = data.get('domain', [])
+        codomain = data.get('codomain', [])
+        func = data.get('func', [])
+        d = json.loads(domain)
+        cd = json.loads(codomain)
+        f = json.loads(func)
+        oneto = OneToOneSolution(d, cd, f)
+        return jsonify(oneto)
+
+    elif request.method == 'GET':
+        if oneto is None:
+            return 'No data available yet'
+        else:
+            return jsonify(oneto)
+def OneToOneSolution(d, cd, f):
+    OneToOne = One_to_One.one_to_one(d, cd, f)
+    keyword = [''] * 1
+    if OneToOne:
+        keyword[0] = "The function is One to One"
+    elif not OneToOne:
+        keyword[0] = "The list of S is not One to One"
+
+    return keyword
+
+onto = None
+@app.route('/submitOnto', methods=['GET', 'POST'])
+def submit_Onto_form():
+
+    global onto
+
+    if request.method == 'POST':
+        data = request.json
+        S = data.get('S', [])
+        domain = data.get('domain', [])
+        codomain = data.get('codomain', [])
+        func = data.get('func', [])
+        d = json.loads(domain)
+        cd = json.loads(codomain)
+        f = json.loads(func)
+        onto = OntoSolution(d, cd, f)
+        return jsonify(onto)
+
+    elif request.method == 'GET':
+        if onto is None:
+            return 'No data available yet'
+        else:
+            return jsonify(onto)
+def OntoSolution(d, cd, f):
+    onto = Onto.onto(d, cd, f)
+    keyword = [''] * 1
+    if onto:
+        keyword[0] = "The function is Onto"
+    elif not onto:
+        keyword[0] = "The function is not Onto"
+
+    return keyword
+
+mult = None
+dot = None
+@app.route('/submitMatrixMult', methods=['GET', 'POST'])
+def submit_Mult_form():
+
+    global mult
+    global dot
+
+    if request.method == 'POST':
+        data = request.json
+        matrix1 = data.get('matrix1', [])
+        matrix2 = data.get('matrix2', [])
+        m1 = json.loads(matrix1)
+        m2 = json.loads(matrix2)
+        mult = Matrix_Multiplication.matrix_mult(m1, m2)
+        mult = "The Matrix Multiplication gives: " + str(mult)
+        dot = Matrix_Multiplication.matrix_dot(m1, m2)
+        dot = "The Dot Product gives: " + str(dot)
+        return jsonify(mult, dot)
+
+    elif request.method == 'GET':
+        if mult is None:
+            return 'No data available yet'
+        else:
+            return jsonify(mult, dot)
+
+bool_mat = None
+@app.route('/submitBoolMatrix', methods=['GET', 'POST'])
+def submit_Bool_form():
+
+    global bool_mat
+
+    if request.method == 'POST':
+        data = request.json
+        bool_matrix1 = data.get('bool_matrix1', [])
+        bool_matrix2 = data.get('bool_matrix2', [])
+        bool_m1 = json.loads(bool_matrix1)
+        bool_m2 = json.loads(bool_matrix2)
+        bool_mat = Boolean_Matrices.matrix_mult(bool_m1, bool_m2)
+        return jsonify(bool_mat)
+
+    elif request.method == 'GET':
+        if bool_mat is None:
+            return 'No data available yet'
+        else:
+            return jsonify(bool_mat)
 
 if __name__ == '__main__':
     app.run(debug=True)

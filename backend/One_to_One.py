@@ -1,3 +1,4 @@
+'''
 d = int(input("How many numbers are in the domain?"))
 cd = int(input("How many numbers are in the co-domain?"))
 
@@ -23,12 +24,12 @@ print("Enter pairs:")
 for i in range(0,n):
     ele = [int(input()), int(input())]
     Function.append(ele)
-
+'''
 def one_to_one(Domain, Co_Domain, Function):
     counter = 0
     One_to_One = True
-    for i in range(0, cd):
-        for j in range(0, n):
+    for i in range(0, len(Co_Domain)):
+        for j in range(0, len(Function)):
             if Co_Domain[i] == Function[j][1]:
                 counter += 1
             if counter == 1:
@@ -39,6 +40,7 @@ def one_to_one(Domain, Co_Domain, Function):
                 return One_to_One
                 #break
         if not One_to_One:
+            return One_to_One
             break
 
 #if One_to_One:
