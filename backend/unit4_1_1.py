@@ -99,7 +99,8 @@ def properSubset(set1, set2, set3, left, right):
         if left[0] in right and len(left) < len(right):
             return f"True, {left[0]} is in {right} and {left[0]} is a proper subset of {right}."
         else:
-            return f"False, {left[0]} was not found in {right}."
+            return f"False, {left[0]} was not found in {right} or it has the same or more elements."
+
 
 def convertArray(input):
     elements = []

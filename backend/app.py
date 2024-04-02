@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import unit3
 import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, Matrix_Multiplication, Boolean_Matrices
+import unit4_1_1, unit4_1_2, unit4_1_3, unit4_1_4
 import json
 
 app = Flask(__name__)
@@ -87,14 +88,74 @@ def submit_4_1_1():
 
 
 def SolveUnit4_1_1(data):
+    condition = data.get("condition", [])
+    intCondition = int(condition)
+    set1 = data.get("set1", [])
+    set1Array = unit4_1_1.convertArray(set1)
+    set2 = data.get("set2", [])
+    set2Array = unit4_1_1.convertArray(set2)
+    set3 = data.get("set3", [])
+    set3Array = unit4_1_1.convertArray(set3)
+    leftSide = data.get("leftSide", [])
+    rightSide = data.get("rightSide", [])
+
+    if intCondition == 1:
+        return unit4_1_1.elementOf(set1Array, set2Array, set3Array, leftSide, rightSide)
+    elif intCondition == 2:
+        return unit4_1_1.properSubset(set1Array, set2Array, set3Array, leftSide, rightSide)
+    elif intCondition == 3:
+        return unit4_1_1.subset(set1Array, set2Array, set3Array, leftSide, rightSide)
+    else:
+        return "error occured"
+
+
+string4_1_2 = None
+
+@app.route('/4_1_2', methods=['GET', 'POST'])
+def submit_4_1_2():
+    global string4_1_2
+
+    if request.method == 'POST':
+        data = request.json
+        string4_1_2 = SolveUnit4_1_2(data)
+        return jsonify(string4_1_2)
+
+    elif request.method == 'GET':
+        if string4_1_2 is None:
+            return 'No data available yet'
+        else:
+            return jsonify(string4_1_2)
+
+
+def SolveUnit4_1_2(data):
     return "True"
 
+
+@app.route('/4_1_4', methods=['GET', 'POST'])
+def submit_4_1_4():
+    global string4_1_4
+
+    if request.method == 'POST':
+        data = request.json
+        string4_1_4 = SolveUnit4_1_4(data)
+        return jsonify(string4_1_4)
+
+    elif request.method == 'GET':
+        if string4_1_4 is None:
+            return 'No data available yet'
+        else:
+            return jsonify(string4_1_4)
+
+
+def SolveUnit4_1_4(data):
+    return "True"
 
 
 @app.route('/api/data', methods=['GET'])
 def get_data():
     data = {'message': 'This is data from Flask backend!'}
     return jsonify(data)
+
 
 #answer = []
 answer = None
