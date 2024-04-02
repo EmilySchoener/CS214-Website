@@ -37,6 +37,8 @@ import Section5_5 from "./pages/section5_5.jsx";
 import OrderOfMagnitude from "./pages/5_5pages/OrderOfMagnitude.jsx";
 import MasterTheorem from "./pages/5_5pages/MasterTheorem.jsx";
 import Section5_7 from "./pages/section5_7.jsx";
+import BooleanMatrices from "./pages/5_7pages/BooleanMatrices.jsx";
+import MatrixMultiplication from "./pages/5_7pages/MatrixMultiplication.jsx";
 import Unit6 from "./pages/unit6.jsx";
 import Section6_1 from "./pages/section6_1.jsx";
 import Section6_2 from "./pages/section6_2.jsx";
@@ -80,6 +82,8 @@ function App() {
                     <Route path="/unit5/section5_5/OrderOfMagnitude" element={<OrderOfMagnitude/>}/>
                     <Route path="/unit5/section5_5/MasterTheorem" element={<MasterTheorem/>}/>
                     <Route path="/unit5/section5_7" element={<Section5_7/>}/>
+                    <Route path="/unit5/section5_7/BooleanMatrices" element={<BooleanMatrices/>}/>
+                    <Route path="/unit5/section5_7/MatrixMultiplication" element={<MatrixMultiplication/>}/>
                     <Route path="/unit6" element={<Unit6/>}/>
                     <Route path="/unit6/section6_1" element={<Section6_1/>}/>
                     <Route path="/unit6/section6_2" element={<Section6_2/>}/>

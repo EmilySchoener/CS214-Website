@@ -5,9 +5,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 
-const CyclicalPermutations = () => {
+const BooleanMatrices = () => {
 
-    const [S, setS] = useState("");
+    const [bool_matrix1, setMatrix1] = useState("");
+    const [bool_matrix2, setMatrix2] = useState("");
     const [responseData, setResponseData] = useState(null);
     console.log(responseData);
     //When user presses the submit button.
@@ -15,9 +16,10 @@ const CyclicalPermutations = () => {
         e.preventDefault();
         try {
             e.preventDefault(); //This will stop the handler from emptying the text box.
-            alert (`S List: ${S}`);
-            const response = await axios.post("http://127.0.0.1:5000/submitCyclical", {
-                S,
+            alert (`First Matrix: ${bool_matrix1}, Second Matrix: ${bool_matrix2}`);
+            const response = await axios.post("http://127.0.0.1:5000/submitBoolMatrix", {
+                bool_matrix1,
+                bool_matrix2,
             });
             console.log("Response from server:", response.data);
         } catch (error) {
@@ -26,13 +28,18 @@ const CyclicalPermutations = () => {
         window.location.reload();
     }
 
-     const sChange= (e) => {
-        setS(e.target.value);
+    const Matrix1Change= (e) => {
+        setMatrix1(e.target.value);
     }
+
+     const Matrix2Change= (e) => {
+        setMatrix2(e.target.value);
+    }
+
 
     useEffect(() => {
     // Make an HTTP GET request to your Flask backend
-    axios.get("http://localhost:5000/submitCyclical")
+    axios.get("http://localhost:5000/submitBoolMatrix")
       .then(response => {
         // Update the state with the response data
         setResponseData(response.data);
@@ -48,14 +55,18 @@ const CyclicalPermutations = () => {
     return (
         <div>
             <h1>
-                5.4 - Cyclical Permutations webpage.
+                5.7 - Boolean Matrix webpage.
             </h1>
             <p> Input: </p>
             <form onSubmit={handleSubmit}>
                 <input
-
-                    onChange={sChange}
-                    placeholder="Enter the pairs in S"
+                    onChange={Matrix1Change}
+                    placeholder="Enter the first matrix"
+                />
+                <br/>
+                <input
+                    onChange={Matrix2Change}
+                    placeholder="Enter the second matrix"
                 />
                 <br/>
                 <button
@@ -63,7 +74,7 @@ const CyclicalPermutations = () => {
                     Submit
                 </button>
             </form>
-        <h2>Solution</h2>
+            <h2>Solution</h2>
             <h2>Response from Flask Backend</h2>
             {responseData !== null && Array.isArray(responseData) ? (
                 <ul>
@@ -80,4 +91,4 @@ const CyclicalPermutations = () => {
 
 };
 
-export default CyclicalPermutations
+export default BooleanMatrices
