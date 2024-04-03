@@ -85,7 +85,7 @@ const Unit3 = () => {
                 Section 3.1 webpage.
             </h1>
             <Splitter>
-                <SplitterPanel>
+                <SplitterPanel minsize={50}>
             <form onSubmit={handleSubmit}>
                 How many base cases do you have?
                 <select id="dropdown" value={cases} onChange={casesChange}>
@@ -162,13 +162,14 @@ const Unit3 = () => {
                 <p> ... Loading ...</p>
             )}
                     </SplitterPanel>
-                <SplitterPanel>
+                <SplitterPanel minsize={50}>
                     <h2>Example:</h2>
                     <p>
                         2 Base Cases<br/>
                         Character = S<br/>
                         S(1) = 1<br/>
                         S(2) = 2<br/>
+                        S(n) = S(n-1) + S(n-2)<br/>
                     </p>
                     <p>
                         Solution:<br/>

@@ -13,6 +13,7 @@ import Unit1 from "./pages/unit1.jsx";
 import Section1_1 from "./pages/section1.jsx";
 import Section1_2 from "./pages/section1_2.jsx";
 import Unit3 from "./pages/unit3.jsx";
+import Chap3 from "./pages/chap3.jsx";
 import Unit4 from "./pages/unit4.jsx";
 import TrueOrFalse from "./pages/4_1pages/TrueOrFalse.jsx";
 import PowerSet from "./pages/4_1pages/PowerSet.jsx";
@@ -45,6 +46,7 @@ import Section6_2 from "./pages/section6_2.jsx";
 import Unit7 from "./pages/unit7.jsx";
 import Report from "./pages/ErrorReport.jsx";
 
+
 //Router is for different paths on the navbar. Home is the homepage.
 function App() {
     return (
@@ -57,7 +59,8 @@ function App() {
                     <Route path="/unit1" element={<Unit1/>}/>
                     <Route path="/unit1/section1_1" element={<Section1_1/>}/>
                     <Route path="/unit1/section1_2" element={<Section1_2/>}/>
-                    <Route path="/unit3" element={<Unit3/>}/>
+                    <Route path="/unit3" element={<Chap3/>}/>
+                    <Route path="/unit3/recursiveDef" element={<Unit3/>}/>
                     <Route path="/unit4" element={<Unit4/>}/>
                     <Route path="/unit4/TrueOrFalse" element={<TrueOrFalse/>}/>
                     <Route path="/unit4/PowerSet" element={<PowerSet/>}/>

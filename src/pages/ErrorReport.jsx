@@ -1,13 +1,16 @@
 // Filename - pages/ErrorReport.jsx
 import React, {useState} from "react";
 import axios from "axios";
+import emailjs from '@emailjs/browser';
+
 
 const Report = () => {
     const [formData, setFormData] = useState({
-        name: '',
+        from_name: '',
         email: '',
         message: ''
     });
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -19,8 +22,20 @@ const Report = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        alert (`Name: ${formData.name}, Email: ${formData.email}
-                \nMessage: ${formData.message}`);
+       emailjs.send("service_4ub3vtt","template_m34ykds",{
+                    from_name: formData.from_name,
+                    email: formData.email,
+                    message: formData.message}, {
+        publicKey: 'TtHOty0oV0DN0RUEr',
+      })
+      .then(
+        () => {
+          alert('Email Sent!');
+        },
+        (error) => {
+          alert('Email failed to send.');
+        },
+      );
         try {
             const response = await axios.post('http://localhost:5000/submit', formData);
             console.log('Response from server:', response.data);
