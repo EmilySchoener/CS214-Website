@@ -12,14 +12,6 @@ CORS(app)
 def index():
     return 'Hello, World!'
 
-#@app.route('/submit', methods=['POST'])
-#def submit_form():
-    #data = request.json
-    #print('Received data:', data)
-    # Process the data and return a response
-    #return jsonify({'message': 'Form submitted successfully!'})
-    #return jsonify(data)
-
 array = None
 
 @app.route('/3_1', methods=['GET', 'POST'])
@@ -128,8 +120,12 @@ def submit_4_1_2():
 
 
 def SolveUnit4_1_2(data):
-    return "True"
+    s = data.get("s", [])
+    sArray = unit4_1_2.convertArray(s)
+    return unit4_1_2.powerSet(sArray)
 
+
+string4_1_4 = None
 
 @app.route('/4_1_4', methods=['GET', 'POST'])
 def submit_4_1_4():
@@ -148,7 +144,27 @@ def submit_4_1_4():
 
 
 def SolveUnit4_1_4(data):
-    return "True"
+    condition = data.get("condition", [])
+    intCondition = int(condition)
+    set1 = data.get("set1", [])
+    set1Array = unit4_1_4.convertArray(set1)
+    set2 = data.get("set2", [])
+    set2Array = unit4_1_4.convertArray(set2)
+    set3 = data.get("set3", [])
+    set3Array = unit4_1_4.convertArray(set3)
+    subset = data.get("subset", [])
+    subsetArray = unit4_1_4.convertArray(subset)
+    leftSide = data.get("leftSide", [])
+    rightSide = data.get("rightSide", [])
+
+    if intCondition == 1:
+        return unit4_1_4.Union(set1Array, set2Array, set3Array, leftSide, rightSide)
+    elif intCondition == 2:
+        return unit4_1_4.intersection(set1Array, set2Array, set3Array, leftSide, rightSide)
+    elif intCondition == 3:
+        return unit4_1_4.logicalNot(set1Array, set2Array, set3Array, subsetArray, leftSide)
+    else:
+        return "error occured"
 
 
 @app.route('/api/data', methods=['GET'])

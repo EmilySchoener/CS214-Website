@@ -1,17 +1,21 @@
-def powerSet(s, tempstring):
-    if not s:
-        return "{∅}"  # Return a string representation of an empty set
+import math
 
-    element = s.pop()  # Remove an element from the set
-    subsets = powerSet(s, tempstring)  # Recursively calculate the power set without the element
-    subsets_with_element = []
 
-    # Add the removed element to each subset and create new subsets
-    for subset in subsets:
-        subsets_with_element.append(subset)
-        subsets_with_element.append(subset + ", " + str(element))
+def powerSet(s):
+    setSize = len(s)
+    pow_set_size = int(math.pow(2, setSize))
+    power_set_string = []
+    # Add the empty set as the first element
+    power_set_string.append("{∅}")
 
-    return "{" + ", ".join(subsets_with_element) + "}"
+    for counter in range(1, pow_set_size):
+        subset = []
+        for j in range(0, setSize):
+            if (counter & (1 << j)) > 0:
+                subset.append(str(s[j]))
+        power_set_string.append("{" + ", ".join(subset) + "}")
+
+    return "{" + ", ".join(power_set_string) + "}"
 
 
 def convertArray(input):

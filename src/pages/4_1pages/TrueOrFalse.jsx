@@ -71,38 +71,39 @@ const TrueOrFalse = () => {
                 4.1 - True or False Webpage.
             </h1>
             <form onSubmit={handleSubmit}>
+                <p> Please enter each set with each element separated by a comma. </p>
                 <label>
-                    Set 1 =
+                    A =
                     <input
                         onChange={set1Change}
                         type="text"
                         value={set1}
-                        placeholder="Enter Base Case Here"
+                        placeholder="Enter elements of set A here"
                     />
                 </label>
                 <br/>
                 <label>
-                    Set 2 =
+                    B =
                     <input
                         onChange={set2Change}
                         type="text"
                         value={set2}
-                        placeholder="Enter Base Case Here"
+                        placeholder="Enter elements of set B here"
                     />
                 </label>
                 <br/>
                 <label>
-                    Set 3 =
+                    C =
                     <input
                         onChange={set3Change}
                         type="text"
                         value={set3}
-                        placeholder="Enter Base Case Here"
+                        placeholder="Enter elements of set C here"
                     />
                 </label>
                 <br/>
                 <label>
-                    Please enter in the conditions. To use sets: use set1, set2, and set3.
+                    Please enter in the conditions. To use sets: use A, B, and C.
                     <input
                         onChange={leftSideChange}
                         type="text"

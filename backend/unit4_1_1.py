@@ -2,12 +2,12 @@ def elementOf(set1, set2, set3, left, right):
 
     left = convertArray(left)
 
-    if right == 'set1':
+    if right == 'A':
         right = set1
-    elif right == 'set2':
+    elif right == 'B':
         right = set2
-    elif left == 'set3':
-        left = set3
+    elif right == 'C':
+        right = set3
     else:
         right = convertArray(right)
 
@@ -35,20 +35,20 @@ def elementOf(set1, set2, set3, left, right):
 
 def subset(set1, set2, set3, left, right):
 
-    if left == 'set1':
+    if left == 'A':
         left = set1
-    elif left == 'set2':
+    elif left == 'B':
         left = set2
-    elif left == 'set3':
+    elif left == 'C':
         left = set3
     else:
         left = convertArray(left)
 
-    if right == 'set1':
+    if right == 'A':
         right = set1
-    elif right == 'set2':
+    elif right == 'B':
         right = set2
-    elif right == 'set3':
+    elif right == 'C':
         right = set3
     else:
         right = convertArray(right)
@@ -69,20 +69,20 @@ def subset(set1, set2, set3, left, right):
             return "False, " + str(left[0]) + " is not in " + str(right)
 
 def properSubset(set1, set2, set3, left, right):
-    if left == 'set1':
+    if left == 'A':
         left = set1
-    elif left == 'set2':
+    elif left == 'B':
         left = set2
-    elif left == 'set3':
+    elif left == 'C':
         left = set3
     else:
         left = convertArray(left)
 
-    if right == 'set1':
+    if right == 'A':
         right = set1
-    elif right == 'set2':
+    elif right == 'B':
         right = set2
-    elif right == 'set3':
+    elif right == 'C':
         right = set3
     else:
         right = convertArray(right)
