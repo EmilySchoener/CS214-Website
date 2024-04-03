@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import Hasse from "../../../backend/Hasse.png";
 
 
 const HasseDiagram = () => {
@@ -38,6 +39,7 @@ const HasseDiagram = () => {
             <p>
                 Hello, {text}
             </p>
+            <img src={Hasse} height={500} width={500}/>
         </div>
     );
 };

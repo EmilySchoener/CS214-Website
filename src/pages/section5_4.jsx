@@ -36,6 +36,12 @@ const sections = [
         title: "One to One",
         content: "Add example here",
         link: "/unit5/section5_4/OneToOne"
+    },
+    {
+        id: 4,
+        title: "Composition of Cycles",
+        content: "Add example here",
+        link: "/unit5/section5_4/CompositionofCycles"
     }
     ]
 const Section5_4 = () => {

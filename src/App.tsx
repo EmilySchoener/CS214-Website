@@ -34,6 +34,7 @@ import Section5_4 from "./pages/section5_4.jsx";
 import CyclicalPermutations from "./pages/5_4pages/CyclicalPermutations.jsx";
 import Onto from "./pages/5_4pages/Onto.jsx";
 import OneToOne from "./pages/5_4pages/OneToOne.jsx";
+import CompositionofCycles from "./pages/5_4pages/CompositionofCycles.jsx";
 import Section5_5 from "./pages/section5_5.jsx";
 import OrderOfMagnitude from "./pages/5_5pages/OrderOfMagnitude.jsx";
 import MasterTheorem from "./pages/5_5pages/MasterTheorem.jsx";
@@ -81,6 +82,7 @@ function App() {
                     <Route path="/unit5/section5_4/CyclicalPermutations" element={<CyclicalPermutations/>}/>
                     <Route path="/unit5/section5_4/Onto" element={<Onto/>}/>
                     <Route path="/unit5/section5_4/OneToOne" element={<OneToOne/>}/>
+                    <Route path="/unit5/section5_4/CompositionofCycles" element={<CompositionofCycles/>}/>
                     <Route path="/unit5/section5_5" element={<Section5_5/>}/>
                     <Route path="/unit5/section5_5/OrderOfMagnitude" element={<OrderOfMagnitude/>}/>
                     <Route path="/unit5/section5_5/MasterTheorem" element={<MasterTheorem/>}/>

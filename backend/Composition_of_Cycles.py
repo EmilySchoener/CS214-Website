@@ -19,7 +19,7 @@ def compose_cycles(input_string):
     return str(composition)
 
 
-S = input("Enter the cycles, with commas separating different functions: ")
+#S = input("Enter the cycles, with commas separating different functions: ")
 
 
-compose_cycles(S)
+#compose_cycles(S)

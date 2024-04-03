@@ -75,6 +75,7 @@ const BinaryRelations = () => {
             </form>
             <h2>Solution</h2>
             <h2>Response from Flask Backend</h2>
+            {responseData}
             {responseData !== null && Array.isArray(responseData) ? (
                 <ul>
                     {responseData.map((item, index) => (

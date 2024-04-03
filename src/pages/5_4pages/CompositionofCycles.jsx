@@ -3,10 +3,9 @@ import React, {useEffect, useState} from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 
-const BinaryRelations = () => {
+const CompositionofCycles = () => {
 
     const [S, setS] = useState("");
     const [responseData, setResponseData] = useState(null);
@@ -17,7 +16,7 @@ const BinaryRelations = () => {
         try {
             e.preventDefault(); //This will stop the handler from emptying the text box.
             alert (`S List: ${S}`);
-            const response = await axios.post("http://127.0.0.1:5000/submitBinary", {
+            const response = await axios.post("http://127.0.0.1:5000/submitComposition", {
                 S,
             });
             console.log("Response from server:", response.data);
@@ -33,7 +32,7 @@ const BinaryRelations = () => {
 
     useEffect(() => {
     // Make an HTTP GET request to your Flask backend
-    axios.get("http://localhost:5000/submitBinary")
+    axios.get("http://localhost:5000/submitComposition")
       .then(response => {
         // Update the state with the response data
         setResponseData(response.data);
@@ -49,10 +48,8 @@ const BinaryRelations = () => {
     return (
         <div>
             <h1>
-                5.1 - Binary Relations webpage.
+                5.4 - Composition of Cycles webpage.
             </h1>
-            <Splitter>
-                <SplitterPanel>
             <p> Input: </p>
             <form onSubmit={handleSubmit}>
                 <input
@@ -68,6 +65,7 @@ const BinaryRelations = () => {
             </form>
         <h2>Solution</h2>
             <h2>Response from Flask Backend</h2>
+            {responseData}
             {responseData !== null && Array.isArray(responseData) ? (
                 <ul>
                     {responseData.map((item, index) => (
@@ -77,20 +75,10 @@ const BinaryRelations = () => {
             ) : (
                 <p> ... Loading ...</p>
             )}
-                </SplitterPanel>
-                <SplitterPanel>
-                    <h2>Example:</h2>
-                    <p>Input: [[1,2],[3,4],[5,6]] </p>
-                    <p>The list of S is not reflexive <br/>
-                        The list of S is irreflexive<br/>
-                        The list of S is not symmetric<br/>
-                        The list of S is not antisymmetric<br/>
-                        The list of S is not transitive<br/>
-                        The list of S is not asymmetric</p>
-                </SplitterPanel>
-            </Splitter>
         </div>
     );
+
+
 };
 
-export default BinaryRelations
+export default CompositionofCycles

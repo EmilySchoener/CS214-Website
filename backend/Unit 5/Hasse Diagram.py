@@ -64,7 +64,7 @@ for i in range(0,n):
 
 nx.draw(Hasse,with_labels = True, node_color="red", node_size=3000, font_color="white",font_size=20,font_family="Times New Roman",font_weight="bold", width=5)
 plt.margins(0.2)
-plt.show()
-
+#plt.show()
+plt.savefig('../Hasse.png')
 print(max(p))
 print(min(p))

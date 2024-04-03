@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import unit3
-import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, Matrix_Multiplication, Boolean_Matrices
+import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles
 import unit4_1_1, unit4_1_2, unit4_1_3, unit4_1_4
 import json
 
@@ -213,7 +213,7 @@ def BinarySolution(lists):
     symmetric = Binary_Relations.symmetric_rel(lists)
     antisymmetric = Binary_Relations.antisymmetric_rel(lists)
     transitive = Binary_Relations.transitive_rel(lists)
-    keyword = [''] * 5
+    keyword = [''] * 6
     if reflexive:
         keyword[0] = "The list of S is reflexive"
     elif not reflexive:
@@ -238,6 +238,10 @@ def BinarySolution(lists):
         keyword[4] = "The list of S is transitive"
     elif not transitive:
         keyword[4] = "The list of S is not transitive"
+    if antisymmetric and irreflexive:
+        keyword[5] = "The list of S is asymmetric"
+    elif not antisymmetric or not irreflexive:
+        keyword[5] = "The list of S is not asymmetric"
 
     return keyword
 
@@ -294,6 +298,7 @@ def submit_equivalence_form():
         partition_1 = json.loads(part1) #JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
         partition_2 = json.loads(part2)
         equivalence = Equivalence_Relations.equivalence_relations(partition_1, partition_2)
+        equivalence = "The Equivalence Relation is: " + str(equivalence)
         return jsonify(equivalence)
 
     elif request.method == 'GET':
@@ -388,6 +393,26 @@ def OntoSolution(d, cd, f):
 
     return keyword
 
+
+comp = None
+@app.route('/submitComposition', methods=['GET', 'POST'])
+def submit_comp_form():
+
+    global comp
+
+    if request.method == 'POST':
+        data = request.json
+        S = data.get('S', [])
+        #lists = json.loads(S) #JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
+        comp = Composition_of_Cycles.compose_cycles(S)
+        return comp
+
+    elif request.method == 'GET':
+        if comp is None:
+            return 'No data available yet'
+        else:
+            return comp
+
 mult = None
 dot = None
 @app.route('/submitMatrixMult', methods=['GET', 'POST'])
@@ -409,16 +434,22 @@ def submit_Mult_form():
         return jsonify(mult, dot)
 
     elif request.method == 'GET':
-        if mult is None:
+        if mult is None and dot is None:
             return 'No data available yet'
         else:
             return jsonify(mult, dot)
 
 bool_mat = None
+bool_and = None
+bool_or = None
+bool_dot = None
 @app.route('/submitBoolMatrix', methods=['GET', 'POST'])
 def submit_Bool_form():
 
     global bool_mat
+    global bool_and
+    global bool_or
+    global bool_dot
 
     if request.method == 'POST':
         data = request.json
@@ -427,13 +458,20 @@ def submit_Bool_form():
         bool_m1 = json.loads(bool_matrix1)
         bool_m2 = json.loads(bool_matrix2)
         bool_mat = Boolean_Matrices.matrix_mult(bool_m1, bool_m2)
-        return jsonify(bool_mat)
+        bool_mat = "The Matrix Multiplication gives: " + str(bool_mat)
+        bool_and = Boolean_Matrices.matrix_and(bool_m1, bool_m2)
+        bool_and = "The Boolean And gives: " + str(bool_and)
+        bool_or = Boolean_Matrices.matrix_or(bool_m1, bool_m2)
+        bool_or = "The Boolean Or gives: " + str(bool_or)
+        bool_dot = Boolean_Matrices.matrix_dot(bool_m1, bool_m2)
+        bool_dot = "The Dot Product gives: " + str(bool_dot)
+        return jsonify(bool_mat, bool_and, bool_or, bool_dot)
 
     elif request.method == 'GET':
-        if bool_mat is None:
+        if bool_mat is None and bool_and is None and bool_or is None and bool_dot is None:
             return 'No data available yet'
         else:
-            return jsonify(bool_mat)
+            return jsonify(bool_mat, bool_and, bool_or, bool_dot)
 
 if __name__ == '__main__':
     app.run(debug=True)
