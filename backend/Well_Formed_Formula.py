@@ -174,19 +174,18 @@ def truth_table_func(input):
         # print(token)
         if token == 'C':
             # print("Fount IT")
-            result = print_C_table(function, c_table_func(function), Tautology_func(c_table_func(function)),
-                                   Contradiction_func(
-                                       c_table_func(function)))
-            return result
+            return print_C_table(function, c_table_func(function), Tautology_func(c_table_func(function)),
+                                 Contradiction_func(
+                                     c_table_func(function)))
         if token == "B":
             isb = True
     if isb:
-        result = print_B_table(function, b_table_func(function), Tautology_func(b_table_func(function)),
+        return print_B_table(function, b_table_func(function), Tautology_func(b_table_func(function)),
                              Contradiction_func(b_table_func(function)))
-    else:
-        result = print_A_table(function, a_table_func(function), Tautology_func(a_table_func(function)),
+
+    return print_A_table(function, a_table_func(function), Tautology_func(a_table_func(function)),
                          Contradiction_func(a_table_func(function)))
-    return result
+
 
 # Sysmbol Table
 # N Negation
@@ -250,7 +249,7 @@ def Tautology_func(outcomes):
 def Contradiction_func(outcomes):
     contradiction = True
     for outcome in outcomes:
-        if outcomes:
+        if outcome:
             contradiction = False
     return contradiction
 
@@ -261,7 +260,7 @@ def print_C_table(function, outcomes, tautology, contradiction):
     C = True
     i = 0
     output = ""
-    output = " A\t\t| B\t\t| C\t\t| " + str(function) + " |\n"
+    output = " A\t| B\t| C\t| " + str(function) + " |\n"
     for x in range(2):
         for y in range(2):
             for z in range(2):
@@ -283,7 +282,7 @@ def print_B_table(function, outcomes, tautology, contradiction):
     B = True
     i = 0
     output = ""
-    output = " A\t\t| B\t\t| " + str(function) + " |\n"
+    output = " A\t| B\t| " + str(function) + " |\n"
     for x in range(2):
         for y in range(2):
             output += "" + str(A) + "\t| " + str(B) + "\t| " + str(outcomes[i]) + "\n"
@@ -301,7 +300,7 @@ def print_B_table(function, outcomes, tautology, contradiction):
 def print_A_table(function, outcomes, tautology, contradiction):
     A = True
     i = 0
-    output = " A\t\t| " + str(function) + " |\n"
+    output = " A\t| " + str(function) + " |\n"
     for x in range(2):
         output += "" + str(A) + "\t| " + str(outcomes[i]) + "\n"
         i += 1

@@ -12,6 +12,7 @@ import About from './pages/about.jsx';
 import Unit1 from "./pages/unit1.jsx";
 import Section1_1 from "./pages/section1.jsx";
 import Section1_2 from "./pages/section1_2.jsx";
+import Section1_either from "./pages/section1_either.jsx";
 import Unit3 from "./pages/unit3.jsx";
 import Chap3 from "./pages/chap3.jsx";
 import Unit4 from "./pages/unit4.jsx";
@@ -59,6 +60,7 @@ function App() {
                     <Route path="/about" element={<About/>}/>
                     <Route path="/unit1" element={<Unit1/>}/>
                     <Route path="/unit1/section1_1" element={<Section1_1/>}/>
+                    <Route path="/unit1/section1_either" element={<Section1_either/>}/>
                     <Route path="/unit1/section1_2" element={<Section1_2/>}/>
                     <Route path="/unit3" element={<Chap3/>}/>
                     <Route path="/unit3/recursiveDef" element={<Unit3/>}/>

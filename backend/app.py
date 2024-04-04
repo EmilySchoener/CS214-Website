@@ -1,18 +1,23 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import unit3
-import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles
+import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, \
+    Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles
 import unit4_1_1, unit4_1_2, unit4_1_3, unit4_1_4
 import json
+import Well_Formed_Formula
 
 app = Flask(__name__)
 CORS(app)
+
 
 @app.route('/')
 def index():
     return 'Hello, World!'
 
+
 array = None
+
 
 @app.route('/3_1', methods=['GET', 'POST'])
 def submit_form():
@@ -29,6 +34,7 @@ def submit_form():
         else:
             return jsonify(array)
 
+
 def SolveUnit3(data):
     # Accessing specific keys in the JSON data
     cases = data.get('cases', [])
@@ -37,7 +43,7 @@ def SolveUnit3(data):
     base1 = data.get('base1', [])
     intBase1 = int(base1)
     relation = data.get('relation', "")
-    #newRelation = unit3.getEquation(char, relation)
+    # newRelation = unit3.getEquation(char, relation)
 
     if intCases == 1:
         resultArray = []
@@ -62,6 +68,7 @@ def SolveUnit3(data):
 
 
 string4_1_1 = None
+
 
 @app.route('/4_1_1', methods=['GET', 'POST'])
 def submit_4_1_1():
@@ -103,6 +110,7 @@ def SolveUnit4_1_1(data):
 
 string4_1_2 = None
 
+
 @app.route('/4_1_2', methods=['GET', 'POST'])
 def submit_4_1_2():
     global string4_1_2
@@ -126,6 +134,7 @@ def SolveUnit4_1_2(data):
 
 
 string4_1_4 = None
+
 
 @app.route('/4_1_4', methods=['GET', 'POST'])
 def submit_4_1_4():
@@ -173,20 +182,22 @@ def get_data():
     return jsonify(data)
 
 
-#answer = []
+# answer = []
 answer = None
+
+
 @app.route('/submitBinary', methods=['GET', 'POST'])
 def submit__5_1form():
-
     global answer
 
     if request.method == 'POST':
         data = request.json
         S = data.get('S', [])
-        lists = json.loads(S) #JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
-        #strs = S.replace('[', '').split('],')
-        #lists = [(int, S.replace(']', '').split(',')) for S in strs]
-        #answer.append(BinarySolution(lists))
+        lists = json.loads(
+            S)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
+        # strs = S.replace('[', '').split('],')
+        # lists = [(int, S.replace(']', '').split(',')) for S in strs]
+        # answer.append(BinarySolution(lists))
         answer = BinarySolution(lists)
         answer.insert(0, S)
         return jsonify(answer)
@@ -198,16 +209,17 @@ def submit__5_1form():
             return jsonify(answer)
 
     # Accessing specific keys in the JSON data
-    #S = data.get('S', [])
-    #strs = S.replace('[', '').split('],')
-    #lists = [map(int, S.replace(']', '').split(',')) for S in strs]
+    # S = data.get('S', [])
+    # strs = S.replace('[', '').split('],')
+    # lists = [map(int, S.replace(']', '').split(',')) for S in strs]
+
 
 def BinarySolution(lists):
-   # reflexive = True
-    #irreflexive = True
-    #symmetric = True
-   # antisymmetric = True
-   # transitive = True
+    # reflexive = True
+    # irreflexive = True
+    # symmetric = True
+    # antisymmetric = True
+    # transitive = True
     reflexive = Binary_Relations.reflexive_rel(lists)
     irreflexive = Binary_Relations.irreflexive_rel(lists)
     symmetric = Binary_Relations.symmetric_rel(lists)
@@ -245,18 +257,21 @@ def BinarySolution(lists):
 
     return keyword
 
+
 closure = None
+
+
 @app.route('/submitClosure', methods=['GET', 'POST'])
 def submit_closure_form():
-
     global closure
 
     if request.method == 'POST':
         data = request.json
         S = data.get('S', [])
-        lists = json.loads(S) #JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
+        lists = json.loads(
+            S)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
         closure = ClosureSolution(lists)
-        #answer.insert(0, S)
+        # answer.insert(0, S)
         return jsonify(closure)
 
     elif request.method == 'GET':
@@ -264,6 +279,7 @@ def submit_closure_form():
             return 'No data available yet'
         else:
             return jsonify(closure)
+
 
 def ClosureSolution(lists):
     reflexive_closure = Closure_Relations.reflexive_closure(lists)
@@ -273,29 +289,32 @@ def ClosureSolution(lists):
     if reflexive_closure != lists:
         keyword[0] = "The list of S has a reflexive closure of " + str(reflexive_closure)
     elif reflexive_closure == lists:
-        keyword[0] = "The list of S does not have a reflexive closure" #+ str(reflexive_closure)
+        keyword[0] = "The list of S does not have a reflexive closure"  # + str(reflexive_closure)
     if symmetric_closure != lists:
         keyword[1] = "The list of S has a symmetric closure of " + str(symmetric_closure)
     elif symmetric_closure == lists:
-        keyword[1] = "The list of S does not have a symmetric closure" #+ str(symmetric_closure)
+        keyword[1] = "The list of S does not have a symmetric closure"  # + str(symmetric_closure)
     if transitive_closure != lists:
         keyword[2] = "The list of S has a transitive closure of " + str(transitive_closure)
     elif transitive_closure == lists:
-        keyword[2] = "The list of S does not have a transitive closure" #+ str(transitive_closure)
+        keyword[2] = "The list of S does not have a transitive closure"  # + str(transitive_closure)
 
     return keyword
 
+
 equivalence = None
+
+
 @app.route('/submitEquivalence', methods=['GET', 'POST'])
 def submit_equivalence_form():
-
     global equivalence
 
     if request.method == 'POST':
         data = request.json
         part1 = data.get('part1', [])
         part2 = data.get('part2', [])
-        partition_1 = json.loads(part1) #JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
+        partition_1 = json.loads(
+            part1)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
         partition_2 = json.loads(part2)
         equivalence = Equivalence_Relations.equivalence_relations(partition_1, partition_2)
         equivalence = "The Equivalence Relation is: " + str(equivalence)
@@ -309,15 +328,17 @@ def submit_equivalence_form():
 
 
 cycle = None
+
+
 @app.route('/submitCyclical', methods=['GET', 'POST'])
 def submit_cyclical_form():
-
     global cycle
 
     if request.method == 'POST':
         data = request.json
         S = data.get('S', [])
-        lists = json.loads(S) #JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
+        lists = json.loads(
+            S)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
         cycle = Cyclical_Permutations.cycle_permutation(lists)
         return cycle
 
@@ -327,10 +348,12 @@ def submit_cyclical_form():
         else:
             return cycle
 
+
 oneto = None
+
+
 @app.route('/submitOneToOne', methods=['GET', 'POST'])
 def submit_OneToOne_form():
-
     global oneto
 
     if request.method == 'POST':
@@ -350,6 +373,8 @@ def submit_OneToOne_form():
             return 'No data available yet'
         else:
             return jsonify(oneto)
+
+
 def OneToOneSolution(d, cd, f):
     OneToOne = One_to_One.one_to_one(d, cd, f)
     keyword = [''] * 1
@@ -360,10 +385,12 @@ def OneToOneSolution(d, cd, f):
 
     return keyword
 
+
 onto = None
+
+
 @app.route('/submitOnto', methods=['GET', 'POST'])
 def submit_Onto_form():
-
     global onto
 
     if request.method == 'POST':
@@ -383,6 +410,8 @@ def submit_Onto_form():
             return 'No data available yet'
         else:
             return jsonify(onto)
+
+
 def OntoSolution(d, cd, f):
     onto = Onto.onto(d, cd, f)
     keyword = [''] * 1
@@ -395,15 +424,16 @@ def OntoSolution(d, cd, f):
 
 
 comp = None
+
+
 @app.route('/submitComposition', methods=['GET', 'POST'])
 def submit_comp_form():
-
     global comp
 
     if request.method == 'POST':
         data = request.json
         S = data.get('S', [])
-        #lists = json.loads(S) #JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
+        # lists = json.loads(S) #JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
         comp = Composition_of_Cycles.compose_cycles(S)
         return comp
 
@@ -413,11 +443,13 @@ def submit_comp_form():
         else:
             return comp
 
+
 mult = None
 dot = None
+
+
 @app.route('/submitMatrixMult', methods=['GET', 'POST'])
 def submit_Mult_form():
-
     global mult
     global dot
 
@@ -439,13 +471,15 @@ def submit_Mult_form():
         else:
             return jsonify(mult, dot)
 
+
 bool_mat = None
 bool_and = None
 bool_or = None
 bool_dot = None
+
+
 @app.route('/submitBoolMatrix', methods=['GET', 'POST'])
 def submit_Bool_form():
-
     global bool_mat
     global bool_and
     global bool_or
@@ -472,6 +506,34 @@ def submit_Bool_form():
             return 'No data available yet'
         else:
             return jsonify(bool_mat, bool_and, bool_or, bool_dot)
+
+
+
+
+@app.route('/submitwff', methods=['GET', 'POST'])
+def submit_wff_form():
+    try:
+        data = request.json
+
+        S = data.get('S', '')
+        A = data.get('A', False)
+        B = data.get('B', False)
+        C = data.get('C', False)
+        truthTable = data.get('truthTable', True)  # Default value is True if not provided
+
+        if truthTable:
+            result = Well_Formed_Formula.truth_table_func(S)
+
+        else:
+            # Perform your processing logic here using the Well_Formed_Formula module
+            result = Well_Formed_Formula.process_wff(A, B, C, S)
+            result = str(result)
+
+            # Return the processed result
+        return jsonify(result=result)
+    except Exception as e:
+        return jsonify(error=str(e))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

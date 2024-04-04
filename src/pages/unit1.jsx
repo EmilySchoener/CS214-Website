@@ -22,11 +22,23 @@ const sections = [
     {
         id: 1,
         title: "Section 1.1",
-        content: "Statements, Symbolic Representations and Tautologies",
+        content: "Well Formed Formulas",
         link: "/unit1/section1_1"
     },
     {
         id: 2,
+        title: "Section 1.1",
+        content: "Either, Neither",
+        link: "/unit1/section1_either"
+    },
+    {
+        id: 3,
+        title: "Section 1.1",
+        content: "Profs",
+        link: "/unit1/section1_1"
+    },
+    {
+        id: 4,
         title: "Section 1.2",
         content: "Propositional Logic",
         link: "/unit1/section1_2"
