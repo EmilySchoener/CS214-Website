@@ -43,8 +43,22 @@ import BooleanMatrices from "./pages/5_7pages/BooleanMatrices.jsx";
 import MatrixMultiplication from "./pages/5_7pages/MatrixMultiplication.jsx";
 import Unit6 from "./pages/unit6.jsx";
 import Section6_1 from "./pages/section6_1.jsx";
+import AdjacencyMatrixToGraph from "./pages/6_1pages/AdjacencyMatrixToGraph.jsx";
+import GraphToAdjacencyMatrix from "./pages/6_1pages/GraphToAdjacencyMatrix.jsx";
+import GraphToAdjacencyListRepresentation from "./pages/6_1pages/GraphToAdjacencyListRepresentation.jsx";
+import Graphs from "./pages/6_1pages/Graphs.jsx";
 import Section6_2 from "./pages/section6_2.jsx";
+import ArrayRepresentation from "./pages/6_2pages/ArrayRepresentation.jsx";
+import BinaryTreeRepresentation from "./pages/6_2pages/BinaryTreeRepresentation.jsx";
+import ExpressionTree from "./pages/6_2pages/ExpressionTree.jsx";
+import Notations from "./pages/6_2pages/Notations.jsx";
+import Traversals from "./pages/6_2pages/Traversals.jsx";
 import Unit7 from "./pages/unit7.jsx";
+import DifferentGraphs from "./pages/7_1pages/DifferentGraphs.jsx";
+import MatrixSquared from "./pages/7_1pages/MatrixSquared.jsx";
+import ReachabilityMatrix from "./pages/7_1pages/ReachabilityMatrix.jsx";
+import WarshallReachability from "./pages/7_1pages/WarshallReachability.jsx";
+import WarshallTransitive from "./pages/7_1pages/WarshallTransitive.jsx";
 import Report from "./pages/ErrorReport.jsx";
 
 
@@ -91,8 +105,22 @@ function App() {
                     <Route path="/unit5/section5_7/MatrixMultiplication" element={<MatrixMultiplication/>}/>
                     <Route path="/unit6" element={<Unit6/>}/>
                     <Route path="/unit6/section6_1" element={<Section6_1/>}/>
+                    <Route path="/unit6/section6_1/AdjacencyMatrixToGraph" element={<AdjacencyMatrixToGraph/>}/>
+                    <Route path="/unit6/section6_1/Graphs" element={<Graphs/>}/>
+                    <Route path="/unit6/section6_1/GraphToAdjacencyListRepresentation" element={<GraphToAdjacencyListRepresentation/>}/>
+                    <Route path="/unit6/section6_1/GraphToAdjacencyMatrix" element={<GraphToAdjacencyMatrix/>}/>
                     <Route path="/unit6/section6_2" element={<Section6_2/>}/>
+                    <Route path="/unit6/section6_2/ArrayRepresentation" element={<ArrayRepresentation/>}/>
+                    <Route path="/unit6/section6_2/BinaryTreeRepresentation" element={<BinaryTreeRepresentation/>}/>
+                    <Route path="/unit6/section6_2/ExpressionTree" element={<ExpressionTree/>}/>
+                    <Route path="/unit6/section6_2/Notations" element={<Notations/>}/>
+                    <Route path="/unit6/section6_2/Traversals" element={<Traversals/>}/>
                     <Route path="/unit7" element={<Unit7/>}/>
+                    <Route path="/unit7/DifferentGraphs" element={<DifferentGraphs/>}/>
+                    <Route path="/unit7/MatrixSquared" element={<MatrixSquared/>}/>
+                    <Route path="/unit7/ReachabilityMatrix" element={<ReachabilityMatrix/>}/>
+                    <Route path="/unit7/WarshallReachability" element={<WarshallReachability/>}/>
+                    <Route path="/unit7/WarshallTransitive" element={<WarshallTransitive/>}/>
                     <Route path="/userReport" element={<Report/>}/>
                 </Routes>
                 <br/>
