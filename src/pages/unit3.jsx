@@ -14,22 +14,20 @@ const Unit3 = () => {
     }
 */
 const Unit3 = () => {
+    let initial = ["2", "S", "1", "2", "", "S(n-1) + S(n-2)"]
     //Variables
-    const [cases, setCases] = useState("1");
-    const [char, setChar] = useState("S");
-    const [base1, setBase1] = useState("");
-    const [base2, setBase2] = useState("");
-    const [base3, setBase3] = useState("");
-    const [relation, setRelation] = useState("");
+    const [cases, setCases] = useState(initial[0]);
+    const [char, setChar] = useState(initial[1]);
+    const [base1, setBase1] = useState(initial[2]);
+    const [base2, setBase2] = useState(initial[3]);
+    const [base3, setBase3] = useState(initial[4]);
+    const [relation, setRelation] = useState(initial[5]);
     const [responseData, setResponseData] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             e.preventDefault(); //This will stop the handler from emptying the text box.
-            alert (`Cases Chosen: ${cases}, Char Chosen: ${char}
-                \nBase 1: ${base1}\n
-                Relation: ${char}(n) = ${relation}`);
             const response = await axios.post("http://127.0.0.1:5000/3_1", {
                 cases,
                 char,
@@ -39,10 +37,10 @@ const Unit3 = () => {
                 relation,
             });
             console.log("Response from server:", response.data);
+            fetchData();
         } catch (error) {
             console.error("Error:", error);
         }
-        window.location.reload();
     }
 
     //For input changes
@@ -54,6 +52,7 @@ const Unit3 = () => {
     }
     const base1Change= (e) => {
         setBase1(e.target.value);
+        initial[2] = e.target.value
     }
     const base2Change= (e) => {
         setBase2(e.target.value);
@@ -65,8 +64,8 @@ const Unit3 = () => {
         setRelation(e.target.value);
     }
 
-    useEffect(() => {
-    // Make an HTTP GET request to your Flask backend
+    const fetchData = () => {
+        // Make an HTTP GET request to your Flask backend
     axios.get("http://localhost:5000/3_1")
       .then(response => {
         // Update the state with the response data
@@ -76,7 +75,9 @@ const Unit3 = () => {
         // Handle any errors
         console.error('Error fetching data:', error);
       });
-  }, []);
+    }
+
+    useEffect(() => fetchData(), []);
 
     //What is on the webpage.
     return (
