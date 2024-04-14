@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 const TrueOrFalse = () => {
-    const [condition, setCondition] = useState("1");
-    const [set1, setSet1] = useState([]);
-    const [set2, setSet2] = useState([]);
+    const [condition, setCondition] = useState("2");
+    const [set1, setSet1] = useState("1,2,3");
+    const [set2, setSet2] = useState("1,2,3,4");
     const [set3, setSet3] = useState([]);
-    const [leftSide, setLeftSide] = useState([]);
-    const [rightSide, setRightSide] = useState([]);
+    const [leftSide, setLeftSide] = useState("A");
+    const [rightSide, setRightSide] = useState("B");
     const [responseData, setResponseData] = useState(null);
 
     //When user presses the submit button.
@@ -26,10 +27,10 @@ const TrueOrFalse = () => {
                 rightSide,
             });
             console.log("Response from server:", response.data);
+            fetchData();
         } catch (error) {
             console.error("Error:", error);
         }
-        window.location.reload();
     }
 
     //For input changes
@@ -52,7 +53,7 @@ const TrueOrFalse = () => {
         setRightSide(e.target.value);
     }
 
-    useEffect(() => {
+    const fetchData = () => {
         // Make an HTTP GET request to your Flask backend
         axios.get("http://localhost:5000/4_1_1")
           .then(response => {
@@ -63,13 +64,17 @@ const TrueOrFalse = () => {
             // Handle any errors
             console.error('Error fetching data:', error);
           });
-      }, []);
+    }
+
+    useEffect(() => { fetchData()}, []);
 
     return (
         <div>
             <h1>
                 4.1 - True or False Webpage.
             </h1>
+            <Splitter>
+                <SplitterPanel minsize={50}>
             <form onSubmit={handleSubmit}>
                 <p> Please enter each set with each element separated by a comma. </p>
                 <label>
@@ -103,7 +108,9 @@ const TrueOrFalse = () => {
                 </label>
                 <br/>
                 <label>
-                    Please enter in the conditions. To use sets: use A, B, and C.
+                    Please enter in the conditions.
+                    <br/>
+                    To use sets: use A, B, and C.
                     <input
                         onChange={leftSideChange}
                         type="text"
@@ -138,6 +145,20 @@ const TrueOrFalse = () => {
             ) : (
                 <p> ... Loading ...</p>
             )}
+                </SplitterPanel>
+                <SplitterPanel>
+                    <h2>Example:</h2>
+                    <p>
+                      A = 1,2,3 <br/>
+                      B = 1,2,3,4 <br/>
+                      A Proper subset (⊂) B <br/>
+                    </p>
+                    <p>
+                        Solution: <br/>
+                        True, ['1', '2', '3'] is a proper subset of ['1', '2', '3', '4'].
+                    </p>
+                </SplitterPanel>
+            </Splitter>
         </div>
     );
 };

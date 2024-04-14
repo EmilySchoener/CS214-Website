@@ -52,7 +52,6 @@ const Unit3 = () => {
     }
     const base1Change= (e) => {
         setBase1(e.target.value);
-        initial[2] = e.target.value
     }
     const base2Change= (e) => {
         setBase2(e.target.value);

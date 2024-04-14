@@ -23,6 +23,7 @@ const sections = [
         id: 1,
         title: "Section 3.1",
         content: "Recursive Definitions",
+        solve: "Solves Example: 1, Practice: 2, and Homework: 1-12",
         link: "/unit3/recursiveDef"
     }]
 
@@ -43,7 +44,7 @@ const Chap4 = () => {
                                     <h2>{unit.title}</h2>
                                     <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
                                     <br/>
-                                    <p>Add descriptor or example image.</p>
+                                    <p>{unit.solve}</p>
                                 </Card>
                                 <a href={unit.link}>
                                     <button> Go To {unit.title} </button>
