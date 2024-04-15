@@ -128,9 +128,44 @@ def submit_4_1_2():
 
 
 def SolveUnit4_1_2(data):
-    s = data.get("s", [])
-    sArray = unit4_1_2.convertArray(s)
-    return unit4_1_2.powerSet(sArray)
+    set = data.get("set", [])
+    setArray = unit4_1_2.convertArray(set)
+    return unit4_1_2.powerSet(setArray)
+
+
+string4_1_3 = None
+
+
+@app.route('/4_1_3', methods=['GET', 'POST'])
+def submit_4_1_3():
+    global string4_1_3
+
+    if request.method == 'POST':
+        data = request.json
+        string4_1_3 = SolveUnit4_1_3(data)
+        return jsonify(string4_1_3)
+
+    elif request.method == 'GET':
+        if string4_1_3 is None:
+            return 'No data available yet'
+        else:
+            return jsonify(string4_1_3)
+
+
+def SolveUnit4_1_3(data):
+    set = data.get("set", [])
+    set1Array = unit4_1_4.convertArray(set)
+    oneOne = data.get("oneOne", [])
+    oneTwo = data.get("oneTwo", [])
+    oneThree = data.get("oneThree", [])
+    twoOne = data.get("twoOne", [])
+    twoTwo = data.get("twoTwo", [])
+    twoThree = data.get("twoThree", [])
+    threeOne = data.get("threeOne", [])
+    threeTwo = data.get("threeTwo", [])
+    threeThree = data.get("threeThree", [])
+    return unit4_1_3.testMatrix(set1Array,oneOne,oneTwo,oneThree, twoOne, twoTwo, twoThree, threeOne, threeTwo, threeThree)
+
 
 
 string4_1_4 = None

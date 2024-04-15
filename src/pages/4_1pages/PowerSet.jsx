@@ -4,14 +4,14 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 const PowerSet = () => {
-    const [s, setS] = useState("");
+    const [set, setSet] = useState("");
     const [responseData, setResponseData] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post("http://127.0.0.1:5000/4_1_2", {
-                s: s.split(",").map(item => item.trim()) // Splitting input string into an array
+                set
             });
             setResponseData(response.data); // Update response data
         } catch (error) {
@@ -19,8 +19,8 @@ const PowerSet = () => {
         }
     }
 
-    const sChange= (e) => {
-        setS(e.target.value);
+    const setChange= (e) => {
+        setSet(e.target.value);
     }
 
     useEffect(() => {
@@ -45,9 +45,9 @@ const PowerSet = () => {
                 <label>
                     S =
                     <input
-                        onChange={sChange}
+                        onChange={setChange}
                         type="text"
-                        value={s}
+                        value={set}
                         placeholder="Enter Set Here"
                     />
                 </label>

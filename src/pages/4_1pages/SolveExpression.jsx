@@ -79,7 +79,7 @@ const SolveExpression = () => {
     return (
         <div>
             <h1>
-                4.4 - Solve Expressions Webpage.
+                4.1 - Solve Expressions Webpage.
             </h1>
             <Splitter>
                 <SplitterPanel minsize={50}>
