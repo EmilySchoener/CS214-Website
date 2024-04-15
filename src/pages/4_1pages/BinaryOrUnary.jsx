@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 const BinaryOrUnary = () => {
-    const [set, setSet] = useState([]);
-    const [oneOne, setOneOne] = useState("");
-    const [oneTwo, setOneTwo] = useState("");
-    const [oneThree, setOneThree] = useState("");
-    const [twoOne, setTwoOne] = useState("");
-    const [twoTwo, setTwoTwo] = useState("");
-    const [twoThree, setTwoThree] = useState("");
-    const [threeOne, setThreeOne] = useState("");
-    const [threeTwo, setThreeTwo] = useState("");
-    const [threeThree, setThreeThree] = useState("");
+    const [set, setSet] = useState("1,2,3");
+    const [oneOne, setOneOne] = useState("1");
+    const [oneTwo, setOneTwo] = useState("2");
+    const [oneThree, setOneThree] = useState("3");
+    const [twoOne, setTwoOne] = useState("2");
+    const [twoTwo, setTwoTwo] = useState("3");
+    const [twoThree, setTwoThree] = useState("4");
+    const [threeOne, setThreeOne] = useState("3");
+    const [threeTwo, setThreeTwo] = useState("4");
+    const [threeThree, setThreeThree] = useState("5");
     const [responseData, setResponseData] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -33,10 +34,10 @@ const BinaryOrUnary = () => {
                 threeThree
             });
             console.log("Response from server:", response.data);
+            fetchData()
         } catch (error) {
             console.error("Error:", error);
         }
-        window.location.reload();
     }
 
     const setChange= (e) => {
@@ -70,7 +71,7 @@ const BinaryOrUnary = () => {
         setThreeThree(e.target.value);
     }
 
-    useEffect(() => {
+    const fetchData = () => {
         // Make an HTTP GET request to your Flask backend when the component mounts
         axios.get("http://127.0.0.1:5000/4_1_3")
           .then(response => {
@@ -81,6 +82,10 @@ const BinaryOrUnary = () => {
             // Handle any errors
             console.error('Error fetching data:', error);
           });
+    }
+
+    useEffect(() => {
+        fetchData()
     }, []);
 
     return (
@@ -88,6 +93,8 @@ const BinaryOrUnary = () => {
             <h1>
                 4.1 - Binary Or Unary Webpage.
             </h1>
+            <Splitter>
+                <SplitterPanel>
             <form onSubmit={handleSubmit}>
                 <label>
                     Set =
@@ -100,28 +107,30 @@ const BinaryOrUnary = () => {
                 </label>
                 <br/>
                 <label>
-
+                    Enter elements of your matrix here: <br/>
                     <input
                         onChange={oneOneChange}
                         type="text"
                         value={oneOne}
-                        placeholder="Enter element of matrix here"
+                         style={{ width: "40px" }}
                     />
                 </label>
+                {" "}
                 <label>
                     <input
                         onChange={oneTwoChange}
                         type="text"
                         value={oneTwo}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
+                {" "}
                 <label>
                     <input
                         onChange={oneThreeChange}
                         type="text"
                         value={oneThree}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <br/>
@@ -130,23 +139,25 @@ const BinaryOrUnary = () => {
                         onChange={twoOneChange}
                         type="text"
                         value={twoOne}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
+                {" "}
                 <label>
                     <input
                         onChange={twoTwoChange}
                         type="text"
                         value={twoTwo}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
+                {" "}
                 <label>
                     <input
                         onChange={twoThreeChange}
                         type="text"
                         value={twoThree}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <br/>
@@ -155,23 +166,25 @@ const BinaryOrUnary = () => {
                         onChange={threeOneChange}
                         type="text"
                         value={threeOne}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
+                {" "}
                 <label>
                     <input
                         onChange={threeTwoChange}
                         type="text"
                         value={threeTwo}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
+                {" "}
                 <label>
                     <input
                         onChange={threeThreeChange}
                         type="text"
                         value={threeThree}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <br/>
@@ -188,7 +201,22 @@ const BinaryOrUnary = () => {
             ) : (
                 <p>Loading...</p>
             )}
-
+                </SplitterPanel>
+                <SplitterPanel>
+                    <h2>Example:</h2>
+                    <p>
+                        Set = 1,2,3<br/>
+                        Matrix = <br/>
+                        1 2 3 <br/>
+                        2 3 4 <br/>
+                        3 4 5 <br/>
+                    </p>
+                    <p>
+                        Solution: <br/>
+                        False, did not find 4 in set
+                    </p>
+                </SplitterPanel>
+            </Splitter>
         </div>
     );
 };

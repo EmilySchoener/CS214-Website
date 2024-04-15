@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 const PowerSet = () => {
-    const [set, setSet] = useState("");
+    const [set, setSet] = useState("1,2,3");
     const [responseData, setResponseData] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -39,6 +40,8 @@ const PowerSet = () => {
     return (
         <div>
             <h1>4.1 - Power Set Webpage.</h1>
+            <Splitter>
+                <SplitterPanel>
             <form onSubmit={handleSubmit}>
                 This will find ℘(S) for your S. Please enter each element separated by a comma.
                 <br/>
@@ -62,6 +65,18 @@ const PowerSet = () => {
             ) : (
                 <p>Loading...</p>
             )}
+                </SplitterPanel>
+                <SplitterPanel>
+                    <h2>Example:</h2>
+                    <p>
+                        S = 1,2,3 <br/>
+                    </p>
+                    <p>
+                        Solution: <br/>
+                        {'℘(S) = {{∅}, {1}, {2}, {1, 2}, {3}, {1, 3}, {2, 3}, {1, 2, 3}}'}
+                    </p>
+                </SplitterPanel>
+            </Splitter>
         </div>
     );
 };
