@@ -20,29 +20,31 @@ const CyclicalPermutations = () => {
                 S,
             });
             console.log("Response from server:", response.data);
+            fetchData();
         } catch (error) {
             console.error("Error:", error);
         }
-        window.location.reload();
+
     }
 
      const sChange= (e) => {
         setS(e.target.value);
     }
 
-    useEffect(() => {
-    // Make an HTTP GET request to your Flask backend
+    const fetchData = () => {
+        // Make an HTTP GET request to your Flask backend
     axios.get("http://localhost:5000/submitCyclical")
       .then(response => {
         // Update the state with the response data
         setResponseData(response.data);
-        console.log(responseData);
       })
       .catch(error => {
         // Handle any errors
         console.error('Error fetching data:', error);
       });
-  }, []);
+    }
+
+    useEffect(() => fetchData(), []);
 
        console.log(responseData);
     return (

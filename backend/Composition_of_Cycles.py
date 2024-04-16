@@ -26,8 +26,8 @@ def compose_cycles(input_string, A):
     #print(composition)
     return str(composition)
 
-A = [1,2,3,4,5]
-S = input("Enter the cycles, with commas separating different functions: ")
+#A = [1,2,3,4,5]
+#S = input("Enter the cycles, with commas separating different functions: ")
 
 
-print(compose_cycles(S, A))
+#print(compose_cycles(S, A))
