@@ -4,6 +4,8 @@ import unit3
 import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, \
     Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles
 import unit4_1_1, unit4_1_2, unit4_1_3, unit4_1_4
+import unit6_2_5
+import unit7_1_2
 import json
 import Well_Formed_Formula
 
@@ -105,7 +107,7 @@ def SolveUnit4_1_1(data):
     elif intCondition == 3:
         return unit4_1_1.subset(set1Array, set2Array, set3Array, leftSide, rightSide)
     else:
-        return "error occured"
+        return "error occurred"
 
 
 string4_1_2 = None
@@ -165,7 +167,6 @@ def SolveUnit4_1_3(data):
     threeTwo = data.get("threeTwo", [])
     threeThree = data.get("threeThree", [])
     return unit4_1_3.testMatrix(set1Array,oneOne,oneTwo,oneThree, twoOne, twoTwo, twoThree, threeOne, threeTwo, threeThree)
-
 
 
 string4_1_4 = None
@@ -543,8 +544,6 @@ def submit_Bool_form():
             return jsonify(bool_mat, bool_and, bool_or, bool_dot)
 
 
-
-
 @app.route('/submitwff', methods=['GET', 'POST'])
 def submit_wff_form():
     try:
@@ -568,6 +567,85 @@ def submit_wff_form():
         return jsonify(result=result)
     except Exception as e:
         return jsonify(error=str(e))
+
+
+string6_2_5 = None
+
+
+@app.route('/6_2_5', methods=['GET', 'POST'])
+def submit_6_2_5():
+    global string6_2_5
+
+    if request.method == 'POST':
+        data = request.json
+        string6_2_5 = SolveUnit6_2_5(data)
+        return jsonify(string6_2_5)
+
+    elif request.method == 'GET':
+        if string6_2_5 is None:
+            return 'No data available yet'
+        else:
+            return jsonify(string6_2_5)
+
+
+def SolveUnit6_2_5(data):
+    notation = data.get("notation", [])
+    intNotation = int(notation)
+    userInput = data.get("input", [])
+
+    if intNotation == 1:
+        return unit6_2_5.prefix(userInput)
+
+    elif intNotation == 2:
+        return unit6_2_5.infix(userInput)
+
+    elif intNotation == 3:
+        return unit6_2_5.postfix(userInput)
+
+    else:
+        return "error occurred"
+
+
+string7_1_2 = None
+
+
+@app.route('/7_1_2', methods=['GET', 'POST'])
+def submit_7_1_2():
+    global string7_1_2
+
+    if request.method == 'POST':
+        data = request.json
+        string7_1_2 = SolveUnit7_1_2(data)
+        return jsonify(string7_1_2)
+
+    elif request.method == 'GET':
+        if string7_1_2 is None:
+            return 'No data available yet'
+        else:
+            return jsonify(string7_1_2)
+
+
+def SolveUnit7_1_2(data):
+    oneOne = data.get("oneOne", [])
+    oneTwo = data.get("oneTwo", [])
+    oneThree = data.get("oneThree", [])
+    oneFour = data.get("oneFour", [])
+    twoOne = data.get("twoOne", [])
+    twoTwo = data.get("twoTwo", [])
+    twoThree = data.get("twoThree", [])
+    twoFour = data.get("twoFour", [])
+    threeOne = data.get("threeOne", [])
+    threeTwo = data.get("threeTwo", [])
+    threeThree = data.get("threeThree", [])
+    threeFour = data.get("threeFour", [])
+    fourOne = data.get("fourOne", [])
+    fourTwo = data.get("fourTwo", [])
+    fourThree = data.get("fourThree", [])
+    fourFour = data.get("fourFour", [])
+    if (oneFour == "-"):
+        return unit7_1_2.ThreeByThree(oneOne, oneTwo, oneThree, twoOne, twoTwo, twoThree, threeOne, threeTwo, threeThree)
+    else:
+        return unit7_1_2.FourByFour(oneOne, oneTwo, oneThree,oneFour, twoOne, twoTwo, twoThree,twoFour, threeOne, threeTwo, threeThree, threeFour, fourOne, fourTwo, fourThree, fourFour)
 
 
 if __name__ == '__main__':
