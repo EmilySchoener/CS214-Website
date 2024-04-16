@@ -22,15 +22,16 @@ const sections = [
     {
         id: 1,
         title: "Boolean Matrices",
-        content: "Add example here",
+        content: "Problems 47-50",
         link: "/unit5/section5_7/BooleanMatrices"
     },
+    /*
     {
         id: 2,
         title: "Matrix Multiplication",
         content: "Add example here",
         link: "/unit5/section5_7/MatrixMultiplication"
-    }
+    }*/
     ]
 const Section5_7 = () => {
     return (
@@ -38,7 +39,7 @@ const Section5_7 = () => {
             <h1>
                 Section 5.7
             </h1>
-            <h2>Sections</h2>
+            <h2>Problems</h2>
             <Box sx={{flexGrow: 1}}>
                 <Grid container spacing={1} columns={{xs: 2, sm: 10, md: 15}}>
                     {sections.map((unit, index) => (
@@ -46,7 +47,7 @@ const Section5_7 = () => {
                             <Item>
                                 <Card>
                                     <h2>{unit.title}</h2>
-                                    <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
+                                    <p>{unit.content}</p>
                                     <br/>
                                 </Card>
                                 <a href={unit.link}>

@@ -16,6 +16,7 @@ import Section1_either from "./pages/section1_either.jsx";
 import Unit3 from "./pages/unit3.jsx";
 import Chap3 from "./pages/chap3.jsx";
 import Unit4 from "./pages/unit4.jsx";
+import Chap4 from "./pages/chap4.jsx";
 import TrueOrFalse from "./pages/4_1pages/TrueOrFalse.jsx";
 import PowerSet from "./pages/4_1pages/PowerSet.jsx";
 import BinaryOrUnary from "./pages/4_1pages/BinaryOrUnary.jsx";
@@ -55,6 +56,7 @@ import ExpressionTree from "./pages/6_2pages/ExpressionTree.jsx";
 import Notations from "./pages/6_2pages/Notations.jsx";
 import Traversals from "./pages/6_2pages/Traversals.jsx";
 import Unit7 from "./pages/unit7.jsx";
+import Chap7 from "./pages/chap7.jsx";
 import DifferentGraphs from "./pages/7_1pages/DifferentGraphs.jsx";
 import MatrixSquared from "./pages/7_1pages/MatrixSquared.jsx";
 import ReachabilityMatrix from "./pages/7_1pages/ReachabilityMatrix.jsx";
@@ -78,7 +80,8 @@ function App() {
                     <Route path="/unit1/section1_2" element={<Section1_2/>}/>
                     <Route path="/unit3" element={<Chap3/>}/>
                     <Route path="/unit3/recursiveDef" element={<Unit3/>}/>
-                    <Route path="/unit4" element={<Unit4/>}/>
+                    <Route path="/unit4" element={<Chap4/>}/>
+                    <Route path="/unit4/4_1" element={<Unit4/>}/>
                     <Route path="/unit4/TrueOrFalse" element={<TrueOrFalse/>}/>
                     <Route path="/unit4/PowerSet" element={<PowerSet/>}/>
                     <Route path="/unit4/BinaryOrUnary" element={<BinaryOrUnary/>}/>
@@ -117,7 +120,8 @@ function App() {
                     <Route path="/unit6/section6_2/ExpressionTree" element={<ExpressionTree/>}/>
                     <Route path="/unit6/section6_2/Notations" element={<Notations/>}/>
                     <Route path="/unit6/section6_2/Traversals" element={<Traversals/>}/>
-                    <Route path="/unit7" element={<Unit7/>}/>
+                    <Route path="/unit7" element={<Chap7/>}/>
+                    <Route path="/unit7/7_1" element={<Unit7/>}/>
                     <Route path="/unit7/DifferentGraphs" element={<DifferentGraphs/>}/>
                     <Route path="/unit7/MatrixSquared" element={<MatrixSquared/>}/>
                     <Route path="/unit7/ReachabilityMatrix" element={<ReachabilityMatrix/>}/>

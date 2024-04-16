@@ -22,31 +22,31 @@ const sections = [
     {
         id: 1,
         title: "Binary Relations",
-        content: "Add example here",
+        content: "Exercises 11 and 12",
         link: "/unit5/section5_1/BinaryRelations"
     },
     {
         id: 2,
         title: "Closure Relations",
-        content: "Add example here",
+        content: "Problems 23 and 24",
         link: "/unit5/section5_1/ClosureRelations"
     },
     {
         id: 3,
         title: "Hasse Diagram",
-        content: "Add example here",
+        content: "Problem 31",
         link: "/unit5/section5_1/HasseDiagram"
     },
     {
         id: 4,
         title: "Minimal, Maximal, Least, Greatest Elements",
-        content: "Add example here",
+        content: "Problem 32",
         link: "/unit5/section5_1/MMLGElements"
     },
     {
         id: 5,
         title: "Equivalence",
-        content: "Add example here",
+        content: "Problem 51",
         link: "/unit5/section5_1/Equivalence"
     }
     ]
@@ -57,7 +57,7 @@ const Section5_1 = () => {
             <h1>
                 Section 5.1
             </h1>
-            <h2>Sections</h2>
+            <h2>Problems</h2>
             <Box sx={{flexGrow: 1}}>
                 <Grid container spacing={1} columns={{xs: 2, sm: 10, md: 15}}>
                     {sections.map((unit, index) => (
@@ -65,7 +65,7 @@ const Section5_1 = () => {
                             <Item>
                                 <Card>
                                     <h2>{unit.title}</h2>
-                                    <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
+                                    <p>{unit.content}</p>
                                     <br/>
                                 </Card>
                                 <a href={unit.link}>

@@ -67,7 +67,7 @@ const Unit5 = () => {
                                     <h2>{unit.title}</h2>
                                     <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
                                     <br/>
-                                    <p>Add descriptor or example image.</p>
+
                                 </Card>
                                 <a href={unit.link}>
                                     <button> Go To {unit.title} </button>

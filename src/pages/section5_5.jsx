@@ -22,13 +22,13 @@ const sections = [
     {
         id: 1,
         title: "Order of Magnitude",
-        content: "Add example here",
+        content: "Problems 1-6",
         link: "/unit5/section5_5/OrderOfMagnitude"
     },
     {
         id: 2,
         title: "Master Theorem",
-        content: "Add example here",
+        content: "Problems 21-26",
         link: "/unit5/section5_5/MasterTheorem"
     }
     ]
@@ -38,7 +38,7 @@ const Section5_5 = () => {
             <h1>
                 Section 5.5
             </h1>
-            <h2>Sections</h2>
+            <h2>Problems</h2>
             <Box sx={{flexGrow: 1}}>
                 <Grid container spacing={1} columns={{xs: 2, sm: 10, md: 15}}>
                     {sections.map((unit, index) => (
@@ -46,7 +46,7 @@ const Section5_5 = () => {
                             <Item>
                                 <Card>
                                     <h2>{unit.title}</h2>
-                                    <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
+                                    <p>{unit.content}</p>
                                     <br/>
                                 </Card>
                                 <a href={unit.link}>

@@ -57,7 +57,7 @@ const Section6_2 = () => {
             <h1>
                 Section 6.2
             </h1>
-            <h2>Sections</h2>
+            <h2>Problems</h2>
             <Box sx={{flexGrow: 1}}>
                 <Grid container spacing={1} columns={{xs: 2, sm: 10, md: 15}}>
                     {sections.map((unit, index) => (

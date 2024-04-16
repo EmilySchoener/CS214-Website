@@ -23,24 +23,28 @@ const sections = [
         id: 1,
         title: "Section 1.1",
         content: "Well Formed Formulas",
+        solve: "Example: 4,5, Homework: 23-26",
         link: "/unit1/section1_1"
     },
     {
         id: 2,
         title: "Section 1.1",
         content: "Either, Neither",
+        solve: "Practice: 7",
         link: "/unit1/section1_either"
     },
     {
         id: 3,
         title: "Section 1.1",
         content: "Profs",
+        solve: "Homework: 27, 28",
         link: "/unit1/section1_1"
     },
     {
         id: 4,
         title: "Section 1.2",
         content: "Propositional Logic",
+        solve: "Example: 11-17, Practice: 9, 11, 12, 13, Homework: 9-42",
         link: "/unit1/section1_2"
     }
 ]
@@ -61,7 +65,7 @@ const Unit1 = () => {
                                     <h2>{unit.title}</h2>
                                     <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
                                     <br/>
-                                    <p>Add descriptor or example image.</p>
+                                    <p>{unit.solve}</p>
                                 </Card>
                                 <a href={unit.link}>
                                     <button> Go To {unit.title} </button>

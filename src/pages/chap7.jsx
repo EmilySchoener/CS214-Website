@@ -1,4 +1,4 @@
-// Filename - pages/section5_2.jsx
+// Filename - pages/chap7.jsx
 import React from "react";
 import { Link } from 'react-router-dom'
 import { experimentalStyled as styled } from '@mui/material/styles';
@@ -21,30 +21,19 @@ const Item = styled(Paper)(({ theme }) => ({
 const sections = [
     {
         id: 1,
-        title: "Pert Chart",
-        content: "Add example here",
-        link: "/unit5/section5_2/PertChart"
-    },
-    {
-        id: 2,
-        title: "Closure Relations",
-        content: "Add example here",
-        link: "/unit5/section5_2/TopologicalSort"
-    },
-    {
-        id: 3,
-        title: "Sequential Tasks",
-        content: "Add example here",
-        link: "/unit5/section5_2/SequentialTasks"
-    }
-    ]
-const Section5_2 = () => {
+        title: "Section 7.1",
+        content: "Directed Graphs and Binary Relations; Washall's Algorithm",
+        link: "/unit7/7_1"
+    }]
+
+const Chap7 = () => {
+
     return (
         <div>
             <h1>
-                Section 5.2
+                Chapter 7
             </h1>
-            <h2>Problems</h2>
+            <h2>Sections</h2>
             <Box sx={{flexGrow: 1}}>
                 <Grid container spacing={1} columns={{xs: 2, sm: 10, md: 15}}>
                     {sections.map((unit, index) => (
@@ -52,8 +41,9 @@ const Section5_2 = () => {
                             <Item>
                                 <Card>
                                     <h2>{unit.title}</h2>
-                                    <p>{unit.content}</p>
+                                    <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
                                     <br/>
+                                    <p>{unit.solve}</p>
                                 </Card>
                                 <a href={unit.link}>
                                     <button> Go To {unit.title} </button>
@@ -67,4 +57,4 @@ const Section5_2 = () => {
     );
 };
 
-export default Section5_2;
+export default Chap7;
