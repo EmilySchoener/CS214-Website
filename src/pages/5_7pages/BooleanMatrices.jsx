@@ -22,10 +22,11 @@ const BooleanMatrices = () => {
                 bool_matrix2,
             });
             console.log("Response from server:", response.data);
+            fetchData();
         } catch (error) {
             console.error("Error:", error);
         }
-        window.location.reload();
+
     }
 
     const Matrix1Change= (e) => {
@@ -37,19 +38,20 @@ const BooleanMatrices = () => {
     }
 
 
-    useEffect(() => {
-    // Make an HTTP GET request to your Flask backend
+    const fetchData = () => {
+        // Make an HTTP GET request to your Flask backend
     axios.get("http://localhost:5000/submitBoolMatrix")
       .then(response => {
         // Update the state with the response data
         setResponseData(response.data);
-        console.log(responseData);
       })
       .catch(error => {
         // Handle any errors
         console.error('Error fetching data:', error);
       });
-  }, []);
+    }
+
+    useEffect(() => fetchData(), []);
 
        console.log(responseData);
     return (

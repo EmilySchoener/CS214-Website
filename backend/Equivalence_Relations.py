@@ -16,8 +16,10 @@ for i in range(0, m):
     ele = input()
     partition_2.append(ele)
 '''
-def equivalence_relations(partition_1, partition_2):
+def equivalence_relations(partition_1, partition_2, S):
     equivalence = []
+    if S != partition_1 + partition_2:
+        return equivalence
     for i in range(0,len(partition_1)):
         for j in range (0,len(partition_1)):
             ele = [partition_1[i], partition_1[j]]
@@ -30,4 +32,8 @@ def equivalence_relations(partition_1, partition_2):
 
     return equivalence
 
-#print(equivalence)
+
+#part1 = ['a', 'b', 'c']
+#part2 = ['d','e']
+#print(equivalence_relations(part1, part2))
+#Need to add in a set S being typed in by users

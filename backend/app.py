@@ -229,12 +229,14 @@ def submit__5_1form():
     if request.method == 'POST':
         data = request.json
         S = data.get('S', [])
+        user_set = data.get('set', [])
+        initialSet = json.loads(user_set)
         lists = json.loads(
             S)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
         # strs = S.replace('[', '').split('],')
         # lists = [(int, S.replace(']', '').split(',')) for S in strs]
         # answer.append(BinarySolution(lists))
-        answer = BinarySolution(lists)
+        answer = BinarySolution(lists, initialSet)
         answer.insert(0, S)
         return jsonify(answer)
 
@@ -250,18 +252,18 @@ def submit__5_1form():
     # lists = [map(int, S.replace(']', '').split(',')) for S in strs]
 
 
-def BinarySolution(lists):
+def BinarySolution(lists, set):
     # reflexive = True
     # irreflexive = True
     # symmetric = True
     # antisymmetric = True
     # transitive = True
-    reflexive = Binary_Relations.reflexive_rel(lists)
+    reflexive = Binary_Relations.reflexive_rel(lists, set)
     irreflexive = Binary_Relations.irreflexive_rel(lists)
     symmetric = Binary_Relations.symmetric_rel(lists)
     antisymmetric = Binary_Relations.antisymmetric_rel(lists)
     transitive = Binary_Relations.transitive_rel(lists)
-    keyword = [''] * 6
+    keyword = [''] * 7
     if reflexive:
         keyword[0] = "The list of S is reflexive"
     elif not reflexive:
@@ -291,6 +293,11 @@ def BinarySolution(lists):
     elif not antisymmetric or not irreflexive:
         keyword[5] = "The list of S is not asymmetric"
 
+    if reflexive and symmetric and transitive:
+        keyword[6] = "The list of S is an equivalence relation"
+    else:
+        keyword[6] = "The list of S is not an equivalence relation"
+
     return keyword
 
 
@@ -306,7 +313,9 @@ def submit_closure_form():
         S = data.get('S', [])
         lists = json.loads(
             S)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
-        closure = ClosureSolution(lists)
+        user_set = data.get('set', [])
+        initialSet = json.loads(user_set)
+        closure = ClosureSolution(lists, initialSet)
         # answer.insert(0, S)
         return jsonify(closure)
 
@@ -317,10 +326,10 @@ def submit_closure_form():
             return jsonify(closure)
 
 
-def ClosureSolution(lists):
-    reflexive_closure = Closure_Relations.reflexive_closure(lists)
-    symmetric_closure = Closure_Relations.symmetric_closure(lists)
-    transitive_closure = Closure_Relations.transitive_closure(lists)
+def ClosureSolution(lists, initialSet):
+    reflexive_closure = Closure_Relations.reflexive_closure(initialSet, lists)
+    symmetric_closure = Closure_Relations.symmetric_closure(initialSet)
+    transitive_closure = Closure_Relations.transitive_closure(initialSet, lists)
     keyword = [''] * 3
     if reflexive_closure != lists:
         keyword[0] = "The list of S has a reflexive closure of " + str(reflexive_closure)
@@ -349,12 +358,18 @@ def submit_equivalence_form():
         data = request.json
         part1 = data.get('part1', [])
         part2 = data.get('part2', [])
+        user_set = data.get('set', [])
+        initialSet = json.loads(user_set)
         partition_1 = json.loads(
             part1)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
         partition_2 = json.loads(part2)
-        equivalence = Equivalence_Relations.equivalence_relations(partition_1, partition_2)
-        equivalence = "The Equivalence Relation is: " + str(equivalence)
-        return jsonify(equivalence)
+        equivalence = Equivalence_Relations.equivalence_relations(partition_1, partition_2, initialSet)
+        if not equivalence:
+            equivalence = "There is no equivalence between the Set and the partitions"
+            return jsonify(equivalence)
+        else:
+         equivalence = "The Equivalence Relation is: " + str(equivalence)
+         return jsonify(equivalence)
 
     elif request.method == 'GET':
         if equivalence is None:

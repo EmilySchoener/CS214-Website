@@ -23,11 +23,18 @@
 #for i in range (0,u):
     #ele = int(input())
     #S_unique.append(ele)
-#reflexive(S, pairs, reflexive_pairs)
-def reflexive_rel(S):
+
+def reflexive_rel(S, initialSet):
     reflexive = True
     reflexive_pairs = 0
-    unique_data = [list(x) for x in set(tuple(x) for x in S)]
+    unique_data = set(x for l in S for x in l)
+    unique_data = list(unique_data)
+    print(unique_data)
+    initialSet.sort()
+    print(initialSet)
+    if unique_data != initialSet:
+        reflexive = False
+        return reflexive
     for i in range (0, len(S)):
         if S[i][0] == S[i][1]:
             reflexive_pairs += 1
@@ -38,6 +45,7 @@ def reflexive_rel(S):
         reflexive = False
         return reflexive
 
+#reflexive_rel([[0,0],[1,1]], [0,1])
 def irreflexive_rel(S):
     irreflexive = True
     unique_data = [list(x) for x in set(tuple(x) for x in S)]
@@ -84,9 +92,9 @@ def transitive_rel(S):
             for k in range(0,len(S)):
                 if S[i][1] == S[j][0] and S[i][0] == S[k][0] and S[j][1] == S[k][1]:
                     return transitive
-            else:
-                transitive = False
-                return transitive
+
+    transitive = False
+    return transitive
 
 #if symmetric:
     #print("The list is symmetric!")

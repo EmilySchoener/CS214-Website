@@ -9,6 +9,7 @@ import { Splitter, SplitterPanel } from 'primereact/splitter';
 const BinaryRelations = () => {
 
     const [S, setS] = useState("");
+    const [set, setInitial] = useState("");
     const [responseData, setResponseData] = useState(null);
     console.log(responseData);
     //When user presses the submit button.
@@ -19,31 +20,38 @@ const BinaryRelations = () => {
             alert (`S List: ${S}`);
             const response = await axios.post("http://127.0.0.1:5000/submitBinary", {
                 S,
+                set,
             });
             console.log("Response from server:", response.data);
+            fetchData();
         } catch (error) {
             console.error("Error:", error);
         }
-        window.location.reload();
+
     }
 
      const sChange= (e) => {
         setS(e.target.value);
     }
 
-    useEffect(() => {
-    // Make an HTTP GET request to your Flask backend
+     const setChange= (e) => {
+        setInitial(e.target.value);
+    }
+
+    const fetchData = () => {
+        // Make an HTTP GET request to your Flask backend
     axios.get("http://localhost:5000/submitBinary")
       .then(response => {
         // Update the state with the response data
         setResponseData(response.data);
-        console.log(responseData);
       })
       .catch(error => {
         // Handle any errors
         console.error('Error fetching data:', error);
       });
-  }, []);
+    }
+
+    useEffect(() => fetchData(), []);
 
        console.log(responseData);
     return (
@@ -54,21 +62,31 @@ const BinaryRelations = () => {
             <Splitter>
                 <SplitterPanel>
             <p> Input: </p>
-            <form onSubmit={handleSubmit}>
-                <input
+                    <form onSubmit={handleSubmit}>
+                        <label> Type in the Initial Set S:
+                            <input
 
-                    onChange={sChange}
-                    placeholder="Enter the pairs in S"
-                />
-                <br/>
-                <button
-                    type="submit">
-                    Submit
-                </button>
-            </form>
-        <h2>Solution</h2>
-            <h2>Response from Flask Backend</h2>
-            {responseData !== null && Array.isArray(responseData) ? (
+                                onChange={setChange}
+                                placeholder="Enter the initial set"
+                            />
+                        </label>
+                        <br/>
+                        <label> Type in the Pairs of the relation:
+                            <input
+
+                                onChange={sChange}
+                                placeholder="Enter the pairs in the relation"
+                            />
+                        </label>
+                        <br/>
+                        <button
+                            type="submit">
+                            Submit
+                        </button>
+                    </form>
+                    <h2>Solution</h2>
+                    <h2>Response from Flask Backend</h2>
+                    {responseData !== null && Array.isArray(responseData) ? (
                 <ul>
                     {responseData.map((item, index) => (
                         <li key={index}>{item}</li>
@@ -80,13 +98,15 @@ const BinaryRelations = () => {
                 </SplitterPanel>
                 <SplitterPanel>
                     <h2>Example:</h2>
-                    <p>Input: [[1,2],[3,4],[5,6]] </p>
+                    <p>Type in the Initial Set S: [1,2,4,5,6] </p>
+                    <p>Type in the Pairs of the relation: [[1,2],[3,4],[5,7]] </p>
                     <p>The list of S is not reflexive <br/>
                         The list of S is irreflexive<br/>
                         The list of S is not symmetric<br/>
                         The list of S is not antisymmetric<br/>
                         The list of S is not transitive<br/>
-                        The list of S is not asymmetric</p>
+                        The list of S is not asymmetric<br/>
+                        The list of S is not an equivalence relation</p>
                 </SplitterPanel>
             </Splitter>
         </div>

@@ -1,36 +1,30 @@
-'''
-S = []
-A = []
-Cycle = []
 
-u = int(input("How many numbers are in A?"))
+def cycle_permutation(A, S):
+    Cycle = []
 
-print("Enter the numbers in A")
-for i in range (0,u):
-    ele = int(input())
-    A.append(ele)
+    while A:  # Continue until all elements are visited
+        first_element = next(iter(A))
+        Cycle.append(first_element)
+        A.remove(first_element)  # Remove the current element from the set
 
-n = int(input("Enter number of pairs in S:"))
+        for pair in S:
+            if pair[0] == first_element:
+                first_element = pair[1]
+                break
 
-print("Enter pairs:")
-for i in range(0,n):
-    ele = [int(input()), int(input())]
-    S.append(ele)
-'''
-def cycle_permutation(S):
-    Cycle = [S[0][0]]
-
-    for i in range(0,len(S)):
-        for j in range (0,len(S)):
-            for k in range (0,len(S)):
-                if S[i][1] == S[j][0] and S[k][0] == S[j][1] and S[i][0] != S[i][1] and S[j][0] != S[j][1]:
-                    ele = S[j][0]
-                    if ele != Cycle[0]:
-                        Cycle.append(ele)
-                else:
-                    continue
+        if Cycle[0] == first_element:
+            break
 
     return Cycle
+
+A = [1, 2, 3, 4]
+S = [(1, 2), (2, 3), (3, 4), (4, 1)]
+
+cycle = cycle_permutation(A, S)
+print(cycle)  # Output: [1, 2, 3, 4]
+
+
+
 #Issue with ordering in the for loop, may need to mess with the if statement more to get the cycle down right. Get the right numbers,
 #but not 100% always in correct order
 #print(Cycle)
