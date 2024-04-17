@@ -17,11 +17,12 @@ def cycle_permutation(A, S):
 
     return Cycle
 
-A = [1, 2, 3, 4]
-S = [(1, 2), (2, 3), (3, 4), (4, 1)]
+#A = [1, 2, 3, 4]
+#S = [[1, 2], [2, 3], [3, 4], [4, 1]]
 
-cycle = cycle_permutation(A, S)
-print(cycle)  # Output: [1, 2, 3, 4]
+#cycle = cycle_permutation(A, S)
+#print(cycle)  # Output: [1, 2, 3, 4]
+#print(type(cycle))
 
 
 

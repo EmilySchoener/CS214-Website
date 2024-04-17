@@ -1,30 +1,4 @@
-'''
-d = int(input("How many numbers are in the domain?"))
-cd = int(input("How many numbers are in the co-domain?"))
 
-Domain = [] #Domain is S
-Co_Domain = [] #Codomain is T
-Function = []
-#One_to_One = True
-#counter = 0
-
-print("Enter the numbers in the domain")
-for i in range (0,d):
-    ele = int(input())
-    Domain.append(ele)
-
-print("Enter the numbers in the co-domain")
-for i in range (0,d):
-    ele = int(input())
-    Co_Domain.append(ele)
-
-n = int(input("How many pairs are in the function?"))
-
-print("Enter pairs:")
-for i in range(0,n):
-    ele = [int(input()), int(input())]
-    Function.append(ele)
-'''
 def one_to_one(Domain, Co_Domain, Function):
     counter = 0
     One_to_One = True

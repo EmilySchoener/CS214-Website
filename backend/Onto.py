@@ -1,5 +1,4 @@
 
-
 def onto(Domain, Co_Domain, Function):
     Onto = True
     for i in range(0,len(Co_Domain)):

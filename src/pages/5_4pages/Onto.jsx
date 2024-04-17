@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 
 const Onto = () => {
@@ -64,6 +65,8 @@ const Onto = () => {
             <h1>
                 5.4 - Onto webpage.
             </h1>
+            <Splitter>
+                <SplitterPanel>
             <p> Input: </p>
             <form onSubmit={handleSubmit}>
                 <label> Type in the Domain:
@@ -93,16 +96,18 @@ const Onto = () => {
                 </button>
             </form>
             <h2>Solution</h2>
-            <h2>Response from Flask Backend</h2>
-            {responseData !== null && Array.isArray(responseData) ? (
-                <ul>
-                    {responseData.map((item, index) => (
-                        <li key={index}>{item}</li>
-                    ))}
-                </ul>
-            ) : (
-                <p> ... Loading ...</p>
-            )}
+                    {responseData}
+
+             </SplitterPanel>
+                <SplitterPanel>
+                    <h2>Example:</h2>
+                    <p>Type in the Domain: [1,2,3,4]  </p>
+                    <p>Type in the Co-Domain: [1,2,3,4,5]  </p>
+                    <p> Type in the Function: [[1,2],[3,4],[5,7]]</p>
+                    <p>Output: The function is not Onto <br/>
+                        </p>
+                </SplitterPanel>
+            </Splitter>
         </div>
     );
 

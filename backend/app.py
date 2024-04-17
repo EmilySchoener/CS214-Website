@@ -388,9 +388,10 @@ def submit_cyclical_form():
     if request.method == 'POST':
         data = request.json
         S = data.get('S', [])
-        lists = json.loads(
-            S)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
-        cycle = Cyclical_Permutations.cycle_permutation(lists)
+        lists = json.loads(S)
+        user_set = data.get('set', [])
+        initialSet = json.loads(user_set)
+        cycle = Cyclical_Permutations.cycle_permutation(initialSet, lists)
         return cycle
 
     elif request.method == 'GET':
@@ -432,7 +433,7 @@ def OneToOneSolution(d, cd, f):
     if OneToOne:
         keyword[0] = "The function is One to One"
     elif not OneToOne:
-        keyword[0] = "The list of S is not One to One"
+        keyword[0] = "The function is not One to One"
 
     return keyword
 
@@ -484,8 +485,10 @@ def submit_comp_form():
     if request.method == 'POST':
         data = request.json
         S = data.get('S', [])
+        user_set = data.get('set', [])
+        initialSet = json.loads(user_set)
         # lists = json.loads(S) #JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
-        comp = Composition_of_Cycles.compose_cycles(S)
+        comp = Composition_of_Cycles.compose_cycles(S, initialSet)
         return comp
 
     elif request.method == 'GET':
