@@ -3,12 +3,9 @@ import networkx as nx
 import numpy as np
 import random
 
-random.seed(0)
-np.random.seed(0)
-
+'''
 n = int(input("Enter the number of characters in S: "))
 S = []
-Hasse = nx.Graph()
 p = []
 minimal = True
 maximal = False
@@ -34,6 +31,29 @@ for i in range(0,m):
 for i in range(0,m):
   Hasse.add_edge(p[i][0],p[i][1])
 
+'''
+def Hasse_Diagram(p):
+    random.seed(0)
+    np.random.seed(0)
+    Hasse = nx.Graph()
+    unique_data = list(x for l in p for x in l)
+    for i in range(0, len(unique_data)):
+        Hasse.add_node(unique_data[i])
+
+    for i in range(0, len(p)):
+        Hasse.add_edge(p[i][0], p[i][1])
+
+    nx.draw(Hasse, with_labels=True, node_color="red", node_size=3000, font_color="white", font_size=20,
+            font_family="Times New Roman", font_weight="bold", width=5)
+    plt.margins(0.2)
+    # plt.show()
+    plt.savefig('Hasse.png')
+    return 'Hasse.png'
+
+
+#b = [['A','B'],['B','C']]
+#Hasse_Diagram(b)
+'''
 for i in range(0,n):
     for j in range (0,m):
         if S[i] == p[j][0] and S[i] == p[j][1]:
@@ -60,11 +80,4 @@ for i in range(0,n):
     if not minimal:
         print("The element", S[i], "is a maximal element in the partial ordering")
 
-
-
-nx.draw(Hasse,with_labels = True, node_color="red", node_size=3000, font_color="white",font_size=20,font_family="Times New Roman",font_weight="bold", width=5)
-plt.margins(0.2)
-#plt.show()
-plt.savefig('../Hasse.png')
-print(max(p))
-print(min(p))
+'''

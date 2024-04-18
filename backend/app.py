@@ -1,15 +1,15 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
 import unit3
 import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, \
-    Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles
+    Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles, Hasse_Diagram, MMGL
 import unit4_1_1, unit4_1_2, unit4_1_3, unit4_1_4
 import unit6_2_5
 import unit7_1_2
 import json
 import Well_Formed_Formula
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/backend')
 CORS(app)
 
 
@@ -300,8 +300,46 @@ def BinarySolution(lists, set):
 
     return keyword
 
+diagram = None
+
+@app.route('/submitHasse', methods=['GET','POST'])
+def submit__Hasse_form():
+    global diagram
+
+    if request.method == 'POST':
+        data = request.json
+        S = data.get('S', [])
+        diagram = Hasse_Diagram.Hasse_Diagram(S)
+        return diagram
+
+    elif request.method == 'GET':
+        if diagram is None:
+            return 'No data available yet'
+        else:
+            return diagram
 
 closure = None
+
+
+MMLG_answer = None
+
+
+@app.route('/submitMMLG', methods=['GET', 'POST'])
+def submit__MMGL_form():
+    global MMLG_answer
+
+    if request.method == 'POST':
+        data = request.json
+        S = data.get('S', [])
+        user_set = data.get('set', [])
+        MMLG_answer = MMGL.MMGL(S,user_set)
+        return jsonify(MMLG_answer)
+
+    elif request.method == 'GET':
+        if MMLG_answer is None:
+            return 'No data available yet'
+        else:
+            return jsonify(MMLG_answer)
 
 
 @app.route('/submitClosure', methods=['GET', 'POST'])

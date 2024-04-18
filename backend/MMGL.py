@@ -5,7 +5,7 @@ import random
 
 #random.seed(0)
 #np.random.seed(0)
-
+'''
 n = int(input("Enter the number of characters in S: "))
 S = []
 #Hasse = nx.Graph()
@@ -33,9 +33,16 @@ for i in range(0,m):
 
 #for i in range(0,m):
 #  Hasse.add_edge(p[i][0],p[i][1])
+'''
+def MMGL(S, p):
 
-for i in range(0,n):
-    for j in range (0,m):
+    print(S)
+    print(p)
+    ordering_string = ['']
+    minimal = True
+    maximal = False
+    for i in range(0,len(S)):
+     for j in range (0,len(p)):
         if S[i] == p[j][0] and S[i] == p[j][1]:
             continue
         if S[i] == p[j][0] and S[i] != p[j][1]:
@@ -51,20 +58,20 @@ for i in range(0,n):
             minimal = False
             break
 
-    if minimal and maximal:
-        print("The element", S[i], "is a maximal and minimal element in the partial ordering")
+     if minimal and maximal:
+        ordering_string.append(f"The element {S[i]} is a maximal and minimal element in the partial ordering")
         maximal = False
         continue
-    if minimal:
-        print("The element", S[i], "is a minimal element in the partial ordering")
-    if not minimal:
-        print("The element", S[i], "is a maximal element in the partial ordering")
+     if minimal:
+         ordering_string.append(f"The element {S[i]} is a minimal element in the partial ordering")
+     if not minimal:
+        ordering_string.append(f"The element {S[i]} is a maximal element in the partial ordering")
+
+    return ordering_string
 
 
 
 #nx.draw(Hasse,with_labels = True, node_color="red", node_size=3000, font_color="white",font_size=20,font_family="Times New Roman",font_weight="bold", width=5)
 #.margins(0.2)
-#plt.show()
 
-print(max(p))
-print(min(p))
+
