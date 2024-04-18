@@ -112,7 +112,7 @@ const BinaryOrUnary = () => {
                         onChange={oneOneChange}
                         type="text"
                         value={oneOne}
-                         style={{ width: "40px" }}
+                        style={{ width: "40px" }}
                     />
                 </label>
                 {" "}

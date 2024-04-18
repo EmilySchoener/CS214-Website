@@ -5,7 +5,7 @@ import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Perm
     Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles, Hasse_Diagram, MMGL
 import unit4_1_1, unit4_1_2, unit4_1_3, unit4_1_4
 import unit6_2_5
-import unit7_1_2
+import unit7_1_2, unit7_1_3, unit7_1_5
 import json
 import Well_Formed_Formula
 
@@ -702,6 +702,109 @@ def SolveUnit7_1_2(data):
         return unit7_1_2.ThreeByThree(oneOne, oneTwo, oneThree, twoOne, twoTwo, twoThree, threeOne, threeTwo, threeThree)
     else:
         return unit7_1_2.FourByFour(oneOne, oneTwo, oneThree,oneFour, twoOne, twoTwo, twoThree,twoFour, threeOne, threeTwo, threeThree, threeFour, fourOne, fourTwo, fourThree, fourFour)
+
+
+string7_1_3 = None
+
+
+@app.route('/7_1_3', methods=['GET', 'POST'])
+def submit_7_1_3():
+    global string7_1_3
+
+    if request.method == 'POST':
+        data = request.json
+        string7_1_3 = SolveUnit7_1_3(data)
+        return jsonify(string7_1_3)
+
+    elif request.method == 'GET':
+        if string7_1_3 is None:
+            return 'No data available yet'
+        else:
+            return jsonify(string7_1_3)
+
+
+def SolveUnit7_1_3(data):
+    algo = data.get("algo", [])
+    intAlgo = int(algo)
+    oneOne = data.get("oneOne", [])
+    oneTwo = data.get("oneTwo", [])
+    oneThree = data.get("oneThree", [])
+    oneFour = data.get("oneFour", [])
+    oneFive = data.get("oneFive", [])
+    twoOne = data.get("twoOne", [])
+    twoTwo = data.get("twoTwo", [])
+    twoThree = data.get("twoThree", [])
+    twoFour = data.get("twoFour", [])
+    twoFive = data.get("twoFive", [])
+    threeOne = data.get("threeOne", [])
+    threeTwo = data.get("threeTwo", [])
+    threeThree = data.get("threeThree", [])
+    threeFour = data.get("threeFour", [])
+    threeFive = data.get("threeFive", [])
+    fourOne = data.get("fourOne", [])
+    fourTwo = data.get("fourTwo", [])
+    fourThree = data.get("fourThree", [])
+    fourFour = data.get("fourFour", [])
+    fourFive = data.get("fourFive", [])
+    fiveOne = data.get("fiveOne", [])
+    fiveTwo = data.get("fiveTwo", [])
+    fiveThree = data.get("fiveThree", [])
+    fiveFour = data.get("fiveFour", [])
+    fiveFive = data.get("fiveFive", [])
+    if intAlgo == 1:
+        return unit7_1_3.custom(oneOne, oneTwo, oneThree, oneFour, oneFive, twoOne, twoTwo, twoThree, twoFour, twoFive, threeOne, threeTwo, threeThree, threeFour, threeFive,
+           fourOne, fourTwo, fourThree, fourFour, fourFive, fiveOne, fiveTwo, fiveThree, fiveFour, fiveFive)
+    elif intAlgo == 2:
+        return unit7_1_3.warshall(oneOne, oneTwo, oneThree, oneFour, oneFive, twoOne, twoTwo, twoThree, twoFour, twoFive, threeOne, threeTwo, threeThree, threeFour, threeFive,
+           fourOne, fourTwo, fourThree, fourFour, fourFive, fiveOne, fiveTwo, fiveThree, fiveFour, fiveFive)
+
+
+string7_1_4 = None
+
+
+@app.route('/7_1_4', methods=['GET', 'POST'])
+def submit_7_1_4():
+    global string7_1_4
+
+    if request.method == 'POST':
+        data = request.json
+        string7_1_4 = SolveUnit7_1_4(data)
+        return jsonify(string7_1_4)
+
+    elif request.method == 'GET':
+        if string7_1_4 is None:
+            return 'No data available yet'
+        else:
+            return jsonify(string7_1_4)
+
+
+def SolveUnit7_1_4(data):
+    return "true"
+
+
+string7_1_5 = None
+
+
+@app.route('/7_1_5', methods=['GET', 'POST'])
+def submit_7_1_5():
+    global string7_1_5
+
+    if request.method == 'POST':
+        data = request.json
+        string7_1_5 = SolveUnit7_1_5(data)
+        return jsonify(string7_1_5)
+
+    elif request.method == 'GET':
+        if string7_1_5 is None:
+            return 'No data available yet'
+        else:
+            return jsonify(string7_1_5)
+
+
+def SolveUnit7_1_5(data):
+    set = data.get("set", [])
+    p = data.get("p", [])
+    return unit7_1_5.WarshallClosure(set, p)
 
 
 if __name__ == '__main__':

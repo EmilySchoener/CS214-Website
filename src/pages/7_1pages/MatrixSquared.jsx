@@ -138,7 +138,7 @@ const MatrixSquared = () => {
                         onChange={oneOneChange}
                         type="text"
                         value={oneOne}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -146,7 +146,7 @@ const MatrixSquared = () => {
                         onChange={oneTwoChange}
                         type="text"
                         value={oneTwo}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -154,7 +154,7 @@ const MatrixSquared = () => {
                         onChange={oneThreeChange}
                         type="text"
                         value={oneThree}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -162,7 +162,7 @@ const MatrixSquared = () => {
                         onChange={oneFourChange}
                         type="text"
                         value={oneFour}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <br/>
@@ -171,7 +171,7 @@ const MatrixSquared = () => {
                         onChange={twoOneChange}
                         type="text"
                         value={twoOne}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -179,7 +179,7 @@ const MatrixSquared = () => {
                         onChange={twoTwoChange}
                         type="text"
                         value={twoTwo}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -187,7 +187,7 @@ const MatrixSquared = () => {
                         onChange={twoThreeChange}
                         type="text"
                         value={twoThree}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -195,7 +195,7 @@ const MatrixSquared = () => {
                         onChange={twoFourChange}
                         type="text"
                         value={twoFour}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <br/>
@@ -204,7 +204,7 @@ const MatrixSquared = () => {
                         onChange={threeOneChange}
                         type="text"
                         value={threeOne}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -212,7 +212,7 @@ const MatrixSquared = () => {
                         onChange={threeTwoChange}
                         type="text"
                         value={threeTwo}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -220,7 +220,7 @@ const MatrixSquared = () => {
                         onChange={threeThreeChange}
                         type="text"
                         value={threeThree}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -228,7 +228,7 @@ const MatrixSquared = () => {
                         onChange={threeFourChange}
                         type="text"
                         value={threeFour}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <br/>
@@ -237,7 +237,7 @@ const MatrixSquared = () => {
                         onChange={fourOneChange}
                         type="text"
                         value={fourOne}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -245,7 +245,7 @@ const MatrixSquared = () => {
                         onChange={fourTwoChange}
                         type="text"
                         value={fourTwo}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -253,7 +253,7 @@ const MatrixSquared = () => {
                         onChange={fourThreeChange}
                         type="text"
                         value={fourThree}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <label>
@@ -261,7 +261,7 @@ const MatrixSquared = () => {
                         onChange={fourFourChange}
                         type="text"
                         value={fourFour}
-                        placeholder="Enter element of matrix here"
+                        style={{ width: "40px" }}
                     />
                 </label>
                 <br/>
@@ -274,7 +274,7 @@ const MatrixSquared = () => {
             <h2>Solution</h2>
             <h2>Response from Flask Backend</h2>
             {responseData !== null ? (
-                <p>{responseData}</p>
+                <pre>{responseData}</pre>
             ) : (
                 <p>Loading...</p>
             )}

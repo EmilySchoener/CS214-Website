@@ -33,13 +33,13 @@ const sections = [
     },
     {
         id: 3,
-        title: "Reachability Matrix",
+        title: "Reachability Matrix From Matrix",
         content: "TBD",
         link: "/unit7/ReachabilityMatrix"
     },
     {
         id: 4,
-        title: "Warshall Algo to Reachability Matrix",
+        title: "Reachability Matrix From Relation and Set",
         content: "TBD",
         link: "/unit7/WarshallReachability"
     },
