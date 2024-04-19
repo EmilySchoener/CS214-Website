@@ -22,13 +22,13 @@ const sections = [
     {
         id: 1,
         title: "Order of Magnitude",
-        content: "Problems 1-6",
+        content: "Example 44, Practice 42, and Problems 1-6",
         link: "/unit5/section5_5/OrderOfMagnitude"
     },
     {
         id: 2,
         title: "Master Theorem",
-        content: "Problems 21-26",
+        content: "Example 46-47 and Problems 21-26",
         link: "/unit5/section5_5/MasterTheorem"
     }
     ]
