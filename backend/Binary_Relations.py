@@ -48,17 +48,12 @@ def reflexive_rel(S, initialSet):
 #reflexive_rel([[0,0],[1,1]], [0,1])
 def irreflexive_rel(S):
     irreflexive = True
-    unique_data = [list(x) for x in set(tuple(x) for x in S)]
-    counter = 0
-    for i in range(0, len(S)):
-        if S[i][0] == S[i][1]:
-            counter += 1
+    for pair in S:
+        if pair[0] == pair[1]:
+            irreflexive = False
+            break
+    return irreflexive
 
-    if len(unique_data) == counter:
-        irreflexive = False
-        return irreflexive
-    else:
-        return irreflexive
 
 def symmetric_rel(S):
     symmetric = True
@@ -74,15 +69,14 @@ def symmetric_rel(S):
     return symmetric
 def antisymmetric_rel(S):
     antisymmetric = True
-    for i in range (0,len(S)):
-        for j in range(0,len(S)):
-            if S[i][0] == S[j][1] and S[i][1] == S[j][0] and S[i][0] == S[j][0]:
-                break
-            elif (j+1) == len(S):
-                antisymmetric = False
-                return antisymmetric
-        if not antisymmetric:
-            break
+    for i in range(len(S)):
+        for j in range(len(S)):
+            if S[i][0] == S[j][1] and S[i][1] == S[j][0] :
+                if S[i][0] != S[j][0]:
+                    antisymmetric = False
+                    return antisymmetric
+    return antisymmetric
+
 
 #If you have (3,4) and (4,2) in the list, then (3,2) should be in the list
 def transitive_rel(S):

@@ -26,7 +26,7 @@ for i in range(0,n):
 
 def reflexive_closure(initial_set, S):
     # Start with the original relation
-    reflexive = initial_set.copy()
+    reflexive = []
 
     # Add reflexive pairs for each element not in the relation
     for ele in S:
@@ -45,7 +45,7 @@ def reflexive_closure(initial_set, S):
 
 symmetric_in_list = True
 def symmetric_closure(S):
-    S_symmetric_closure = S.copy()
+    S_symmetric_closure = []
     global symmetric_in_list
     for i in range (0,len(S)):
         for j in range(0,len(S)):
@@ -76,7 +76,7 @@ def transitive_closure(initial_set, S):
                     S_pair = [S[i], S[k]]
                     if S_pair not in S_transitive_closure and S_pair not in initial_set:
                         S_transitive_closure.append(S_pair)
-    return initial_set + S_transitive_closure
+    return S_transitive_closure
 
 # Original relation p
 #p = [[1, 3], [3, 3], [3, 1], [2, 2], [1, 1], [1, 2]]

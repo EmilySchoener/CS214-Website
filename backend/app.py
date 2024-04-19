@@ -263,7 +263,7 @@ def BinarySolution(lists, set):
     symmetric = Binary_Relations.symmetric_rel(lists)
     antisymmetric = Binary_Relations.antisymmetric_rel(lists)
     transitive = Binary_Relations.transitive_rel(lists)
-    keyword = [''] * 7
+    keyword = [''] * 8
     if reflexive:
         keyword[0] = "The list of S is reflexive"
     elif not reflexive:
@@ -297,6 +297,11 @@ def BinarySolution(lists, set):
         keyword[6] = "The list of S is an equivalence relation"
     else:
         keyword[6] = "The list of S is not an equivalence relation"
+
+    if reflexive and antisymmetric and transitive:
+        keyword[7] = "The list of S is a partial order or poset of the initial set"
+    else:
+        keyword[7] = "The list of S is not a partial order or poset of the initial set"
 
     return keyword
 

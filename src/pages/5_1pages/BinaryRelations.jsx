@@ -85,7 +85,6 @@ const BinaryRelations = () => {
                         </button>
                     </form>
                     <h2>Solution</h2>
-                    <h2>Response from Flask Backend</h2>
                     {responseData !== null && Array.isArray(responseData) ? (
                 <ul>
                     {responseData.map((item, index) => (
@@ -103,10 +102,11 @@ const BinaryRelations = () => {
                     <p>The list of S is not reflexive <br/>
                         The list of S is irreflexive<br/>
                         The list of S is not symmetric<br/>
-                        The list of S is not antisymmetric<br/>
+                        The list of S is antisymmetric<br/>
                         The list of S is not transitive<br/>
-                        The list of S is not asymmetric<br/>
-                        The list of S is not an equivalence relation</p>
+                        The list of S is asymmetric<br/>
+                        The list of S is not an equivalence relation<br/>
+                        The list of S is not a partial order or poset of the initial set</p>
                 </SplitterPanel>
             </Splitter>
         </div>

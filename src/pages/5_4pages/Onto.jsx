@@ -18,7 +18,7 @@ const Onto = () => {
         e.preventDefault();
         try {
             e.preventDefault(); //This will stop the handler from emptying the text box.
-            alert (`Domain ${domain}, CoDomain: ${codomain}, Function: ${func}`);
+           // alert (`Domain ${domain}, CoDomain: ${codomain}, Function: ${func}`);
             const response = await axios.post("http://127.0.0.1:5000/submitOnto", {
                 domain,
                 codomain,

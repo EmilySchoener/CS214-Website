@@ -17,7 +17,7 @@ const CyclicalPermutations = () => {
         e.preventDefault();
         try {
             e.preventDefault(); //This will stop the handler from emptying the text box.
-            alert (`S List: ${S}`);
+           // alert (`S List: ${S}`);
             const response = await axios.post("http://127.0.0.1:5000/submitCyclical", {
                 S,
                 set,
