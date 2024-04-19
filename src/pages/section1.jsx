@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 const Section1_1 = () => {
     const [S, setS] = useState("");
@@ -54,6 +55,8 @@ const Section1_1 = () => {
     return (
         <div>
             <h1>Section 1.1 webpage.</h1>
+            <Splitter>
+                <SplitterPanel>
             <label htmlFor="toggle">Truth Table:</label>
             <input
                 type="checkbox"
@@ -150,6 +153,9 @@ const Section1_1 = () => {
                     <pre>{responseData}</pre>
                 </div>
             )}
+                </SplitterPanel>
+                <h2>Example:</h2>
+            </Splitter>
         </div>
     );
 };

@@ -8,6 +8,9 @@ const Report = () => {
     const [formData, setFormData] = useState({
         from_name: '',
         email: '',
+        section: '',
+        input: '',
+        output: '',
         message: ''
     });
 
@@ -25,6 +28,9 @@ const Report = () => {
        emailjs.send("service_4ub3vtt","template_m34ykds",{
                     from_name: formData.from_name,
                     email: formData.email,
+                    section: formData.section,
+                    input: formData.input,
+                    output: formData.output,
                     message: formData.message}, {
         publicKey: 'TtHOty0oV0DN0RUEr',
       })
@@ -53,12 +59,23 @@ const Report = () => {
 
             <form onSubmit={handleSubmit}>
                 <label>Name:
-                    <input type="text" name="name" value={formData.name} onChange={handleChange}/> </label> <br/>
+                    <input type="text" name="from_name" value={formData.from_name} onChange={handleChange}/> </label> <br/>
                 <label>Email:
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required/></label> <br/>
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required/></label>
+                <br/>
+                <label>Section where error was identified:
+                    <input type="text" name="section" value={formData.section} onChange={handleChange}
+                           required/></label>
+                <br/>
+                <label>Your input:
+                    <input type="text" name="input" value={formData.input} onChange={handleChange} required/></label>
+                <br/>
+                <label>The solution given:
+                    <input type="text" name="output" value={formData.output} onChange={handleChange} required/></label>
+                <br/>
                 <p>Message:</p>
-                    <textarea name="message" cols={35} rows={10} value={formData.message}
-                              onChange={handleChange}/><br/>
+                <textarea name="message" cols={35} rows={10} value={formData.message}
+                          onChange={handleChange}/><br/>
                 <button type="submit">Submit</button>
             </form>
         </div>
