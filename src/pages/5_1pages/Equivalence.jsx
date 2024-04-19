@@ -18,7 +18,7 @@ const BinaryRelations = () => {
         e.preventDefault();
         try {
             e.preventDefault(); //This will stop the handler from emptying the text box.
-            alert (`Partition 1 ${part1}, Partition 2: ${part2} Set: ${set}`,);
+            //alert (`Partition 1 ${part1}, Partition 2: ${part2} Set: ${set}`,);
             const response = await axios.post("http://127.0.0.1:5000/submitEquivalence", {
                 part1,
                 part2,
