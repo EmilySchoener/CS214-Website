@@ -6,7 +6,7 @@ import axios from "axios";
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 
-const BinaryRelations = () => {
+const Equivalence = () => {
 
     const [part1, setPart1] = useState("");
     const [part2, setPart2] = useState("");
@@ -116,4 +116,4 @@ const BinaryRelations = () => {
 
 };
 
-export default BinaryRelations
+export default Equivalence

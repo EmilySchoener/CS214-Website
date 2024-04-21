@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
 import unit3
 import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, \
-    Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles, Hasse_Diagram, MMGL
+    Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles, Hasse_Diagram, MMGL, Masters_Theorem
 import unit4_1_1, unit4_1_2, unit4_1_3, unit4_1_4
 import unit6_2_5
 import unit7_1_2, unit7_1_3, unit7_1_5
@@ -540,6 +540,30 @@ def submit_comp_form():
         else:
             return comp
 
+
+
+mast_theorem = None
+
+@app.route('/submitMasterTheorem', methods=['GET', 'POST'])
+def submit_master_theorem():
+    global mast_theorem
+
+    if request.method == 'POST':
+        data = request.json
+        a = data.get('a', [])
+        intA = int(a)
+        b = data.get('b', [])
+        intB = int(b)
+        c = data.get('c', [])
+        intC = float(c)
+        mast_theorem = str(Masters_Theorem.master_theorem(intA, intB, intC))
+        return mast_theorem
+
+    elif request.method == 'GET':
+        if mast_theorem is None:
+            return 'No data available yet'
+        else:
+            return mast_theorem
 
 mult = None
 dot = None
