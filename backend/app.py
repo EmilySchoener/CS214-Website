@@ -646,12 +646,11 @@ def submit_wff_form():
         else:
             # Perform your processing logic here using the Well_Formed_Formula module
             result = Well_Formed_Formula.process_wff(A, B, C, S)
-            result = str(result)
 
             # Return the processed result
         return jsonify(result=result)
     except Exception as e:
-        return jsonify(error=str(e))
+        return jsonify(error="Error")
 
 
 string6_2_5 = None

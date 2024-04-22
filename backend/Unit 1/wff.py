@@ -15,8 +15,6 @@ def error(msg):
 class WFF:
     def __init__(self):
         self.statement = None
-        self.lhs = []
-        self.rhs = None
         self.result = ""
         self.A = True
         self.B = True
@@ -24,7 +22,6 @@ class WFF:
         self.T = True
         self.F = False
         self.properties = []
-        self.index = 0
 
     def set_statement(self, statement):
         self.statement = statement
@@ -346,143 +343,6 @@ class WFF:
         except:
             return "Failed"
 
-    def tautology_proof(self, source):
-        print("tautology_proof")
-        self.statement = source
-        self.split_func()
-        i = 0
-        while i < 50:
-            self.commutative_func()
-            # self.associative_func()
-            self.distributive_func()
-            self.identity_func()
-            self.complement_func()
-            i += 1
-
-    def split_func(self):
-        parts = self.statement.split()
-        for i, part in enumerate(parts):
-            if part == "=":
-                implication_found = True
-                self.lhs.append(" ".join(parts[:i]))
-                self.properties.append("Given, ")
-                self.rhs = " ".join(parts[i + 1:])
-                self.lhs[self.index] = "".join(self.lhs[self.index].split())
-                self.rhs = "".join(self.lhs[self.index].split())
-                self.index += 1
-                break
-        # print(self.lhs, " ", self.rhs)
-
-    def compare_func(self):
-        if self.rhs in self.lhs:
-            return True
-        else:
-            return False
-
-    def commutative_func(self):
-        start, stop = None, None
-        is_found = False
-        starts = 0
-        test_o = ["(A*B)", "(B*A)", "(A*C)", "(C*A)", "(B*C)", "(C*B)"]
-        result_o = ["(B*A)", "(A*B)", "(C*A)", "(A*C)", "(C*B)", "(B*C)"]
-        test_a = ["(A&B)", "(B&A)", "(A&C)", "(C&A)", "(B&C)", "(C&B)"]
-        result_a = ["(B&A)", "(A&B)", "(C&A)", "(A&C)", "(C&B)", "(B&C)"]
-        # print(self.lhs)
-        goded = len(self.lhs)
-        for god, statement in enumerate(self.lhs):
-            if goded < god - 1:
-                break
-            if "*" in statement:
-                tokens = statement.tokenise()
-                for i, token in enumerate(tokens):
-                    if token == "(":
-                        starts += 1
-                        if start is None:
-                            start = i + 1
-                    elif token == ")":
-                        starts -= 1
-                        if starts == 0 and stop is None:
-                            stop = i
-                            break
-
-                    if start is not None and stop is not None:
-                        try:
-                            starting_logic = str(statement[0:start - 1])
-                        except IndexError:
-                            starting_logic = " "
-                        content_within_brackets = result_o[i]
-                        remaining_logic = statement[stop + 1:]
-                        result_within_brackets = self.parser_adv(content_within_brackets)
-                        self.lhs.append(starting_logic + result_within_brackets + remaining_logic)
-                        self.index += 1
-                        self.properties.append(self.properties[i] + " 1a ")
-                        print("commutative: 1a")
-                    else:
-                        error("No complete set of parentheses found.")
-            if "&" in statement:
-                tokens = list(statement)
-                for i, token in enumerate(tokens):
-                    print(token)
-                    if token == "(":
-                        starts += 1
-                        if start is None:
-                            start = i + 1
-                    elif token == ")":
-                        starts -= 1
-                        if starts == 0 and stop is None:
-                            # print("Sup ", i)
-                            stop = i
-                            break
-                # print(start, " ", stop)
-                if start is not None and stop is not None:
-                    try:
-                        starting_logic = str(statement[0:start - 1])
-                    except IndexError:
-                        starting_logic = " "
-                    content_within_brackets = statement[start:stop]
-                    result_within_brackets = content_within_brackets
-                    # print("First", result_within_brackets)
-                    i=0
-                    for test, examples in enumerate(test_a):
-                        if examples == content_within_brackets:
-                            result_within_brackets = examples
-                            i=test
-                    remaining_logic = statement[stop + 1:]
-                    # print("Second", result_within_brackets)
-                    self.lhs.append(starting_logic + result_within_brackets + remaining_logic)
-                    self.index += 1
-                    self.properties.append(self.properties[i] + " 1b ")
-                    print("commutative: 1b")
-                else:
-                    error("No complete set of parentheses found.")
-
-    def associative_func(self):
-        test_1 = "(A*B)*C"
-        test_2 = "(A&B)&C"
-        # print(self.lhs)
-        for i, statement in enumerate(self.lhs):
-            if statement == test_1:
-                print("associative: 1a")
-                self.lhs.append("A&(B&C)")
-                self.index += 1
-                self.properties.append(self.properties[i] + " 1b ")
-            if statement == test_2:
-                print("associative: 2b")
-                self.lhs.append("A&(B&C)")
-                self.index += 1
-                self.properties.append(self.properties[i] + " 2b ")
-
-        return False
-
-    def distributive_func(self):
-        pass
-
-    def identity_func(self):
-        pass
-
-    def complement_func(self):
-        pass
-
 
 class Truth_Table:
     def __init__(self):
@@ -566,3 +426,59 @@ class Truth_Table:
             self.table += "Tautology\n"
         if "T" not in self.results:
             self.table += "Contradiction\n"
+
+
+class Proof:
+    def __init__(self):
+        self.rhs = None
+        self.properties = None
+        self.lhs = None
+        self.wff = None
+        self.statement = ""
+
+    def tautology_proof(self, source):
+        self.statement = source
+        self.split_func()
+        statement = self.lhs
+        self.recursive_proof(statement)
+
+    def split_func(self):
+        parts = self.statement.split()
+        for i, part in enumerate(parts):
+            if part == "=":
+                implication_found = True
+                self.lhs = (" ".join(parts[:i]))
+                self.properties = "Given, "
+                self.rhs = " ".join(parts[i + 1:])
+                self.lhs = "".join(self.lhs.split())
+                self.rhs = "".join(self.rhs.split())
+                break
+        # print(self.lhs, " ", self.rhs)
+
+    def compare_func(self):
+        if self.rhs in self.lhs:
+            return True
+        else:
+            return False
+
+    def commutative_func(self):
+        pass
+
+    def associative_func(self):
+        pass
+
+    def distributive_func(self):
+        pass
+
+    def identity_func(self):
+        pass
+
+    def complement_func(self):
+        pass
+
+    def recursive_proof(self, statement):
+        self.commutative_func()
+        self.associative_func()
+        self.distributive_func()
+        self.identity_func()
+        self.complement_func()
