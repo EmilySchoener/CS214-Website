@@ -2,7 +2,8 @@ from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
 import unit3
 import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, \
-    Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles, Hasse_Diagram, MMGL, Masters_Theorem
+    Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles, Hasse_Diagram, MMGL, Masters_Theorem, \
+    Order_Of_Magnitude
 import unit4_1_1, unit4_1_2, unit4_1_3, unit4_1_4
 import unit6_2_5
 import unit7_1_2, unit7_1_3, unit7_1_5
@@ -323,8 +324,6 @@ def submit__Hasse_form():
         else:
             return diagram
 
-closure = None
-
 
 MMLG_answer = None
 
@@ -335,9 +334,12 @@ def submit__MMGL_form():
 
     if request.method == 'POST':
         data = request.json
-        S = data.get('S', [])
+        print("Received data:", data)
         user_set = data.get('set', [])
-        MMLG_answer = MMGL.MMGL(S,user_set)
+        S = data.get('S', [])
+        print("Received S:", S)
+        print("Type of S:", type(S))
+        MMLG_answer = MMGL.MMGL(user_set, S)
         return jsonify(MMLG_answer)
 
     elif request.method == 'GET':
@@ -346,7 +348,7 @@ def submit__MMGL_form():
         else:
             return jsonify(MMLG_answer)
 
-
+closure = None
 @app.route('/submitClosure', methods=['GET', 'POST'])
 def submit_closure_form():
     global closure
@@ -401,12 +403,16 @@ def submit_equivalence_form():
         data = request.json
         part1 = data.get('part1', [])
         part2 = data.get('part2', [])
+        part3 = data.get('part3', [])
         user_set = data.get('set', [])
-        initialSet = json.loads(user_set)
-        partition_1 = json.loads(
-            part1)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
-        partition_2 = json.loads(part2)
-        equivalence = Equivalence_Relations.equivalence_relations(partition_1, partition_2, initialSet)
+       # initialSet = json.loads(user_set)
+       # partition_1 = json.loads(part1)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
+       # partition_2 = json.loads(part2)
+        if part3 == None:
+            equivalence = Equivalence_Relations.equivalence_relations(part1, part2, user_set)
+        else:
+            equivalence = Equivalence_Relations.equivalence_relations_three(part1,part2,part3,user_set)
+
         if not equivalence:
             equivalence = "There is no equivalence between the Set and the partitions"
             return jsonify(equivalence)
@@ -568,6 +574,31 @@ def submit_master_theorem():
 mult = None
 dot = None
 
+
+order_mag = None
+
+@app.route('/submitOrderOfMag', methods=['GET', 'POST'])
+def submit_order_mag():
+    global order_mag
+
+    if request.method == 'POST':
+        data = request.json
+        f = data.get('f', [])
+        strF = str(f)
+        g = data.get('g', [])
+        strG = str(g)
+        x = data.get('x', [])
+        intX = float(x)
+        if intX <= 0:
+            return order_mag
+        order_mag = Order_Of_Magnitude.find_constants(strF, strG, intX)
+        return order_mag
+
+    elif request.method == 'GET':
+        if order_mag is None:
+            return 'No data available yet'
+        else:
+            return order_mag
 
 @app.route('/submitMatrixMult', methods=['GET', 'POST'])
 def submit_Mult_form():

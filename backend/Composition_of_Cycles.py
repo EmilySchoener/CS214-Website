@@ -19,7 +19,7 @@ def compose_cycles(input_string, A):
     if unique_data != A:
         #print("The cycles entered not valid cycles on the set A ")
         if len(unique_data) > len(A):
-            return "The cycles entered not valid cycles on the set A "
+            return "The cycles entered are not valid cycles on the set A "
     # Make each cycle into a Sympy Permutation
     cycles = [Permutation([x]) for x in cycles]
 
