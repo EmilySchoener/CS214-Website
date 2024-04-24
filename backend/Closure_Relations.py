@@ -22,13 +22,12 @@ for i in range(0,n):
     Some issues with the functions in regards to getting ALL pairs for closure, but input is working on website
 '''
 
-#Need to add in a set S being typed in by users
+
 
 def reflexive_closure(initial_set, S):
-    # Start with the original relation
+
     reflexive = []
 
-    # Add reflexive pairs for each element not in the relation
     for ele in S:
         reflexive.append([ele, ele])
 

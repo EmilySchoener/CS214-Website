@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const sections = [
-    {
+    /*{
         id: 1,
         title: "Pert Chart",
         content: "Add example here",
@@ -27,14 +27,14 @@ const sections = [
     },
     {
         id: 2,
-        title: "Closure Relations",
+        title: "Topological Sort",
         content: "Add example here",
         link: "/unit5/section5_2/TopologicalSort"
-    },
+    },*/
     {
         id: 3,
         title: "Sequential Tasks",
-        content: "Add example here",
+        content: "Problem 13-14",
         link: "/unit5/section5_2/SequentialTasks"
     }
     ]

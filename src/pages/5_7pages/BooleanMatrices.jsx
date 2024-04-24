@@ -1,4 +1,4 @@
-// Filename - pages/5_1pages/BinaryRelations.jsx
+// Filename - pages/5_7pages/BooleanMatrices.jsx
 import React, {useEffect, useState} from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -16,7 +16,7 @@ const BooleanMatrices = () => {
         e.preventDefault();
         try {
             e.preventDefault(); //This will stop the handler from emptying the text box.
-            alert (`First Matrix: ${bool_matrix1}, Second Matrix: ${bool_matrix2}`);
+           // alert (`First Matrix: ${bool_matrix1}, Second Matrix: ${bool_matrix2}`);
             const response = await axios.post("http://127.0.0.1:5000/submitBoolMatrix", {
                 bool_matrix1,
                 bool_matrix2,
@@ -77,7 +77,7 @@ const BooleanMatrices = () => {
                 </button>
             </form>
             <h2>Solution</h2>
-            <h2>Response from Flask Backend</h2>
+
             {responseData !== null && Array.isArray(responseData) ? (
                 <ul>
                     {responseData.map((item, index) => (

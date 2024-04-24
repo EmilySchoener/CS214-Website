@@ -31,12 +31,12 @@ const sections = [
         content: "Problems 23 and 24",
         link: "/unit5/section5_1/ClosureRelations"
     },
-    {
+    /*{
         id: 3,
         title: "Hasse Diagram",
         content: "Problem 31",
         link: "/unit5/section5_1/HasseDiagram"
-    },
+    },*/
     {
         id: 4,
         title: "Minimal, Maximal, Least, Greatest Elements",

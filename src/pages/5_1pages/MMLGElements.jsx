@@ -1,4 +1,4 @@
-// Filename - pages/5_1pages/BinaryRelations.jsx
+// Filename - pages/5_1pages/MMLG.jsx
 import React, {useEffect, useState} from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -89,7 +89,7 @@ const MMLGElements= () => {
                     </form>
                     <h2>Solution</h2>
 
-                    <h2>Response from Flask Backend</h2>
+
                     {responseData !== null && Array.isArray(responseData) ? (
                 <ul>
                     {responseData.map((item, index) => (

@@ -1,4 +1,4 @@
-// Filename - pages/5_1pages/BinaryRelations.jsx
+// Filename - pages/5_4pages/CompositionofCycles.jsx
 import React, {useEffect, useState} from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -59,32 +59,33 @@ const CompositionofCycles = () => {
             </h1>
             <Splitter>
                 <SplitterPanel>
-            <p> Input: </p>
-            <form onSubmit={handleSubmit}>
-                <label> Type in the Initial Set:
-                    <input
+                    <p> Input: </p>
+                    <p> Note: If you would like to have the initial set be all real numbers, please enter [-1] as the initial set </p>
+                    <form onSubmit={handleSubmit}>
+                        <label> Type in the Initial Set:
+                            <input
 
-                        onChange={setChange}
-                        placeholder="Enter the initial set"
-                    />
-                </label>
-                <br/>
-                <label> Type in the pairs in S:
-                    <input
+                                onChange={setChange}
+                                placeholder="Enter the initial set"
+                            />
+                        </label>
+                        <br/>
+                        <label> Type in the pairs in S:
+                            <input
 
-                        onChange={sChange}
-                        placeholder="Enter the pairs in S"
-                    />
-                </label>
-                <br/>
-                <button
-                    type="submit">
-                    Submit
-                </button>
-            </form>
-            <h2>Solution</h2>
-            {responseData}
-                    </SplitterPanel>
+                                onChange={sChange}
+                                placeholder="Enter the pairs in S"
+                            />
+                        </label>
+                        <br/>
+                        <button
+                            type="submit">
+                            Submit
+                        </button>
+                    </form>
+                    <h2>Solution</h2>
+                    {responseData}
+                </SplitterPanel>
                 <SplitterPanel>
                     <h2>Example:</h2>
                     <p>Type in the Initial Set: [1,2,3,4,5] </p>

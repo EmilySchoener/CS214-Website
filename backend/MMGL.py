@@ -84,7 +84,6 @@ def MMGL(S, p):
 #p = [['A', 'B'], ['B', 'C']]
 #print(MMGL(S, p))
 
-#nx.draw(Hasse,with_labels = True, node_color="red", node_size=3000, font_color="white",font_size=20,font_family="Times New Roman",font_weight="bold", width=5)
-#.margins(0.2)
+
 
 

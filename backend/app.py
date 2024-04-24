@@ -3,7 +3,7 @@ from flask_cors import CORS
 import unit3
 import Binary_Relations, Closure_Relations, Equivalence_Relations, Cyclical_Permutations, One_to_One, Onto, \
     Matrix_Multiplication, Boolean_Matrices, Composition_of_Cycles, Hasse_Diagram, MMGL, Masters_Theorem, \
-    Order_Of_Magnitude
+    Order_Of_Magnitude, Sequential_Tasks
 import unit4_1_1, unit4_1_2, unit4_1_3, unit4_1_4
 import unit6_2_5
 import unit7_1_2, unit7_1_3, unit7_1_5
@@ -426,6 +426,31 @@ def submit_equivalence_form():
         else:
             return jsonify(equivalence)
 
+@app.route('/submitTasks', methods=['POST'])
+def submit_ordered_tasks():
+    try:
+        tasks = request.json.get('tasks', [])
+        tasks_with_prerequisites = {}
+        for task_id, task_info in enumerate(tasks, start=1):
+            task_info_parts = task_info.split(', Prerequisite')
+            task_name = task_info_parts[0].strip()
+            prerequisites = []
+            if len(task_info_parts) > 1:
+                prerequisites_str = task_info_parts[1].replace("Tasks are", "").replace("Task is", "").strip()
+                prerequisites = [int(p.strip().split()[-1]) for p in prerequisites_str.split('and') if
+                                 p.strip().split()[-1].isdigit()]
+            tasks_with_prerequisites[task_id] = {"name": task_name, "prerequisites": prerequisites}
+
+        tasks_in_order = Sequential_Tasks.find_task_order(tasks_with_prerequisites)
+        return jsonify({"Ordered Tasks": tasks_in_order})
+
+        print("Tasks with prerequisites:", tasks_with_prerequisites)
+        tasks_in_order = Sequential_Tasks.find_task_order(tasks_with_prerequisites)
+        return jsonify({"Ordered Tasks": tasks_in_order})
+
+    except Exception as e:
+        print("Error processing tasks:", e)
+        return jsonify({"error": "Error processing tasks",}), 400
 
 cycle = None
 

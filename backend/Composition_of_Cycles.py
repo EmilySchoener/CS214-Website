@@ -8,6 +8,8 @@ def compose_cycles(input_string, A):
     # Split the cycles by regex
     cycles = re.findall("\(([\d,]+)\)", input_string)
 
+    if A[0] == -1:
+        A = [float('-inf'), float('inf')]
     # Break each cycle into a list of integers
     cycles = [list(map(int, x.split(","))) for x in cycles]
     #print(cycles)
@@ -18,7 +20,7 @@ def compose_cycles(input_string, A):
     #print(A)
     if unique_data != A:
         #print("The cycles entered not valid cycles on the set A ")
-        if len(unique_data) > len(A):
+        if len(unique_data) > len(A) and A != [float('-inf'), float('inf')]:
             return "The cycles entered are not valid cycles on the set A "
     # Make each cycle into a Sympy Permutation
     cycles = [Permutation([x]) for x in cycles]

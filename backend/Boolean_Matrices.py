@@ -5,6 +5,10 @@ def matrix_mult(A, B):
     C = np.matmul(A, B)
     return C
 
+def matrix_mult_reverse(B, A):
+    C = np.matmul(B, A)
+    return C
+
 def matrix_and(A, B):
     #C = []
     n = len(A)
