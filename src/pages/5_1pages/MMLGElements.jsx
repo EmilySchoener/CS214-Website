@@ -16,11 +16,13 @@ const MMLGElements= () => {
        const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            e.preventDefault(); //This will stop the handler from emptying the text box.
-            alert (`S List: ${S}`);
+            const setArray = set.match(/\w+/g);
+            const SArray = S.split('],[').map(item => item.replace(/[\[\]']+/g, '').split(','));
+            console.log("setArray:", setArray);
+            alert(`S List: ${S}`);
             const response = await axios.post("http://127.0.0.1:5000/submitMMLG", {
-                S,
-                set,
+                S: SArray,
+                set: setArray,
             });
             console.log("Response from server:", response.data);
             fetchData();
@@ -43,6 +45,7 @@ const MMLGElements= () => {
     axios.get("http://localhost:5000/submitMMLG")
       .then(response => {
         // Update the state with the response data
+          console.log("Response data from backend:", response.data);
         setResponseData(response.data);
       })
       .catch(error => {
@@ -63,7 +66,7 @@ const MMLGElements= () => {
                 <SplitterPanel>
             <p> Input: </p>
                     <form onSubmit={handleSubmit}>
-                        <label> Type in the Initial Set S:
+                        <label> Type in the Initial Set:
                             <input
 
                                 onChange={setChange}
@@ -99,15 +102,14 @@ const MMLGElements= () => {
                 </SplitterPanel>
                 <SplitterPanel>
                     <h2>Example:</h2>
-                    <p>Type in the Initial Set S: [1,2,4,5,6] </p>
-                    <p>Type in the Pairs of the relation: [[1,2],[3,4],[5,7]] </p>
-                    <p>The list of S is not reflexive <br/>
-                        The list of S is irreflexive<br/>
-                        The list of S is not symmetric<br/>
-                        The list of S is not antisymmetric<br/>
-                        The list of S is not transitive<br/>
-                        The list of S is not asymmetric<br/>
-                        The list of S is not an equivalence relation</p>
+                    <p>Type in the Initial Set: ['a','b','c'] </p>
+                    <p>Type in the Pairs of the Partial Ordering: [['a','a'],['b','b'],['c','c'],['a','b'],['b','c'],['a','c']] </p>
+                    <p>The element a is a minimal element in the partial ordering <br/>
+                        The element b is a maximal element in the partial ordering<br/>
+                        The element c is a maximal element in the partial ordering<br/>
+                        The least element is a<br/>
+                        The greatest element is c<br/>
+                       </p>
                 </SplitterPanel>
             </Splitter>
         </div>

@@ -35,10 +35,11 @@ for i in range(0,m):
 #  Hasse.add_edge(p[i][0],p[i][1])
 '''
 def MMGL(S, p):
-
-    print(S)
-    print(p)
-    ordering_string = ['']
+    minimal_elements = []
+    maximal_elements = []
+    #print(S)
+    #print(p)
+    ordering_string = []
     minimal = True
     maximal = False
     for i in range(0,len(S)):
@@ -64,12 +65,24 @@ def MMGL(S, p):
         continue
      if minimal:
          ordering_string.append(f"The element {S[i]} is a minimal element in the partial ordering")
+         minimal_elements.append(S[i])
      if not minimal:
         ordering_string.append(f"The element {S[i]} is a maximal element in the partial ordering")
+        maximal_elements.append(S[i])
+
+    least_element = min(minimal_elements) if minimal_elements else None
+    greatest_element = max(maximal_elements) if maximal_elements else None
+
+    if least_element:
+        ordering_string.append(f"The least element is {least_element}")
+    if greatest_element:
+        ordering_string.append(f"The greatest element is {greatest_element}")
 
     return ordering_string
 
-
+#S = ['A', 'B', 'C']
+#p = [['A', 'B'], ['B', 'C']]
+#print(MMGL(S, p))
 
 #nx.draw(Hasse,with_labels = True, node_color="red", node_size=3000, font_color="white",font_size=20,font_family="Times New Roman",font_weight="bold", width=5)
 #.margins(0.2)
