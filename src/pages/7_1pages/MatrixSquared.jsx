@@ -129,7 +129,7 @@ const MatrixSquared = () => {
                 Chapter 7.1 - Matrix Squared
             </h1>
             <form onSubmit={handleSubmit}>
-                This will find products A^2 and A^(2) given A.
+                This will find product A^(2) otherwise known as (AxA) given A.
                 <br/>
                 Please enter A below, if you would like to use a 3x3 matrix please leave "-" in the empty spaces.
                 <br/>

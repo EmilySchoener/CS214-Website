@@ -5,9 +5,9 @@ def ThreeByThree(oneOne, oneTwo, oneThree, twoOne, twoTwo, twoThree, threeOne, t
               [int(threeOne), int(threeTwo), int(threeThree)]]
 
     matrixElementsSquared = [[matrix[i][j] * matrix[i][j] for j in range(3)] for i in range(3)]
-    formatted_output = "A^(2) = \n"
-    for row in matrixElementsSquared:
-        formatted_output += "\t".join(map(str, row)) + "\n"
+    formatted_output = "A^(2) or (AxA) = \n"
+    #for row in matrixElementsSquared:
+    #    formatted_output += "\t".join(map(str, row)) + "\n"
 
     matrixSquared = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     # Perform matrix multiplication (square)
@@ -16,7 +16,7 @@ def ThreeByThree(oneOne, oneTwo, oneThree, twoOne, twoTwo, twoThree, threeOne, t
             for k in range(3):
                 matrixSquared[i][j] += matrix[i][k] * matrix[k][j]
 
-    formatted_output += "\nA^2 = \n"
+    #formatted_output += "\nA^2 = \n"
     for row in matrixSquared:
         formatted_output += "\t".join(map(str, row)) + "\n"
 
@@ -31,9 +31,9 @@ def FourByFour(oneOne, oneTwo, oneThree,oneFour, twoOne, twoTwo, twoThree,twoFou
               [int(fourOne), int(fourTwo), int(fourThree), int(fourFour)]]
 
     matrixElementsSquared = [[matrix[i][j] * matrix[i][j] for j in range(4)] for i in range(4)]
-    formatted_output = "A^(2) = \n"
-    for row in matrixElementsSquared:
-        formatted_output += "\t".join(map(str, row)) + "\n"
+    formatted_output = "A^(2) or (AxA) = \n"
+    #for row in matrixElementsSquared:
+    #    formatted_output += "\t".join(map(str, row)) + "\n"
 
     matrixSquared = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
     # Perform matrix multiplication (square)
@@ -42,7 +42,7 @@ def FourByFour(oneOne, oneTwo, oneThree,oneFour, twoOne, twoTwo, twoThree,twoFou
             for k in range(4):
                 matrixSquared[i][j] += matrix[i][k] * matrix[k][j]
 
-    formatted_output += "\nA^2 = \n"
+    #formatted_output += "\nA^2 = \n"
     for row in matrixSquared:
         formatted_output += "\t".join(map(str, row)) + "\n"
 

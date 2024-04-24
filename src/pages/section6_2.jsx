@@ -19,6 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const sections = [
+/*
     {
         id: 1,
         title: "Expression Tree",
@@ -43,10 +44,11 @@ const sections = [
         content: "Add example here",
         link: "/unit6/section6_2/Traversals"
     },
+    */
     {
         id: 5,
         title: "Notations",
-        content: "Add example here",
+        content: "Solves Example: 28 and Homework: 25-32",
         link: "/unit6/section6_2/Notations"
     }
     ]
@@ -65,7 +67,7 @@ const Section6_2 = () => {
                             <Item>
                                 <Card>
                                     <h2>{unit.title}</h2>
-                                    <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
+                                    <p>{unit.content}</p>
                                     <br/>
                                 </Card>
                                 <a href={unit.link}>

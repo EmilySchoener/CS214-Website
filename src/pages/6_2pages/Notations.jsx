@@ -76,7 +76,7 @@ const Notations = () => {
             <h2>Solution</h2>
             <h2>Response from Flask Backend</h2>
             {responseData !== null ? (
-                <p> {responseData} </p>
+                <pre> {responseData} </pre>
             ) : (
                 <p> ... Loading ...</p>
             )}

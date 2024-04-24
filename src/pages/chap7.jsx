@@ -22,7 +22,7 @@ const sections = [
     {
         id: 1,
         title: "Section 7.1",
-        content: "Directed Graphs and Binary Relations; Washall's Algorithm",
+        content: "Directed Graphs and Binary Relations; Warshall's Algorithm",
         link: "/unit7/7_1"
     }]
 

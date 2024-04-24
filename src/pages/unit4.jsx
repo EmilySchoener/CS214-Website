@@ -22,25 +22,25 @@ const sections = [
     {
         id: 1,
         title: "True or False given Sets and Condition",
-        content: "TBD",
+        content: "Solves Example: 3 and Homework: 11-16",
         link: "/unit4/TrueOrFalse"
     },
     {
         id: 2,
         title: "Power Set",
-        content: "TBD",
+        content: "Solves Example: 6, Practice: 8, and Homework: 27-32",
         link: "/unit4/PowerSet"
     },
     {
         id: 3,
         title: "Binary or Unary",
-        content: "TBD",
+        content: "Solves Homework: 40b",
         link: "/unit4/BinaryOrUnary"
     },
     {
         id: 4,
         title: "Solve Expressions",
-        content: "TBD",
+        content: "Solves Example: 16, Practice: 16, and Homework: 47-51",
         link: "/unit4/SolveExpression"
     }
     ]
@@ -60,9 +60,8 @@ const Unit4 = () => {
                             <Item>
                                 <Card>
                                     <h2>{unit.title}</h2>
-                                    <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
+                                    <p>{unit.content}</p>
                                     <br/>
-                                    <p>Add descriptor or example image.</p>
                                 </Card>
                                 <a href={unit.link}>
                                     <button> Go To {unit.title} </button>

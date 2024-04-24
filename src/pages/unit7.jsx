@@ -19,18 +19,21 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const sections = [
+/*
     {
         id: 1,
         title: "Different Graphs",
         content: "TBD",
         link: "/unit7/DifferentGraphs"
     },
+    */
     {
         id: 2,
         title: "Matrix Squared",
-        content: "TBD",
+        content: "Solves Practice: 3 and Homework: 19,20",
         link: "/unit7/MatrixSquared"
     },
+    /*
     {
         id: 3,
         title: "Reachability Matrix From Matrix",
@@ -43,10 +46,11 @@ const sections = [
         content: "TBD",
         link: "/unit7/WarshallReachability"
     },
+    */
     {
         id: 5,
         title: "Warshall Algo to Transitive Closure",
-        content: "TBD",
+        content: "Solves Practice: 6 and Homework: 39,40",
         link: "/unit7/WarshallTransitive"
     }
     ]
@@ -67,9 +71,8 @@ const Unit7 = () => {
                             <Item>
                                 <Card>
                                     <h2>{unit.title}</h2>
-                                    <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
+                                    <p>{unit.content}</p>
                                     <br/>
-                                    <p>Add descriptor or example image.</p>
                                 </Card>
                                 <a href={unit.link}>
                                     <button> Go To {unit.title} </button>

@@ -19,12 +19,14 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const sections = [
+    /*
     {
         id: 1,
         title: "Section 6.1",
         content: "Graphs and Their Representations",
         link: "/unit6/section6_1"
     },
+    */
     {
         id: 2,
         title: "Section 6.2",
@@ -48,7 +50,6 @@ const Unit6 = () => {
                                     <h2>{unit.title}</h2>
                                     <span style={{fontSize: 14, fontWeight: 'bold'}}><p>{unit.content}</p></span>
                                     <br/>
-                                    <p>Add descriptor or example image.</p>
                                 </Card>
                                 <a href={unit.link}>
                                     <button> Go To {unit.title} </button>

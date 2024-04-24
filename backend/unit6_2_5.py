@@ -1,9 +1,15 @@
+import sympy as sp
+
+
 def prefix(input):
     infix_stack = []
     postfix_stack = []
 
+    # Split the input expression into tokens
+    tokens = input.split()
+
     # Iterate through the prefix expression in reverse order
-    for token in reversed(input):
+    for token in reversed(tokens):
         # If the token is an operand, push it to both stacks
         if token.isalnum():
             infix_stack.append(token)
@@ -22,7 +28,7 @@ def prefix(input):
             operand1 = postfix_stack.pop()
             operand2 = postfix_stack.pop()
             # Construct the postfix expression for this operation
-            postfix_expression = f"{operand1}{operand2}{token}"
+            postfix_expression = f"{operand1} {operand2} {token}"
             # Push the postfix expression to the postfix stack
             postfix_stack.append(postfix_expression)
 
@@ -30,8 +36,12 @@ def prefix(input):
     infix_expression = infix_stack.pop()
     postfix_expression = postfix_stack.pop()
 
+    solve = sp.sympify(infix_expression)
+    result = solve.evalf()
+
     # Return a string holding both infix and postfix expressions
-    return f"Infix: {infix_expression}, Postfix: {postfix_expression}"
+    return f"Infix: {infix_expression} \n Postfix: {postfix_expression} \n Solution: {result}"
+
 
 def infix(input):
     precedence = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
@@ -98,42 +108,81 @@ def infix(input):
     # Reverse the prefix stack to get the prefix expression
     prefix_expression = ''.join(prefix_stack[::-1])
     # Join the postfix stack to get the postfix expression
-    postfix_expression = ''.join(postfix_stack)
+    postfix_expression = ' '.join(postfix_stack)
+
+    prefix = postToPre(postfix_expression)
+
+    solve = sp.sympify(input)
+    result = solve.evalf()
 
     # Return a string containing both prefix and postfix expressions
-    return f"Prefix: {prefix_expression}, Postfix: {postfix_expression}"
+    return f"Prefix: {prefix} \n Postfix: {postfix_expression} \n Solution: {result}"
+
 
 def postfix(input):
-    precedence = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
-    prefix_stack = []
-    infix_stack = []
+    prefix = postToPre(input)
+    infix = postToInfix(input)
 
-    # Function to check if the token is an operator
-    def is_operator(token):
-        return token in precedence.keys()
+    solve = sp.sympify(infix)
+    result = solve.evalf()
 
-    # Iterate through the postfix expression
-    for token in input:
-        if not is_operator(token):
-            # If the token is an operand, push it to both stacks
-            prefix_stack.append(token)
-            infix_stack.append(token)
+    return f"Prefix: {prefix} \n Infix: {infix} \n Solution: {result}"
+
+
+def isOperator(x):
+    if x == "+":
+        return True
+    if x == "-":
+        return True
+    if x == "/":
+        return True
+    if x == "*":
+        return True
+    return False
+
+
+def postToPre(post_exp):
+    s = []
+    post_exp_list = post_exp.split()  # Splitting the input by spaces
+    length = len(post_exp_list)
+
+    for i in range(length):
+        if (isOperator(post_exp_list[i])):
+            op1 = s[-1]
+            s.pop()
+            op2 = s[-1]
+            s.pop()
+            temp = post_exp_list[i] + " " + op2 + " " + op1  # Adding spaces between elements
+            s.append(temp)
         else:
-            # If the token is an operator, pop two operands from the stack
-            operand2 = prefix_stack.pop()
-            operand1 = prefix_stack.pop()
+            s.append(post_exp_list[i])
 
-            # Combine the operands and operator to form the prefix expression
-            prefix_expression = token + operand1 + operand2
-            prefix_stack.append(prefix_expression)
+    ans = ""
+    for i in s:
+        ans += i
+    return ans
 
-            # Combine the operands and operator to form the infix expression
-            infix_expression = f"({operand1}{token}{operand2})"
-            infix_stack.append(infix_expression)
 
-    # The final element in both stacks will be the prefix and infix expressions
-    prefix_expression = prefix_stack.pop()
-    infix_expression = infix_stack.pop()
+def postToInfix(post_exp):
+    def is_operand(char):
+        return char.isalnum()
 
-    # Return a string containing both prefix and infix expressions
-    return f"Prefix: {prefix_expression}, Infix: {infix_expression}"
+    def precedence(operator):
+        precedence_map = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
+        return precedence_map.get(operator, 0)
+
+    stack = []
+
+    postfix_tokens = post_exp.split()
+
+    for token in postfix_tokens:
+        if is_operand(token):
+            stack.append(token)
+        else:
+            operand2 = stack.pop()
+            operand1 = stack.pop()
+            infix_expression = f"({operand1} {token} {operand2})"
+            prefix_expression = f"{token} {operand1} {operand2}"
+            stack.append(infix_expression)
+
+    return infix_expression
