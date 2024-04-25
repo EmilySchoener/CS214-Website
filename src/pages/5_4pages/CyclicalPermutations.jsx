@@ -90,7 +90,7 @@ const CyclicalPermutations = () => {
                 <SplitterPanel>
                     <h2>Example:</h2>
                     <p>Type in the Initial Set: [1, 2, 3, 4] </p>
-                    <p>Type in the pairs in S: [[1, 2], [2, 3], [3, 4], [4, 1]]  </p>
+                    <p>Type in the pairs of the relation: [[1, 2], [2, 3], [3, 4], [4, 1]]  </p>
                     <p>Output: 1234 <br/>
                         </p>
                 </SplitterPanel>

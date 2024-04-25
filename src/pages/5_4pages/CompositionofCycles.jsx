@@ -70,11 +70,11 @@ const CompositionofCycles = () => {
                             />
                         </label>
                         <br/>
-                        <label> Type in the pairs in S:
+                        <label> Type in the Cycles:
                             <input
 
                                 onChange={sChange}
-                                placeholder="Enter the pairs in S"
+                                placeholder="Enter the Cycles"
                             />
                         </label>
                         <br/>
@@ -89,7 +89,7 @@ const CompositionofCycles = () => {
                 <SplitterPanel>
                     <h2>Example:</h2>
                     <p>Type in the Initial Set: [1,2,3,4,5] </p>
-                    <p>Type in the pairs in S: (3,5,2),(2,1,3),(4,1)  </p>
+                    <p>Type in the Cycles: (3,5,2),(2,1,3),(4,1)  </p>
                     <p>Output: (1 4 5 2) <br/>
                         </p>
                 </SplitterPanel>
