@@ -167,7 +167,8 @@ def SolveUnit4_1_3(data):
     threeOne = data.get("threeOne", [])
     threeTwo = data.get("threeTwo", [])
     threeThree = data.get("threeThree", [])
-    return unit4_1_3.testMatrix(set1Array,oneOne,oneTwo,oneThree, twoOne, twoTwo, twoThree, threeOne, threeTwo, threeThree)
+    return unit4_1_3.testMatrix(set1Array, oneOne, oneTwo, oneThree, twoOne, twoTwo, twoThree, threeOne, threeTwo,
+                                threeThree)
 
 
 string4_1_4 = None
@@ -306,9 +307,11 @@ def BinarySolution(lists, set):
 
     return keyword
 
+
 diagram = None
 
-@app.route('/submitHasse', methods=['GET','POST'])
+
+@app.route('/submitHasse', methods=['GET', 'POST'])
 def submit__Hasse_form():
     global diagram
 
@@ -347,6 +350,10 @@ def submit__MMGL_form():
             return 'No data available yet'
         else:
             return jsonify(MMLG_answer)
+
+closure = None
+
+
 
 closure = None
 @app.route('/submitClosure', methods=['GET', 'POST'])
@@ -405,26 +412,27 @@ def submit_equivalence_form():
         part2 = data.get('part2', [])
         part3 = data.get('part3', [])
         user_set = data.get('set', [])
-       # initialSet = json.loads(user_set)
-       # partition_1 = json.loads(part1)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
-       # partition_2 = json.loads(part2)
+        # initialSet = json.loads(user_set)
+        # partition_1 = json.loads(part1)  # JSON.LOADS IS THE WAY TO DO IT, USE THIS FOR FUTURE THINGS, this will take the string input and put it into integers
+        # partition_2 = json.loads(part2)
         if part3 == None:
             equivalence = Equivalence_Relations.equivalence_relations(part1, part2, user_set)
         else:
-            equivalence = Equivalence_Relations.equivalence_relations_three(part1,part2,part3,user_set)
+            equivalence = Equivalence_Relations.equivalence_relations_three(part1, part2, part3, user_set)
 
         if not equivalence:
             equivalence = "There is no equivalence between the Set and the partitions"
             return jsonify(equivalence)
         else:
-         equivalence = "The Equivalence Relation is: " + str(equivalence)
-         return jsonify(equivalence)
+            equivalence = "The Equivalence Relation is: " + str(equivalence)
+            return jsonify(equivalence)
 
     elif request.method == 'GET':
         if equivalence is None:
             return 'No data available yet'
         else:
             return jsonify(equivalence)
+
 
 @app.route('/submitTasks', methods=['POST'])
 def submit_ordered_tasks():
@@ -450,7 +458,8 @@ def submit_ordered_tasks():
 
     except Exception as e:
         print("Error processing tasks:", e)
-        return jsonify({"error": "Error processing tasks",}), 400
+        return jsonify({"error": "Error processing tasks", }), 400
+
 
 cycle = None
 
@@ -572,8 +581,8 @@ def submit_comp_form():
             return comp
 
 
-
 mast_theorem = None
+
 
 @app.route('/submitMasterTheorem', methods=['GET', 'POST'])
 def submit_master_theorem():
@@ -596,11 +605,12 @@ def submit_master_theorem():
         else:
             return mast_theorem
 
+
 mult = None
 dot = None
 
-
 order_mag = None
+
 
 @app.route('/submitOrderOfMag', methods=['GET', 'POST'])
 def submit_order_mag():
@@ -624,6 +634,7 @@ def submit_order_mag():
             return 'No data available yet'
         else:
             return order_mag
+
 
 @app.route('/submitMatrixMult', methods=['GET', 'POST'])
 def submit_Mult_form():
@@ -898,6 +909,19 @@ def submit_wff_form():
         return jsonify(error="Error")
 
 
+@app.route('/submitproof', methods=['GET', 'POST'])
+def submit_proof_form():
+    try:
+        data = request.json
+        S = data.get('S', '')
+        result = Well_Formed_Formula.proof_func(S)
+
+        # Return the processed result
+        return jsonify(result=result)
+    except Exception as e:
+        return jsonify(error="Error")
+
+
 string6_2_5 = None
 
 
@@ -972,9 +996,11 @@ def SolveUnit7_1_2(data):
     fourThree = data.get("fourThree", [])
     fourFour = data.get("fourFour", [])
     if (oneFour == "-"):
-        return unit7_1_2.ThreeByThree(oneOne, oneTwo, oneThree, twoOne, twoTwo, twoThree, threeOne, threeTwo, threeThree)
+        return unit7_1_2.ThreeByThree(oneOne, oneTwo, oneThree, twoOne, twoTwo, twoThree, threeOne, threeTwo,
+                                      threeThree)
     else:
-        return unit7_1_2.FourByFour(oneOne, oneTwo, oneThree,oneFour, twoOne, twoTwo, twoThree,twoFour, threeOne, threeTwo, threeThree, threeFour, fourOne, fourTwo, fourThree, fourFour)
+        return unit7_1_2.FourByFour(oneOne, oneTwo, oneThree, oneFour, twoOne, twoTwo, twoThree, twoFour, threeOne,
+                                    threeTwo, threeThree, threeFour, fourOne, fourTwo, fourThree, fourFour)
 
 
 string7_1_3 = None
@@ -1025,11 +1051,15 @@ def SolveUnit7_1_3(data):
     fiveFour = data.get("fiveFour", [])
     fiveFive = data.get("fiveFive", [])
     if intAlgo == 1:
-        return unit7_1_3.custom(oneOne, oneTwo, oneThree, oneFour, oneFive, twoOne, twoTwo, twoThree, twoFour, twoFive, threeOne, threeTwo, threeThree, threeFour, threeFive,
-           fourOne, fourTwo, fourThree, fourFour, fourFive, fiveOne, fiveTwo, fiveThree, fiveFour, fiveFive)
+        return unit7_1_3.custom(oneOne, oneTwo, oneThree, oneFour, oneFive, twoOne, twoTwo, twoThree, twoFour, twoFive,
+                                threeOne, threeTwo, threeThree, threeFour, threeFive,
+                                fourOne, fourTwo, fourThree, fourFour, fourFive, fiveOne, fiveTwo, fiveThree, fiveFour,
+                                fiveFive)
     elif intAlgo == 2:
-        return unit7_1_3.warshall(oneOne, oneTwo, oneThree, oneFour, oneFive, twoOne, twoTwo, twoThree, twoFour, twoFive, threeOne, threeTwo, threeThree, threeFour, threeFive,
-           fourOne, fourTwo, fourThree, fourFour, fourFive, fiveOne, fiveTwo, fiveThree, fiveFour, fiveFive)
+        return unit7_1_3.warshall(oneOne, oneTwo, oneThree, oneFour, oneFive, twoOne, twoTwo, twoThree, twoFour,
+                                  twoFive, threeOne, threeTwo, threeThree, threeFour, threeFive,
+                                  fourOne, fourTwo, fourThree, fourFour, fourFive, fiveOne, fiveTwo, fiveThree,
+                                  fiveFour, fiveFive)
 
 
 string7_1_4 = None

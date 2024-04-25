@@ -49,11 +49,10 @@ const Section1Either = () => {
                 <button type="submit">Submit</button>
             </form>
             <p>
-                Choice: {choice}<br />
+                Outcome: {choice}<br />
             </p>
                 </SplitterPanel>
                 <SplitterPanel>
-                    <h2>Example:</h2>
                 </SplitterPanel>
             </Splitter>
         </div>

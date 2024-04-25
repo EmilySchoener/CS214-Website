@@ -36,17 +36,17 @@ const sections = [
     {
         id: 3,
         title: "Section 1.1",
-        content: "Profs",
+        content: "Proofs",
         solve: "Homework: 27, 28",
-        link: "/unit1/section1_1"
-    },
-    {
-        id: 4,
-        title: "Section 1.2",
-        content: "Propositional Logic",
-        solve: "Example: 11-17, Practice: 9, 11, 12, 13, Homework: 9-42",
         link: "/unit1/section1_2"
     }
+    // {
+    //     id: 4,
+    //     title: "Section 1.2",
+    //     content: "Propositional Logic",
+    //     solve: "Example: 11-17, Practice: 9, 11, 12, 13, Homework: 9-42",
+    //     link: "/unit1/section1_2"
+    // }
 ]
 
 const Unit1 = () => {
