@@ -649,40 +649,229 @@ def submit_Mult_form():
             return jsonify(mult, dot)
 
 
-bool_mat = None
-bool_and = None
-bool_or = None
-bool_dot = None
+
+string_bool_data = None
 
 
 @app.route('/submitBoolMatrix', methods=['GET', 'POST'])
 def submit_Bool_form():
-    global bool_mat
-    global bool_and
-    global bool_or
-    global bool_dot
+    global string_bool_data
 
     if request.method == 'POST':
         data = request.json
-        bool_matrix1 = data.get('bool_matrix1', [])
-        bool_matrix2 = data.get('bool_matrix2', [])
-        bool_m1 = json.loads(bool_matrix1)
-        bool_m2 = json.loads(bool_matrix2)
-        bool_mat = Boolean_Matrices.matrix_mult(bool_m1, bool_m2)
-        bool_mat = "The Matrix Multiplication gives: " + str(bool_mat)
-        bool_and = Boolean_Matrices.matrix_and(bool_m1, bool_m2)
-        bool_and = "The Boolean And gives: " + str(bool_and)
-        bool_or = Boolean_Matrices.matrix_or(bool_m1, bool_m2)
-        bool_or = "The Boolean Or gives: " + str(bool_or)
-        bool_dot = Boolean_Matrices.matrix_dot(bool_m1, bool_m2)
-        bool_dot = "The Dot Product gives: " + str(bool_dot)
-        return jsonify(bool_mat, bool_and, bool_or, bool_dot)
+        string_bool_data = Solve_Bool_Matrix(data)
+        return jsonify(string_bool_data)
 
     elif request.method == 'GET':
-        if bool_mat is None and bool_and is None and bool_or is None and bool_dot is None:
+        if string_bool_data is None:
             return 'No data available yet'
         else:
-            return jsonify(bool_mat, bool_and, bool_or, bool_dot)
+            return jsonify(string_bool_data)
+
+
+def Solve_Bool_Matrix(data):
+    mat1oneOne = data.get("oneOne", [])
+    mat1oneTwo = data.get("oneTwo", [])
+    mat1oneThree = data.get("oneThree", [])
+    mat1oneFour = data.get("oneFour", [])
+    mat1twoOne = data.get("twoOne", [])
+    mat1twoTwo = data.get("twoTwo", [])
+    mat1twoThree = data.get("twoThree", [])
+    mat1twoFour = data.get("twoFour", [])
+    mat1threeOne = data.get("threeOne", [])
+    mat1threeTwo = data.get("threeTwo", [])
+    mat1threeThree = data.get("threeThree", [])
+    mat1threeFour = data.get("threeFour", [])
+    mat1fourOne = data.get("fourOne", [])
+    mat1fourTwo = data.get("fourTwo", [])
+    mat1fourThree = data.get("fourThree", [])
+    mat1fourFour = data.get("fourFour", [])
+
+    mat_2oneOne = data.get("mat_2oneOne", [])
+    mat_2oneTwo = data.get("mat_2oneTwo", [])
+    mat_2oneThree = data.get("mat_2oneThree", [])
+    mat_2oneFour = data.get("mat_2oneFour", [])
+    mat_2twoOne = data.get("mat_2twoOne", [])
+    mat_2twoTwo = data.get("mat_2twoTwo", [])
+    mat_2twoThree = data.get("mat_2twoThree", [])
+    mat_2twoFour = data.get("mat_2twoFour", [])
+    mat_2threeOne = data.get("mat_2threeOne", [])
+    mat_2threeTwo = data.get("mat_2threeTwo", [])
+    mat_2threeThree = data.get("mat_2threeThree", [])
+    mat_2threeFour = data.get("mat_2threeFour", [])
+    mat_2fourOne = data.get("mat_2fourOne", [])
+    mat_2fourTwo = data.get("mat_2fourTwo", [])
+    mat_2fourThree = data.get("mat_2fourThree", [])
+    mat_2fourFour = data.get("mat_2fourFour", [])
+
+    if mat1oneThree == "-" and mat1twoThree == "-" and mat1threeThree == "-" and mat1fourThree == "-" and mat1oneFour == "-" and mat1twoFour == "-" and mat1threeFour == "-" and mat1fourFour == "-" and mat_2oneThree == "-" and mat_2twoThree == "-" and mat_2threeThree == "-" and mat_2threeFour == "-" and mat_2fourOne == "-" and mat_2fourTwo == "-" and mat_2fourThree == "-" and mat_2fourFour ==  "-"  :
+        mat1oneOne = int(mat1oneOne)
+        mat1oneTwo = int(mat1oneTwo)
+        mat1twoOne = int(mat1twoOne)
+        mat1twoTwo = int(mat1twoTwo)
+
+        mat_2oneOne = int(mat_2oneOne)
+        mat_2oneTwo = int(mat_2oneTwo)
+        mat_2twoOne = int(mat_2twoOne)
+        mat_2twoTwo = int(mat_2twoTwo)
+        A = [[0, 0],[0, 0]]
+        A[0][0] = mat1oneOne
+        A[0][1] = mat1oneTwo
+        A[1][0] = mat1twoOne
+        A[1][1] = mat1twoTwo
+
+        B = [[0, 0], [0, 0]]
+        B[0][0] = mat_2oneOne
+        B[0][1] = mat_2oneTwo
+        B[1][0] = mat_2twoOne
+        B[1][1] = mat_2twoTwo
+
+        and_2x2 = Boolean_Matrices.matrix_and_2x2(A,B)
+        or_2x2 = Boolean_Matrices.matrix_or_2x2(A,B)
+        AxB_2x2 = Boolean_Matrices.matrix_mult_2x2(A,B)
+        AxB_2x2_reverse = Boolean_Matrices.matrix_mult_reverse_2x2(B,A)
+        mat_key = [''] * 4
+        mat_key[0] = and_2x2
+        mat_key[1] = or_2x2
+        mat_key[2] = AxB_2x2
+        mat_key[3] = AxB_2x2_reverse
+        return mat_key
+
+    if mat1oneThree != "-" and mat1twoThree != "-" and mat1threeThree != "-" and mat1fourThree == "-" and mat1oneFour == "-" and mat1twoFour == "-" and mat1threeFour == "-" and mat1fourFour == "-" and mat_2oneThree != "-" and mat_2twoThree != "-" and mat_2threeThree != "-" and mat_2threeFour == "-" and mat_2fourOne == "-" and mat_2fourTwo == "-" and mat_2fourThree == "-" and mat_2fourFour == "-":
+        mat1oneOne = int(mat1oneOne)
+        mat1oneTwo = int(mat1oneTwo)
+        mat1oneThree = int(mat1oneThree)
+        mat1twoOne = int(mat1twoOne)
+        mat1twoTwo = int(mat1twoTwo)
+        mat1twoThree = int(mat1twoThree)
+        mat1threeOne = int(mat1threeOne)
+        mat1threeTwo = int(mat1threeTwo)
+        mat1threeThree = int(mat1threeThree)
+
+        mat_2oneOne = int(mat_2oneOne)
+        mat_2oneTwo = int(mat_2oneTwo)
+        mat_2oneThree = int(mat_2oneThree)
+        mat_2twoOne = int(mat_2twoOne)
+        mat_2twoTwo = int(mat_2twoTwo)
+        mat_2twoThree = int(mat_2twoThree)
+        mat_2threeOne = int(mat_2threeOne)
+        mat_2threeTwo = int(mat_2threeTwo)
+        mat_2threeThree = int(mat_2threeThree)
+        A = [[0, 0, 0],[0, 0, 0], [0,0,0]]
+        A[0][0] = mat1oneOne
+        A[0][1] = mat1oneTwo
+        A[0][2] = mat1oneThree
+        A[1][0] = mat1twoOne
+        A[1][1] = mat1twoTwo
+        A[1][2] = mat1twoThree
+        A[2][0] = mat1threeOne
+        A[2][1] = mat1threeTwo
+        A[2][2] = mat1threeThree
+
+        B = [[0, 0, 0],[0, 0, 0], [0,0,0]]
+        B[0][0] = mat_2oneOne
+        B[0][1] = mat_2oneTwo
+        B[0][2] = mat_2oneThree
+        B[1][0] = mat_2twoOne
+        B[1][1] = mat_2twoTwo
+        B[1][2] = mat_2twoThree
+        B[2][0] = mat_2threeOne
+        B[2][1] = mat_2threeTwo
+        B[2][2] = mat_2threeThree
+
+        and_3x3 = Boolean_Matrices.matrix_and_3x3(A,B)
+        or_3x3 = Boolean_Matrices.matrix_or_3x3(A,B)
+        AxB_3x3 = Boolean_Matrices.matrix_mult_3x3(A,B)
+        AxB_3x3_reverse = Boolean_Matrices.matrix_mult_reverse_3x3(B,A)
+        mat_key = [''] * 4
+        mat_key[0] = and_3x3
+        mat_key[1] = or_3x3
+        mat_key[2] = AxB_3x3
+        mat_key[3] = AxB_3x3_reverse
+        return mat_key
+
+    if mat1oneThree != "-" and mat1twoThree != "-" and mat1threeThree != "-" and mat1fourThree != "-" and mat1oneFour != "-" and mat1twoFour != "-" and mat1threeFour != "-" and mat1fourFour != "" and mat_2oneThree != "-" and mat_2twoThree != "-" and mat_2threeThree != "-" and mat_2threeFour != "-" and mat_2fourOne != "-" and mat_2fourTwo != "-" and mat_2fourThree != "-" and mat_2fourFour !=  "-"  :
+        mat1oneOne = int(mat1oneOne)
+        mat1oneTwo = int(mat1oneTwo)
+        mat1oneThree = int(mat1oneThree)
+        mat1oneFour = int(mat1oneFour)
+        mat1twoOne = int(mat1twoOne)
+        mat1twoTwo = int(mat1twoTwo)
+        mat1twoThree = int(mat1twoThree)
+        mat1twoFour = int(mat1twoFour)
+        mat1threeOne = int(mat1threeOne)
+        mat1threeTwo = int(mat1threeTwo)
+        mat1threeThree = int(mat1threeThree)
+        mat1threeFour = int(mat1threeFour)
+        mat1fourOne = int(mat1fourOne)
+        mat1fourTwo = int(mat1fourTwo)
+        mat1fourThree = int(mat1fourThree)
+        mat1fourFour = int(mat1fourFour)
+
+        mat_2oneOne = int(mat_2oneOne)
+        mat_2oneTwo = int(mat_2oneTwo)
+        mat_2oneThree = int(mat_2oneThree)
+        mat_2oneFour = int(mat_2oneFour)
+        mat_2twoOne = int(mat_2twoOne)
+        mat_2twoTwo = int(mat_2twoTwo)
+        mat_2twoThree = int(mat_2twoThree)
+        mat_2twoFour = int(mat_2twoFour)
+        mat_2threeOne = int(mat_2threeOne)
+        mat_2threeTwo = int(mat_2threeTwo)
+        mat_2threeThree = int(mat_2threeThree)
+        mat_2threeFour = int(mat_2threeFour)
+        mat_2fourOne = int(mat_2fourOne)
+        mat_2fourTwo = int(mat_2fourTwo)
+        mat_2fourThree = int(mat_2fourThree)
+        mat_2fourFour = int(mat_2fourFour)
+        A = [[0, 0, 0, 0],[0, 0, 0,0], [0,0,0,0], [0,0,0,0]]
+        A[0][0] = mat1oneOne
+        A[0][1] = mat1oneTwo
+        A[0][2] = mat1oneThree
+        A[0][3] = mat1oneFour
+        A[1][0] = mat1twoOne
+        A[1][1] = mat1twoTwo
+        A[1][2] = mat1twoThree
+        A[1][3] = mat1twoFour
+        A[2][0] = mat1threeOne
+        A[2][1] = mat1threeTwo
+        A[2][2] = mat1threeThree
+        A[2][3] = mat1threeFour
+        A[3][0] = mat1fourOne
+        A[3][1] = mat1fourTwo
+        A[3][2] = mat1fourThree
+        A[3][3] = mat1fourFour
+
+        B = [[0, 0, 0, 0],[0, 0, 0, 0], [0,0,0, 0], [0,0,0,0]]
+        B[0][0] = mat_2oneOne
+        B[0][1] = mat_2oneTwo
+        B[0][2] = mat_2oneThree
+        B[0][3] = mat_2oneFour
+        B[1][0] = mat_2twoOne
+        B[1][1] = mat_2twoTwo
+        B[1][2] = mat_2twoThree
+        B[1][3] = mat_2twoFour
+        B[2][0] = mat_2threeOne
+        B[2][1] = mat_2threeTwo
+        B[2][2] = mat_2threeThree
+        B[2][3] = mat_2threeFour
+        B[3][0] = mat_2fourOne
+        B[3][1] = mat_2fourTwo
+        B[3][2] = mat_2fourThree
+        B[3][3] = mat_2fourFour
+
+        and_4x4 = Boolean_Matrices.matrix_and_4x4(A,B)
+        or_4x4 = Boolean_Matrices.matrix_or_4x4(A,B)
+        AxB_4x4 = Boolean_Matrices.matrix_mult_4x4(A,B)
+        AxB_4x4_reverse = Boolean_Matrices.matrix_mult_reverse_4x4(B,A)
+        mat_key = [''] * 4
+        mat_key[0] = and_4x4
+        mat_key[1] = or_4x4
+        mat_key[2] = AxB_4x4
+        mat_key[3] = AxB_4x4_reverse
+        return mat_key
+
+
 
 
 @app.route('/submitwff', methods=['GET', 'POST'])
