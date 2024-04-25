@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from 'react';
 import Navbar from "./Navbar/index.jsx";
 import {
-    BrowserRouter as Router,
+    //BrowserRouter as Router,
     Routes,
     Route,
+    useLocation
 } from "react-router-dom";
 
 //These are the webpages available.
@@ -64,78 +65,99 @@ import WarshallReachability from "./pages/7_1pages/WarshallReachability.jsx";
 import WarshallTransitive from "./pages/7_1pages/WarshallTransitive.jsx";
 import Report from "./pages/ErrorReport.jsx";
 
+//export var outPath = '';
+import {outPath} from "./Path.tsx";
 
 //Router is for different paths on the navbar. Home is the homepage.
 function App() {
+    const location = useLocation();
+    const [path, setPath] = useState("/");
+
+    const pathChange = (e) =>{
+        let temp = path + e;
+        return temp;
+    }
+
+    useEffect(() => {
+        const data = window.localStorage.getItem('PATH_STATE');
+        if ( data !== null ) outPath.setPath(data);
+    }, []);
+
+    useEffect(() => {
+        // execute on location change
+        //outPath.pathChange(location.pathname);
+        //setPath(pathChange(location.pathname));
+        window.localStorage.setItem('PATH_STATE', outPath.pathChange(location.pathname));
+        console.log('Location changed!', location.pathname);
+    }, [location]);
+
     return (
         <div>
-            <Router>
-                <Navbar/>
-                <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/about" element={<About/>}/>
-                    <Route path="/unit1" element={<Unit1/>}/>
-                    <Route path="/unit1/section1_1" element={<Section1_1/>}/>
-                    <Route path="/unit1/section1_either" element={<Section1_either/>}/>
-                    <Route path="/unit1/section1_2" element={<Section1_2/>}/>
-                    <Route path="/unit3" element={<Chap3/>}/>
-                    <Route path="/unit3/recursiveDef" element={<Unit3/>}/>
-                    <Route path="/unit4" element={<Chap4/>}/>
-                    <Route path="/unit4/4_1" element={<Unit4/>}/>
-                    <Route path="/unit4/TrueOrFalse" element={<TrueOrFalse/>}/>
-                    <Route path="/unit4/PowerSet" element={<PowerSet/>}/>
-                    <Route path="/unit4/BinaryOrUnary" element={<BinaryOrUnary/>}/>
-                    <Route path="/unit4/SolveExpression" element={<SolveExpression/>}/>
-                    <Route path="/unit5" element={<Unit5/>}/>
-                    <Route path="/unit5/section5_1" element={<Section5_1/>}/>
-                    <Route path="/unit5/section5_1/BinaryRelations" element={<BinaryRelations/>}/>
-                    <Route path="/unit5/section5_1/ClosureRelations" element={<ClosureRelations/>}/>
-                    <Route path="/unit5/section5_1/HasseDiagram" element={<HasseDiagram/>}/>
-                    <Route path="/unit5/section5_1/MMLGElements" element={<MMLGElements/>}/>
-                    <Route path="/unit5/section5_1/Equivalence" element={<Equivalence/>}/>
-                    <Route path="/unit5/section5_2" element={<Section5_2/>}/>
-                    <Route path="/unit5/section5_2/PertChart" element={<PertChart/>}/>
-                    <Route path="/unit5/section5_2/TopologicalSort" element={<TopologicalSort/>}/>
-                    <Route path="/unit5/section5_2/SequentialTasks" element={<SequentialTasks/>}/>
-                    <Route path="/unit5/section5_4" element={<Section5_4/>}/>
-                    <Route path="/unit5/section5_4/CyclicalPermutations" element={<CyclicalPermutations/>}/>
-                    <Route path="/unit5/section5_4/Onto" element={<Onto/>}/>
-                    <Route path="/unit5/section5_4/OneToOne" element={<OneToOne/>}/>
-                    <Route path="/unit5/section5_4/CompositionofCycles" element={<CompositionofCycles/>}/>
-                    <Route path="/unit5/section5_5" element={<Section5_5/>}/>
-                    <Route path="/unit5/section5_5/OrderOfMagnitude" element={<OrderOfMagnitude/>}/>
-                    <Route path="/unit5/section5_5/MasterTheorem" element={<MasterTheorem/>}/>
-                    <Route path="/unit5/section5_7" element={<Section5_7/>}/>
-                    <Route path="/unit5/section5_7/BooleanMatrices" element={<BooleanMatrices/>}/>
-                    <Route path="/unit5/section5_7/MatrixMultiplication" element={<MatrixMultiplication/>}/>
-                    <Route path="/unit6" element={<Unit6/>}/>
-                    <Route path="/unit6/section6_1" element={<Section6_1/>}/>
-                    <Route path="/unit6/section6_1/AdjacencyMatrixToGraph" element={<AdjacencyMatrixToGraph/>}/>
-                    <Route path="/unit6/section6_1/Graphs" element={<Graphs/>}/>
-                    <Route path="/unit6/section6_1/GraphToAdjacencyListRepresentation" element={<GraphToAdjacencyListRepresentation/>}/>
-                    <Route path="/unit6/section6_1/GraphToAdjacencyMatrix" element={<GraphToAdjacencyMatrix/>}/>
-                    <Route path="/unit6/section6_2" element={<Section6_2/>}/>
-                    <Route path="/unit6/section6_2/ArrayRepresentation" element={<ArrayRepresentation/>}/>
-                    <Route path="/unit6/section6_2/BinaryTreeRepresentation" element={<BinaryTreeRepresentation/>}/>
-                    <Route path="/unit6/section6_2/ExpressionTree" element={<ExpressionTree/>}/>
-                    <Route path="/unit6/section6_2/Notations" element={<Notations/>}/>
-                    <Route path="/unit6/section6_2/Traversals" element={<Traversals/>}/>
-                    <Route path="/unit7" element={<Chap7/>}/>
-                    <Route path="/unit7/7_1" element={<Unit7/>}/>
-                    <Route path="/unit7/DifferentGraphs" element={<DifferentGraphs/>}/>
-                    <Route path="/unit7/MatrixSquared" element={<MatrixSquared/>}/>
-                    <Route path="/unit7/ReachabilityMatrix" element={<ReachabilityMatrix/>}/>
-                    <Route path="/unit7/WarshallReachability" element={<WarshallReachability/>}/>
-                    <Route path="/unit7/WarshallTransitive" element={<WarshallTransitive/>}/>
-                    <Route path="/userReport" element={<Report/>}/>
-                </Routes>
-                <br/>
-                <a href={"/userReport"}>
-                    <button> Report an Error </button>
-                </a>
-                <p>Examples taken from: Mathematical Structures for Computer Science, A Modern Treatment of Discrete
-                    Mathematics (7th edition) by Judith L. Gerstring</p>
-            </Router>
+            <Navbar/>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/about" element={<About/>}/>
+                <Route path="/unit1" element={<Unit1/>}/>
+                <Route path="/unit1/section1_1" element={<Section1_1/>}/>
+                <Route path="/unit1/section1_either" element={<Section1_either/>}/>
+                <Route path="/unit1/section1_2" element={<Section1_2/>}/>
+                <Route path="/unit3" element={<Chap3/>}/>
+                <Route path="/unit3/recursiveDef" element={<Unit3/>}/>
+                <Route path="/unit4" element={<Chap4/>}/>
+                <Route path="/unit4/4_1" element={<Unit4/>}/>
+                <Route path="/unit4/TrueOrFalse" element={<TrueOrFalse/>}/>
+                <Route path="/unit4/PowerSet" element={<PowerSet/>}/>
+                <Route path="/unit4/BinaryOrUnary" element={<BinaryOrUnary/>}/>
+                <Route path="/unit4/SolveExpression" element={<SolveExpression/>}/>
+                <Route path="/unit5" element={<Unit5/>}/>
+                <Route path="/unit5/section5_1" element={<Section5_1/>}/>
+                <Route path="/unit5/section5_1/BinaryRelations" element={<BinaryRelations/>}/>
+                <Route path="/unit5/section5_1/ClosureRelations" element={<ClosureRelations/>}/>
+                <Route path="/unit5/section5_1/HasseDiagram" element={<HasseDiagram/>}/>
+                <Route path="/unit5/section5_1/MMLGElements" element={<MMLGElements/>}/>
+                <Route path="/unit5/section5_1/Equivalence" element={<Equivalence/>}/>
+                <Route path="/unit5/section5_2" element={<Section5_2/>}/>
+                <Route path="/unit5/section5_2/PertChart" element={<PertChart/>}/>
+                <Route path="/unit5/section5_2/TopologicalSort" element={<TopologicalSort/>}/>
+                <Route path="/unit5/section5_2/SequentialTasks" element={<SequentialTasks/>}/>
+                <Route path="/unit5/section5_4" element={<Section5_4/>}/>
+                <Route path="/unit5/section5_4/CyclicalPermutations" element={<CyclicalPermutations/>}/>
+                <Route path="/unit5/section5_4/Onto" element={<Onto/>}/>
+                <Route path="/unit5/section5_4/OneToOne" element={<OneToOne/>}/>
+                <Route path="/unit5/section5_4/CompositionofCycles" element={<CompositionofCycles/>}/>
+                <Route path="/unit5/section5_5" element={<Section5_5/>}/>
+                <Route path="/unit5/section5_5/OrderOfMagnitude" element={<OrderOfMagnitude/>}/>
+                <Route path="/unit5/section5_5/MasterTheorem" element={<MasterTheorem/>}/>
+                <Route path="/unit5/section5_7" element={<Section5_7/>}/>
+                <Route path="/unit5/section5_7/BooleanMatrices" element={<BooleanMatrices/>}/>
+                <Route path="/unit5/section5_7/MatrixMultiplication" element={<MatrixMultiplication/>}/>
+                <Route path="/unit6" element={<Unit6/>}/>
+                <Route path="/unit6/section6_1" element={<Section6_1/>}/>
+                <Route path="/unit6/section6_1/AdjacencyMatrixToGraph" element={<AdjacencyMatrixToGraph/>}/>
+                <Route path="/unit6/section6_1/Graphs" element={<Graphs/>}/>
+                <Route path="/unit6/section6_1/GraphToAdjacencyListRepresentation" element={<GraphToAdjacencyListRepresentation/>}/>
+                <Route path="/unit6/section6_1/GraphToAdjacencyMatrix" element={<GraphToAdjacencyMatrix/>}/>
+                <Route path="/unit6/section6_2" element={<Section6_2/>}/>
+                <Route path="/unit6/section6_2/ArrayRepresentation" element={<ArrayRepresentation/>}/>
+                <Route path="/unit6/section6_2/BinaryTreeRepresentation" element={<BinaryTreeRepresentation/>}/>
+                <Route path="/unit6/section6_2/ExpressionTree" element={<ExpressionTree/>}/>
+                <Route path="/unit6/section6_2/Notations" element={<Notations/>}/>
+                <Route path="/unit6/section6_2/Traversals" element={<Traversals/>}/>
+                <Route path="/unit7" element={<Chap7/>}/>
+                <Route path="/unit7/7_1" element={<Unit7/>}/>
+                <Route path="/unit7/DifferentGraphs" element={<DifferentGraphs/>}/>
+                <Route path="/unit7/MatrixSquared" element={<MatrixSquared/>}/>
+                <Route path="/unit7/ReachabilityMatrix" element={<ReachabilityMatrix/>}/>
+                <Route path="/unit7/WarshallReachability" element={<WarshallReachability/>}/>
+                <Route path="/unit7/WarshallTransitive" element={<WarshallTransitive/>}/>
+                <Route path="/userReport" element={<Report/>}/>
+            </Routes>
+            <br/>
+            <a href={"/userReport"}>
+                <button > Report an Error</button>
+            </a>
+            <p>Examples taken from: Mathematical Structures for Computer Science, A Modern Treatment of Discrete
+                Mathematics (7th edition) by Judith L. Gerstring</p>
         </div>
     );
 }

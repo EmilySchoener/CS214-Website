@@ -51,6 +51,8 @@ const Notations = () => {
             <h1>
                 Chapter 6.2 - Prefix, Postfix, and Infix Notations
             </h1>
+            <Splitter>
+                <SplitterPanel>
             <form onSubmit={handleSubmit}>
                 Which notation are you entering?
                 <select id="dropdown" value={notation} onChange={notationChange}>
@@ -79,6 +81,20 @@ const Notations = () => {
             ) : (
                 <p> ... Loading ...</p>
             )}
+                </SplitterPanel>
+                <SplitterPanel>
+                    <h2>Example:</h2>
+                    <p>
+                        Which notation are you entering? Prefix<br/>
+                        Expression = - * + 2 3 * 6 x 7<br/>
+                    </p>
+                    <p>
+                         Infix: (((2 + 3) * (6 * x)) - 7) <br/>
+                         Postfix: 2 3 + 6 x * * 7 - <br/>
+                         Solution: 30.0*x - 7.0 <br/>
+                    </p>
+                </SplitterPanel>
+            </Splitter>
 
         </div>
     );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 const MatrixSquared = () => {
     const [set, setSet] = useState([]);
@@ -128,6 +129,8 @@ const MatrixSquared = () => {
             <h1>
                 Chapter 7.1 - Matrix Squared
             </h1>
+            <Splitter>
+                <SplitterPanel>
             <form onSubmit={handleSubmit}>
                 This will find product A^(2) otherwise known as (AxA) given A.
                 <br/>
@@ -277,6 +280,26 @@ const MatrixSquared = () => {
             ) : (
                 <p>Loading...</p>
             )}
+                </SplitterPanel>
+                <SplitterPanel>
+                    <h2>Example:</h2>
+                    <p>
+                        Enter A below:<br/>
+                        1 1 0 1<br/>
+                        0 0 1 0<br/>
+                        1 0 0 1<br/>
+                        1 0 1 0<br/>
+                    </p>
+                    <p>
+                        Solution:<br/>
+                        A^(2) or (AxA) = <br/>
+                        1 1 1 1<br/>
+                        1 0 0 1<br/>
+                        1 1 1 1<br/>
+                        1 1 0 1<br/>
+                    </p>
+                </SplitterPanel>
+            </Splitter>
 
         </div>
     );
