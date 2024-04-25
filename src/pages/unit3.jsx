@@ -151,7 +151,6 @@ const Unit3 = () => {
             </form>
 
             <h2>Solution</h2>
-            <h2>Response from Flask Backend</h2>
             {responseData !== null && Array.isArray(responseData) ? (
                 <ul>
                     {responseData.map((item, index) => (

@@ -74,7 +74,6 @@ const Notations = () => {
                 </button>
             </form>
             <h2>Solution</h2>
-            <h2>Response from Flask Backend</h2>
             {responseData !== null ? (
                 <pre> {responseData} </pre>
             ) : (
